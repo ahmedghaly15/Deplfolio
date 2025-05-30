@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
-
-import '../theming/color_manager.dart';
-import '../theming/text_styles_manager.dart';
 
 class CustomInputFormField extends StatelessWidget {
   const CustomInputFormField({
@@ -72,9 +68,6 @@ class CustomInputFormField extends StatelessWidget {
       label: label,
       description: description,
       placeholder: placeholder,
-      placeholderStyle: _textFieldTextStyle.copyWith(
-        color: ColorManager.colorA4A4A4,
-      ),
       focusNode: focusNode,
       enabled: enabled,
       autofocus: autofocus,
@@ -88,48 +81,9 @@ class CustomInputFormField extends StatelessWidget {
       autofillHints: autofillHints,
       onSubmitted: onSubmitted,
       onChanged: onChanged,
-      style: _textFieldTextStyle,
       maxLines: maxLines,
       minLines: minLines,
-      inputPadding: inputPadding ?? _inputPadding,
-      decoration: ShadDecoration(
-        errorStyle: TextStyle(fontSize: 13.sp, color: Colors.red),
-        focusedBorder:
-            focusedBorder ??
-            _textFieldUnderlineInputBorder(
-              borderColor: ColorManager.primaryColor,
-              width: 2,
-            ),
-        errorBorder:
-            errorBorder ??
-            _textFieldUnderlineInputBorder(borderColor: Colors.red, width: 1.3),
-        border: border ?? _textFieldUnderlineInputBorder(),
-      ),
-    );
-  }
-
-  static EdgeInsets get _inputPadding =>
-      EdgeInsets.symmetric(horizontal: 20.w, vertical: 17.h);
-
-  static TextStyle get _textFieldTextStyle => TextStylesManager.font12Regular;
-
-  static ShadBorder _textFieldUnderlineInputBorder({
-    Color? borderColor,
-    double width = 1,
-  }) {
-    return ShadBorder(
-      radius: BorderRadius.circular(16.r),
-      top: _inputBorderSide(borderColor, width),
-      bottom: _inputBorderSide(borderColor, width),
-      left: _inputBorderSide(borderColor, width),
-      right: _inputBorderSide(borderColor, width),
-    );
-  }
-
-  static ShadBorderSide _inputBorderSide(Color? borderColor, double width) {
-    return ShadBorderSide(
-      color: borderColor ?? ColorManager.colorA4A4A4,
-      width: width.w,
+      inputPadding: inputPadding,
     );
   }
 }
