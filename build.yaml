@@ -1,0 +1,8 @@
+global_options:
+  riverpod_generator:
+    runs_before:
+      - freezed
+  freezed:
+    runs_before:
+      - json_serializable
+  
