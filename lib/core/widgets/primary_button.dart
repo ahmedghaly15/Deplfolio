@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../theming/text_styles_manager.dart';
-import 'adaptive_circular_progress_indicator.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -33,22 +32,4 @@ class PrimaryButton extends StatelessWidget {
               : child,
     );
   }
-
-  factory PrimaryButton.loading({
-    Widget? child,
-    String? text,
-    VoidCallback? onPressed,
-  }) => PrimaryButton(
-    onPressed: onPressed,
-    leading: const AdaptiveCircularProgressIndicator(),
-    child:
-        text != null
-            ? Text(
-              text,
-              style: TextStylesManager.font12Regular.copyWith(
-                color: Colors.white,
-              ),
-            )
-            : child,
-  );
 }
