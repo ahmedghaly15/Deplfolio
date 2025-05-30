@@ -7,6 +7,10 @@ extension UnfocusKeyboard on BuildContext {
   void unfocusKeyboard() => FocusScope.of(this).unfocus();
 }
 
+extension StringExtension on String? {
+  bool get isNullOrEmpty => this == null || this == '';
+}
+
 extension ShowMyToast on BuildContext {
   void showToast(String message) => ScaffoldMessenger.of(this).showSnackBar(
     SnackBar(
