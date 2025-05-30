@@ -9,11 +9,43 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # state management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  # A code generator for immutable classes
+  freezed_annotation: ^3.0.0
+  # A code generator for JSON serialization
+  json_annotation: ^4.9.0
+  # Flutter integration for Supabase
+  supabase_flutter: ^2.8.4
+  # Prints beautiful logs
+  logger: ^2.5.0
+  # Flutter plugin for reading and writing simple key-value pairs for cache
+  shared_preferences: ^2.5.3
+  # For caching secured data
+  flutter_secure_storage: ^9.2.4
+  # A flutter plugin for adapting screen and font size.Guaranteed to look good on different models
+  flutter_screenutil: ^5.9.3
+  # Contains beautiful icons for Flutter
+  lucide_icons_flutter: ^2.0.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  # A build system for Dart code generation and modular compilation.
+  build_runner: ^2.4.14
+  # code generator for riverpod
+  riverpod_generator: ^2.6.5
+  # Custom Lint rules are a powerful way to improve the maintainability of a project
+  custom_lint: ^0.7.5
+  # A developer tool for users of Riverpod, designed to help stop common issues and simplify repetitive tasks.
+  riverpod_lint: ^2.6.5
+  # A code generator for immutable classes
+  freezed: ^3.0.6
+  # A code generator for JSON serialization
+  json_serializable: ^6.9.5
+
 
 flutter:
   uses-material-design: true
