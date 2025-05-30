@@ -14,13 +14,26 @@ class ThemeManager {
       primary: ColorManager.primaryColor,
     ),
     brightness: Brightness.dark,
-    primaryButtonTheme: const ShadButtonTheme(
-      gradient: LinearGradient(
+    primaryButtonTheme: ShadButtonTheme(
+      size: ShadButtonSize.lg,
+      pressedBackgroundColor: ColorManager.primaryColor.withAlpha(102),
+      decoration: ShadDecoration(
+        border: ShadBorder(radius: BorderRadius.circular(16.r)),
+      ),
+      gradient: const LinearGradient(
         colors: [ColorManager.primaryColor, ColorManager.colorC65647],
         stops: [0.0, 1.0],
-        begin: AlignmentDirectional.centerStart,
+        begin: AlignmentDirectional.centerEnd,
         end: AlignmentDirectional.centerStart,
       ),
+      shadows: [
+        BoxShadow(
+          color: ColorManager.primaryColor.withAlpha(102),
+          spreadRadius: 4,
+          blurRadius: 10,
+          offset: Offset(0, 2.w),
+        ),
+      ],
     ),
     textTheme: ShadTextTheme(family: ConstStrings.fontFamily),
     inputTheme: ShadInputTheme(
