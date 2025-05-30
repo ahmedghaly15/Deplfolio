@@ -1,8 +1,10 @@
-import 'package:deplfolio/core/helpers/extensions.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/helpers/cache_helper.dart';
+import '../../../../../core/router/routes.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/cache_keys.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
@@ -29,11 +31,14 @@ class LoginConsumerButton extends ConsumerWidget {
     ref.listen(loginProvider, (_, current) {
       current?.whenOrNull(
         loading: () => context.unfocusKeyboard(),
-        data: (userId) async {
-          await CacheHelper.setSecuredString(CacheKeys.userId, userId);
-        },
+        data: (userId) async => await _onLoginSuccess(userId, context),
         error: (error, _) => context.showToast(error.toString()),
       );
     });
+  }
+
+  Future<void> _onLoginSuccess(String userId, BuildContext context) async {
+    await CacheHelper.setSecuredString(CacheKeys.userId, userId);
+    context.pushReplacementNamed(Routes.home);
   }
 }
