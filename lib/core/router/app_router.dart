@@ -1,20 +1,28 @@
 import 'package:deplfolio/features/login/presentation/view/login_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/home/presentation/view/home_view.dart';
 import '../theming/text_styles_manager.dart';
 import '../utils/app_strings.dart';
+import '../utils/functions/check_if_user_is_logged_in.dart';
 import 'routes.dart';
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return _loginRoute();
+        return isUserLoggedIn ? _homeRoute() : _loginRoute();
       case Routes.login:
         return _loginRoute();
+      case Routes.home:
+        return _homeRoute();
       default:
         return _unFoundRoute();
     }
+  }
+
+  static MaterialPageRoute<dynamic> _homeRoute() {
+    return MaterialPageRoute(builder: (_) => const HomeView());
   }
 
   static MaterialPageRoute<dynamic> _loginRoute() =>
