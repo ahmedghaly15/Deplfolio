@@ -30,6 +30,8 @@ dependencies:
   lucide_icons_flutter: ^3.0.4
   # Provides Awesome UI components for Flutter
   shadcn_ui: ^0.27.0
+  # To check your internet connection
+  internet_connection_checker_plus: ^2.7.1
 
 dev_dependencies:
   flutter_test:
