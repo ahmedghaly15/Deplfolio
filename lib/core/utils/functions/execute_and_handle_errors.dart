@@ -7,7 +7,7 @@ import '../../supabase/supabase_request_result.dart';
 import '../app_strings.dart';
 
 Future<SupabaseRequestResult<T>> executeAndHandleErrors<T>(
-  WidgetRef ref,
+  Ref ref,
   Future<T> Function() function,
 ) async {
   final internetChecker = ref.watch(internetCheckerProvider);

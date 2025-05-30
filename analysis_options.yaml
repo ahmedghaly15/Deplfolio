@@ -24,3 +24,4 @@ custom_lint:
   rules:
     - riverpod_missing_override
     - riverpod_provider_dependencies
+    - avoid_manual_providers_as_generated_provider_dependency

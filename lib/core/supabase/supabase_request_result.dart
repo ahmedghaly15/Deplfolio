@@ -11,9 +11,9 @@ final supabaseProvider = Provider.autoDispose<SupabaseClient>(
 );
 
 @freezed
-abstract class SupabaseRequestResult<T> with _$SupabaseRequestResult<T> {
+sealed class SupabaseRequestResult<T> with _$SupabaseRequestResult<T> {
   const factory SupabaseRequestResult.success(T data) =
-      _SupabaseRequestSuccess<T>;
+      SupabaseRequestSuccess<T>;
   const factory SupabaseRequestResult.failure(SupabaseError errorModel) =
-      _SupabaseRequestFailure<T>;
+      SupabaseRequestFailure<T>;
 }
