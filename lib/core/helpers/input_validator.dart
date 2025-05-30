@@ -3,7 +3,7 @@ import 'app_regex.dart';
 class InputValidator {
   InputValidator._();
 
-  static String? validatingEmailField({String? value}) {
+  static String? validatingEmailField(String? value) {
     if (value == null || value.isEmpty) {
       return "Email can't be blank!";
     } else if (!AppRegex.isEmailValid(value)) {
@@ -12,7 +12,7 @@ class InputValidator {
     return null;
   }
 
-  static String? validatingPasswordField({String? value}) {
+  static String? validatingPasswordField(String? value) {
     if (value == null || value.isEmpty) {
       return "Password can't be blank!";
     } else if (!AppRegex.isPasswordValid(value)) {
@@ -21,7 +21,7 @@ class InputValidator {
     return null;
   }
 
-  static String? validateOptionalPassword({String? value}) {
+  static String? validateOptionalPassword(String? value) {
     if (value == null || value.isEmpty) {
       // User did not enter a password; considered valid (no update intended)
       return null;
@@ -31,7 +31,7 @@ class InputValidator {
     return null;
   }
 
-  static String? validateEgPhoneField({String? value}) {
+  static String? validateEgPhoneField(String? value) {
     if (value == null || value.isEmpty) {
       return "Phone can't be blank!";
     } else if (!AppRegex.isEgPhoneNumberValid(value)) {

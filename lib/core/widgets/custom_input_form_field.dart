@@ -15,7 +15,6 @@ class CustomInputFormField extends StatelessWidget {
     this.trailing,
     this.obscureText = false,
     this.label,
-    this.hintText,
     this.initialValue,
     this.onSubmitted,
     this.onSaved,
@@ -50,7 +49,7 @@ class CustomInputFormField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final Function(String submittedText)? onSubmitted;
   final Function(String? value)? onSaved;
-  final String? hintText, initialValue;
+  final String? initialValue;
   final TextAlign textAlign;
   final EdgeInsets? inputPadding;
   final void Function(String)? onChanged;
