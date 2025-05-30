@@ -9,20 +9,19 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     this.text,
     this.child,
-    this.isLoading = false,
+    this.leading,
     this.onPressed,
   });
 
   final String? text;
-  final Widget? child;
-  final bool isLoading;
+  final Widget? child, leading;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ShadButton(
       onPressed: onPressed,
-      leading: isLoading ? const AdaptiveCircularProgressIndicator() : null,
+      leading: leading,
       child:
           text != null
               ? Text(
@@ -34,4 +33,22 @@ class PrimaryButton extends StatelessWidget {
               : child,
     );
   }
+
+  factory PrimaryButton.loading({
+    Widget? child,
+    String? text,
+    VoidCallback? onPressed,
+  }) => PrimaryButton(
+    onPressed: onPressed,
+    leading: const AdaptiveCircularProgressIndicator(),
+    child:
+        text != null
+            ? Text(
+              text,
+              style: TextStylesManager.font12Regular.copyWith(
+                color: Colors.white,
+              ),
+            )
+            : child,
+  );
 }
