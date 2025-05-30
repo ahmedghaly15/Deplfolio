@@ -11,4 +11,6 @@ class AppStrings {
   static const String signIn = 'Sign In';
   static const String defaultError =
       'Something went wrong!. Please try again later.';
+  static const String noInternetConnection =
+      'No internet connection. Please check your internet connection and try again.';
 }
