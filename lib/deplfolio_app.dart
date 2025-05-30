@@ -11,21 +11,21 @@ class DeplfolioApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShadApp.custom(
-      themeMode: ThemeMode.dark,
-      theme: ThemeManager.darkTheme,
-      appBuilder:
-          (context) => ScreenUtilInit(
-            designSize: const Size(375, 812),
-            minTextAdapt: true,
-            splitScreenMode: true,
-            builder:
-                (context, _) => MaterialApp(
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder:
+          (_, __) => ShadApp.custom(
+            themeMode: ThemeMode.dark,
+            theme: ThemeManager.darkTheme,
+            appBuilder:
+                (context) => MaterialApp(
                   theme: Theme.of(context),
                   title: ConstStrings.appTitle,
                   debugShowCheckedModeBanner: false,
                   onGenerateRoute: AppRouter.onGenerateRoute,
-                  builder: (context, child) => ShadAppBuilder(child: child),
+                  builder: (_, child) => ShadAppBuilder(child: child),
                 ),
           ),
     );
