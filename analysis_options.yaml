@@ -1,1 +1,26 @@
 include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  plugins:
+    - custom_lint
+
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore
+    unused_result: ignore
+    use_build_context_synchronously: ignore
+  
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - prefer_final_locals
+    - always_declare_return_types
+
+custom_lint:
+  rules:
+    - riverpod_missing_override
+    - riverpod_provider_dependencies
