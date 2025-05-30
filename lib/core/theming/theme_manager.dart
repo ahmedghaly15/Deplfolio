@@ -9,12 +9,12 @@ class ThemeManager {
 
   static ShadThemeData get darkTheme => ShadThemeData(
     colorScheme: const ShadSlateColorScheme.dark(
-      primary: ColorManager.color9C3FE4,
+      primary: ColorManager.primaryColor,
     ),
     brightness: Brightness.dark,
     primaryButtonTheme: const ShadButtonTheme(
       gradient: LinearGradient(
-        colors: [ColorManager.color9C3FE4, ColorManager.colorC65647],
+        colors: [ColorManager.primaryColor, ColorManager.colorC65647],
         stops: [0.0, 1.0],
         begin: AlignmentDirectional.centerStart,
         end: AlignmentDirectional.centerStart,

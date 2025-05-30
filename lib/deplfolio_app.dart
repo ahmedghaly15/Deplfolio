@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart' show ScreenUtilInit;
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'core/router/app_router.dart';
+import 'core/theming/theme_manager.dart';
 
 class DeplfolioApp extends StatelessWidget {
   const DeplfolioApp({super.key});
@@ -12,6 +13,7 @@ class DeplfolioApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShadApp.custom(
       themeMode: ThemeMode.dark,
+      theme: ThemeManager.darkTheme,
       appBuilder:
           (context) => ScreenUtilInit(
             designSize: const Size(375, 812),
