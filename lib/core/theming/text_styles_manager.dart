@@ -8,10 +8,6 @@ class TextStylesManager {
     fontSize: 24.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle font14Medium = TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-  );
   static TextStyle font12Regular = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,

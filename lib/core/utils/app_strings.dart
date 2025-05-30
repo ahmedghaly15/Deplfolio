@@ -9,4 +9,6 @@ class AppStrings {
   static const String password = 'Password';
   static const String enterYourPassword = 'Please enter your password';
   static const String signIn = 'Sign In';
+  static const String defaultError =
+      'Something went wrong!. Please try again later.';
 }

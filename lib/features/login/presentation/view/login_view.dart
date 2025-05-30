@@ -35,7 +35,7 @@ class LoginView extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Container(
-                margin: EdgeInsets.symmetric(vertical: 16.h),
+                margin: EdgeInsets.only(top: 16.h, bottom: 32.h),
                 child: const LoginFormConsumer(),
               ),
             ),
