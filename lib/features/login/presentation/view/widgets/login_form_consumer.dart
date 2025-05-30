@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-import '../../../providers/form_providers.dart';
+import '../../providers/form_providers.dart';
 import 'email_field_consumer.dart';
 import 'pass_input_field_consumer.dart';
 

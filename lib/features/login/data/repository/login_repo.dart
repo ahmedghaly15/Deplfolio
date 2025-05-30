@@ -16,7 +16,7 @@ class LoginRepo {
   LoginRepo(this._loginRemoteDataSource);
 
   Future<SupabaseRequestResult<String>> loginViaEmailAndPass(
-    WidgetRef ref,
+    Ref ref,
     LoginRequestParams params,
   ) {
     return executeAndHandleErrors(ref, () async {

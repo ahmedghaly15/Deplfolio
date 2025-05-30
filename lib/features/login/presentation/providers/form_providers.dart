@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-final loginFormKeyProvider = Provider.autoDispose<GlobalKey>(
-  (ref) => GlobalKey<FormState>(),
-);
-final emailControllerProvider = Provider.autoDispose<TextEditingController>(
-  (ref) => TextEditingController(),
-);
-final passControllerProvider = Provider.autoDispose<TextEditingController>(
-  (ref) => TextEditingController(),
-);
+part 'form_providers.g.dart';
+
+@riverpod
+GlobalKey<FormState> loginFormKey(Ref ref) => GlobalKey<FormState>();
+
+@riverpod
+Raw<TextEditingController> emailController(Ref ref) => TextEditingController();
+
+@riverpod
+Raw<TextEditingController> passController(Ref ref) => TextEditingController();
 
 class PassToggleNotifier extends StateNotifier<bool> {
   PassToggleNotifier() : super(true);

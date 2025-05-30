@@ -5,7 +5,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../../../../../core/helpers/input_validator.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_input_form_field.dart';
-import '../../../providers/form_providers.dart' show emailControllerProvider;
+import '../../providers/form_providers.dart' show emailControllerProvider;
 
 class EmailFieldConsumer extends ConsumerWidget {
   const EmailFieldConsumer({super.key});
