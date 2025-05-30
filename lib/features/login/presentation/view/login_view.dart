@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theming/text_styles_manager.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/widgets/primary_button.dart';
+import 'widgets/login_consumer_button.dart';
 import 'widgets/login_form_consumer.dart';
 
 class LoginView extends StatelessWidget {
@@ -39,9 +39,7 @@ class LoginView extends StatelessWidget {
                 child: const LoginFormConsumer(),
               ),
             ),
-            SliverToBoxAdapter(
-              child: PrimaryButton(text: AppStrings.signIn, onPressed: () {}),
-            ),
+            const SliverToBoxAdapter(child: LoginConsumerButton()),
           ],
         ),
       ),
