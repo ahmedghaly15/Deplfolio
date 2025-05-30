@@ -27,7 +27,9 @@ dependencies:
   # A flutter plugin for adapting screen and font size.Guaranteed to look good on different models
   flutter_screenutil: ^5.9.3
   # Contains beautiful icons for Flutter
-  lucide_icons_flutter: ^2.0.6
+  lucide_icons_flutter: ^3.0.4
+  # Provides Awesome UI components for Flutter
+  shadcn_ui: ^0.27.0
 
 dev_dependencies:
   flutter_test:
@@ -49,3 +51,15 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/Inter_28pt-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter/Inter_28pt-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter/Inter_28pt-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter/Inter_28pt-Bold.ttf
+          weight: 700
