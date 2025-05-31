@@ -4,8 +4,10 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
-class CustomInputFormField extends StatelessWidget {
-  const CustomInputFormField({
+import '../theming/color_manager.dart';
+
+class CustomDataInput extends StatelessWidget {
+  const CustomDataInput({
     super.key,
     this.controller,
     this.keyboardType = TextInputType.text,
@@ -13,6 +15,7 @@ class CustomInputFormField extends StatelessWidget {
     this.trailing,
     this.obscureText = false,
     this.label,
+    this.labelText,
     this.initialValue,
     this.onSubmitted,
     this.onSaved,
@@ -29,7 +32,6 @@ class CustomInputFormField extends StatelessWidget {
     this.errorBorder,
     this.border,
     this.autofocus = false,
-    this.maxLines = 1,
     this.minLines,
     this.enableSuggestions = true,
     this.description,
@@ -41,6 +43,7 @@ class CustomInputFormField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final Widget? leading, trailing, label, description, placeholder;
+  final String? labelText;
   final bool obscureText, enabled, enableSuggestions, autofocus;
   final List<String>? autofillHints;
   final TextCapitalization textCapitalization;
@@ -53,7 +56,7 @@ class CustomInputFormField extends StatelessWidget {
   final void Function()? onEditingComplete;
   final String? Function(String?)? validator;
   final ShadBorder? focusedBorder, errorBorder, border;
-  final int? maxLines, minLines, maxLength;
+  final int? minLines, maxLength;
   final AutovalidateMode? autovalidateMode;
   final List<TextInputFormatter>? inputFormatters;
 
@@ -65,7 +68,14 @@ class CustomInputFormField extends StatelessWidget {
       controller: controller,
       leading: leading,
       trailing: trailing,
-      label: label,
+      label:
+          label ??
+          Text(
+            labelText ?? '',
+            style: context.shadTextTheme.small.copyWith(
+              color: ColorManager.colorA4A4A4,
+            ),
+          ),
       description: description,
       placeholder: placeholder,
       focusNode: focusNode,
@@ -81,7 +91,7 @@ class CustomInputFormField extends StatelessWidget {
       autofillHints: autofillHints,
       onSubmitted: onSubmitted,
       onChanged: onChanged,
-      maxLines: maxLines,
+      maxLines: null,
       minLines: minLines,
       validator: validator,
       onPressedOutside: (_) => context.unfocusKeyboard(),
