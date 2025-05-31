@@ -5,6 +5,11 @@ import '../../../../core/utils/functions/execute_and_handle_errors.dart';
 import '../data_source.dart/about_remote_data_source.dart';
 import '../models/about.dart';
 
+final aboutRepoProvider = Provider.autoDispose<AboutRepo>((ref) {
+  final remoteDataSource = ref.read(aboutRemoteDataSourceProvider);
+  return AboutRepo(remoteDataSource);
+});
+
 class AboutRepo {
   final AboutRemoteDataSource _remoteDataSource;
 
