@@ -39,6 +39,6 @@ class LoginConsumerButton extends ConsumerWidget {
 
   Future<void> _onLoginSuccess(String userId, BuildContext context) async {
     await CacheHelper.setSecuredString(CacheKeys.userId, userId);
-    context.pushReplacementNamed(Routes.home);
+    context.pushReplacementNamed(Routes.layout);
   }
 }
