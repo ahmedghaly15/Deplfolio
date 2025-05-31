@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../data/models/about.dart' show About;
+import '../../../data/models/introduction_section.dart';
 import 'introduction_section_card.dart';
 
 class AboutView extends StatelessWidget {
@@ -12,10 +13,21 @@ class AboutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 24.w),
-      child: const CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: [SliverToBoxAdapter(child: IntroductionSectionCard())],
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 16.w),
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: IntroductionSectionCard(
+              introductionSection: IntroductionSection(
+                headerSmallText: about.headerSmallText,
+                description: about.description,
+                seeMyWorkLink: about.seeMyWorkLink,
+                headerBigText: about.headerBigText,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

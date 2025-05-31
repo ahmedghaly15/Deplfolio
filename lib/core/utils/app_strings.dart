@@ -19,4 +19,9 @@ class AppStrings {
   static const String seeMyWorkUrl = 'See my work URL';
   static const String headerBigText = 'Header big text';
   static const String tryAgain = 'Try Again';
+  static const String headerBigText1 = 'Header big text 1';
+  static const String headerBigText2 = 'Header big text 2';
+  static const String headerBigTextColoredString =
+      'Header big text colored string';
+  static const String saveChanges = 'Save Changes';
 }

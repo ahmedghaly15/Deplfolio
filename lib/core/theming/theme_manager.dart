@@ -77,7 +77,7 @@ class ThemeManager {
       );
 
   static EdgeInsets get _inputPadding =>
-      EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h);
+      EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h);
 
   static TextStyle get _textFieldTextStyle => TextStylesManager.font12Regular;
 
