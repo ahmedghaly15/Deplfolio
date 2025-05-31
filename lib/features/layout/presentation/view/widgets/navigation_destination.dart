@@ -18,17 +18,14 @@ class AnimatedNavigationDestination extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationDestination(
-      icon: iconWidget ?? Icon(icon!),
+      icon: iconWidget ?? Icon(icon!, size: 24.h),
       selectedIcon:
           icon == null
               ? null
-              : Container(
-                padding: EdgeInsets.all(12.h),
-                decoration: const BoxDecoration(
-                  color: ColorManager.primaryColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon!),
+              : CircleAvatar(
+                backgroundColor: ColorManager.primaryColor,
+                radius: 24.h,
+                child: Icon(icon!, color: Colors.white, size: 24.h),
               ),
       label: label,
     );

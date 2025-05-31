@@ -12,7 +12,7 @@ class NavigationBarConsumer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeTabIndex = ref.watch(layoutActiveTabProvider);
     return NavigationBar(
-      animationDuration: const Duration(milliseconds: 300),
+      animationDuration: const Duration(milliseconds: 500),
       selectedIndex: activeTabIndex,
       onDestinationSelected: (index) {
         ref.read(layoutActiveTabProvider.notifier).setActiveTab(index);
