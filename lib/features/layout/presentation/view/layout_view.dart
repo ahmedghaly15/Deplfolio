@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/layout_view_body_consumer.dart';
 import 'widgets/navigation_bar_consumer.dart';
 
 class LayoutView extends StatelessWidget {
@@ -7,6 +8,9 @@ class LayoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(bottomNavigationBar: NavigationBarConsumer());
+    return const Scaffold(
+      body: LayoutViewBodyConsumer(),
+      bottomNavigationBar: NavigationBarConsumer(),
+    );
   }
 }
