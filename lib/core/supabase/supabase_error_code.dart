@@ -24,4 +24,5 @@ class SupabaseErrorCode {
   static const String userNotFound = 'user_not_found';
   static const String weakPassword = 'weak_password';
   static const String notAdmin = 'not_admin';
+  static const String validationFailed = 'validation_failed';
 }

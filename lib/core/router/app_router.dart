@@ -1,8 +1,8 @@
-import 'package:deplfolio/features/login/presentation/view/login_view.dart';
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/home/presentation/view/home_view.dart';
-import '../theming/text_styles_manager.dart';
+import '../../features/login/presentation/view/login_view.dart';
 import '../utils/app_strings.dart';
 import '../utils/functions/check_if_user_is_logged_in.dart';
 import 'routes.dart';
@@ -31,11 +31,11 @@ class AppRouter {
   static Route<dynamic> _unFoundRoute() {
     return MaterialPageRoute(
       builder:
-          (_) => Scaffold(
+          (context) => Scaffold(
             body: Center(
               child: Text(
                 AppStrings.unFoundRoute,
-                style: TextStylesManager.font18Medium,
+                style: context.shadTextTheme.h3,
               ),
             ),
           ),

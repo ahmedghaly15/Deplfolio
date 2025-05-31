@@ -40,4 +40,6 @@ class SupabaseErrorMessage {
   static const String noAccessTokenFound = 'No Access Token found.';
   static const String noIdTokenFound = 'No ID Token found.';
   static const String notAdmin = 'You are not an admin.';
+  static const String validationFailed =
+      'Missing email. Please provide a valid email.';
 }

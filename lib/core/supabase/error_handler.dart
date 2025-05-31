@@ -151,6 +151,11 @@ class ErrorHandler {
           message: SupabaseErrorMessage.weakPassword,
           code: code,
         );
+      case SupabaseErrorCode.validationFailed:
+        return SupabaseError(
+          message: SupabaseErrorMessage.validationFailed,
+          code: code,
+        );
       default:
         return SupabaseError(message: AppStrings.defaultError, code: code);
     }
