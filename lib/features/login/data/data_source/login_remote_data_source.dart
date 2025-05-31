@@ -6,7 +6,7 @@ import '../models/login_request_params.dart';
 
 final loginRemoteDataSourceProvider =
     Provider.autoDispose<LoginRemoteDataSource>((ref) {
-      final supabaseClient = ref.watch(supabaseProvider);
+      final supabaseClient = ref.read(supabaseProvider);
       return LoginRemoteDataSource(supabaseClient);
     });
 

@@ -10,7 +10,7 @@ Future<SupabaseRequestResult<T>> executeAndHandleErrors<T>(
   Ref ref,
   Future<T> Function() function,
 ) async {
-  final internetChecker = ref.watch(internetCheckerProvider);
+  final internetChecker = ref.read(internetCheckerProvider);
   if (await internetChecker.isConnected) {
     try {
       final response = await function();
