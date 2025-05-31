@@ -32,6 +32,8 @@ dependencies:
   shadcn_ui: ^0.27.0
   # To check your internet connection
   internet_connection_checker_plus: ^2.7.1
+  # Load environment variables from a `.env` file.
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -50,9 +52,10 @@ dev_dependencies:
   # A code generator for JSON serialization
   json_serializable: ^6.9.5
 
-
 flutter:
   uses-material-design: true
+  assets:
+    - .env
 
   fonts:
     - family: Inter

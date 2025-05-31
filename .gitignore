@@ -49,3 +49,4 @@ windows
 linux
 web
 .vscode
+.env
