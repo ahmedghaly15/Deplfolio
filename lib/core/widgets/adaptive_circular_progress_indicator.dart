@@ -7,16 +7,17 @@ class AdaptiveCircularProgressIndicator extends StatelessWidget {
     this.color = Colors.white,
     this.strokeWidth = 2,
     this.backgroundColor,
+    this.dimension = 16,
   });
 
   final Color color;
   final Color? backgroundColor;
-  final double strokeWidth;
+  final double strokeWidth, dimension;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox.square(
-      dimension: 16.h,
+      dimension: dimension.h,
       child: CircularProgressIndicator.adaptive(
         valueColor: AlwaysStoppedAnimation<Color>(color),
         strokeCap: StrokeCap.butt,

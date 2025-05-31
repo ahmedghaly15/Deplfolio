@@ -13,4 +13,10 @@ class AppStrings {
       'Something went wrong!. Please try again later.';
   static const String noInternetConnection =
       'No internet connection. Please check your internet connection and try again.';
+  static const String introduction = 'Introduction';
+  static const String headerSmallText = 'Header small text';
+  static const String myDescription = 'My description';
+  static const String seeMyWorkUrl = 'See my work URL';
+  static const String headerBigText = 'Header big text';
+  static const String tryAgain = 'Try Again';
 }
