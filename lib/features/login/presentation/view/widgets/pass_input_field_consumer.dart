@@ -6,7 +6,7 @@ import '../../../../../core/helpers/input_validator.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_input_form_field.dart';
 import '../../providers/form_providers.dart'
-    show passControllerProvider, passToggleProvider;
+    show passControllerProvider, passToggleProvider, autovalidateModeProvider;
 
 class PassInputFieldConsumer extends ConsumerWidget {
   const PassInputFieldConsumer({super.key});
@@ -14,20 +14,22 @@ class PassInputFieldConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final passController = ref.watch(passControllerProvider);
+    final autovalidateMode = ref.watch(autovalidateModeProvider);
     final isObscure = ref.watch(passToggleProvider);
     return CustomInputFormField(
+      autovalidateMode: autovalidateMode,
       leading: const Icon(LucideIcons.lock),
       controller: passController,
       keyboardType: TextInputType.visiblePassword,
       label: const Text(AppStrings.password),
       placeholder: const Text(AppStrings.enterYourPassword),
       textCapitalization: TextCapitalization.none,
-      validating: (value) => InputValidator.validatingPasswordField(value),
+      validator: (value) => InputValidator.validatingPasswordField(value),
       autofillHints: const [AutofillHints.password],
       obscureText: isObscure,
-      trailing: IconButton(
-        onPressed: () => ref.read(passToggleProvider.notifier).toggle(),
-        icon: Icon(isObscure ? LucideIcons.eye : LucideIcons.eyeOff),
+      trailing: InkWell(
+        onTap: () => ref.read(passToggleProvider.notifier).toggle(),
+        child: Icon(isObscure ? LucideIcons.eye : LucideIcons.eyeOff),
       ),
     );
   }

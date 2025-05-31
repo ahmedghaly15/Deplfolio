@@ -13,12 +13,11 @@ class LoginFormConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = ref.watch(loginFormKeyProvider);
-    final autovalidateMode = ref.watch(autovalidateModeProvider);
     return ShadForm(
       key: formKey,
-      autovalidateMode: autovalidateMode,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: 16.w,
         children: const [EmailFieldConsumer(), PassInputFieldConsumer()],
       ),
