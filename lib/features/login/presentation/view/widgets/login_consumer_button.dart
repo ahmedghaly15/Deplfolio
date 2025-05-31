@@ -6,6 +6,7 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import '../../../../../core/helpers/cache_helper.dart';
 import '../../../../../core/router/routes.dart';
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/utils/app_utils.dart';
 import '../../../../../core/utils/cache_keys.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
@@ -38,6 +39,7 @@ class LoginConsumerButton extends ConsumerWidget {
   }
 
   Future<void> _onLoginSuccess(String userId, BuildContext context) async {
+    AppUtils.userId = userId;
     await CacheHelper.setSecuredString(CacheKeys.userId, userId);
     context.pushReplacementNamed(Routes.layout);
   }
