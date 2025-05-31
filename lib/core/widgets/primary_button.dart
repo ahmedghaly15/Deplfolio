@@ -1,7 +1,6 @@
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
-
-import '../theming/text_styles_manager.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -22,14 +21,11 @@ class PrimaryButton extends StatelessWidget {
       onPressed: onPressed,
       leading: leading,
       child:
-          text != null
-              ? Text(
-                text!,
-                style: TextStylesManager.font12Regular.copyWith(
-                  color: Colors.white,
-                ),
-              )
-              : child,
+          child ??
+          Text(
+            text!,
+            style: context.shadTextTheme.p.copyWith(color: Colors.white),
+          ),
     );
   }
 }

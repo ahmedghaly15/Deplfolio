@@ -6,22 +6,25 @@ part of 'form_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginFormKeyHash() => r'6d26114d1bc6b37417abdc6f79ef445808b1e898';
+String _$loginFormKeyHash() => r'ddf90771db2c6f9d43e66e974bc476a0316b76cf';
 
 /// See also [loginFormKey].
 @ProviderFor(loginFormKey)
-final loginFormKeyProvider = AutoDisposeProvider<GlobalKey<FormState>>.internal(
-  loginFormKey,
-  name: r'loginFormKeyProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$loginFormKeyHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final loginFormKeyProvider =
+    AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
+      loginFormKey,
+      name: r'loginFormKeyProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$loginFormKeyHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef LoginFormKeyRef = AutoDisposeProviderRef<GlobalKey<FormState>>;
+typedef LoginFormKeyRef = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$emailControllerHash() => r'02e34446413a28bed257b2ca052eaa8a81746151';
 
 /// See also [emailController].

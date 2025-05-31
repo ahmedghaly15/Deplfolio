@@ -19,11 +19,10 @@ class CustomInputFormField extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.maxLength,
     this.onChanged,
-    this.inputPadding,
     this.focusNode,
     this.onEditingComplete,
     this.textCapitalization = TextCapitalization.none,
-    this.validating,
+    this.validator,
     this.focusedBorder,
     this.errorBorder,
     this.border,
@@ -47,11 +46,10 @@ class CustomInputFormField extends StatelessWidget {
   final Function(String? value)? onSaved;
   final String? initialValue;
   final TextAlign textAlign;
-  final EdgeInsets? inputPadding;
   final void Function(String)? onChanged;
   final FocusNode? focusNode;
   final void Function()? onEditingComplete;
-  final String? Function(String?)? validating;
+  final String? Function(String?)? validator;
   final ShadBorder? focusedBorder, errorBorder, border;
   final int? maxLines, minLines, maxLength;
   final AutovalidateMode? autovalidateMode;
@@ -83,7 +81,7 @@ class CustomInputFormField extends StatelessWidget {
       onChanged: onChanged,
       maxLines: maxLines,
       minLines: minLines,
-      inputPadding: inputPadding,
+      validator: validator,
     );
   }
 }

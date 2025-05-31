@@ -6,7 +6,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 part 'form_providers.g.dart';
 
 @riverpod
-GlobalKey<FormState> loginFormKey(Ref ref) => GlobalKey<FormState>();
+GlobalKey<ShadFormState> loginFormKey(Ref ref) => GlobalKey<ShadFormState>();
 
 @riverpod
 Raw<TextEditingController> emailController(Ref ref) => TextEditingController();
@@ -20,11 +20,11 @@ class PassToggleNotifier extends StateNotifier<bool> {
   void toggle() => state = !state;
 }
 
-class AutovalidateModeNotifier extends StateNotifier<ShadAutovalidateMode> {
-  AutovalidateModeNotifier() : super(ShadAutovalidateMode.disabled);
+class AutovalidateModeNotifier extends StateNotifier<AutovalidateMode> {
+  AutovalidateModeNotifier() : super(AutovalidateMode.disabled);
 
   void enable() {
-    state = ShadAutovalidateMode.alwaysAfterFirstValidation;
+    state = AutovalidateMode.onUserInteraction;
   }
 }
 
@@ -35,5 +35,5 @@ final passToggleProvider =
 
 final autovalidateModeProvider = StateNotifierProvider.autoDispose<
   AutovalidateModeNotifier,
-  ShadAutovalidateMode
+  AutovalidateMode
 >((ref) => AutovalidateModeNotifier());

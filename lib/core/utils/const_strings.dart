@@ -3,4 +3,6 @@ class ConstStrings {
 
   static const String fontFamily = 'Inter';
   static const String appTitle = 'Deplfolio';
+  static const String supabaseUrlKey = 'SUPABASE_URL';
+  static const String supabaseAnonKey = 'SUPABASE_ANON_KEY';
 }

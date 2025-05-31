@@ -43,7 +43,6 @@ class ThemeManager {
         color: ColorManager.colorA4A4A4,
       ),
       decoration: ShadDecoration(
-        fallbackToBorder: false,
         errorStyle: TextStyle(fontSize: 13.sp, color: Colors.red),
         focusedBorder: _textFieldUnderlineInputBorder(
           borderColor: ColorManager.primaryColor,
@@ -53,21 +52,14 @@ class ThemeManager {
           borderColor: Colors.red,
           width: 1.3,
         ),
-        secondaryBorder: _textFieldUnderlineInputBorder(
-          borderColor: Colors.transparent,
-          width: 0,
-        ),
-        secondaryFocusedBorder: _textFieldUnderlineInputBorder(
-          borderColor: Colors.transparent,
-          width: 0,
-        ),
         border: _textFieldUnderlineInputBorder(),
+        disableSecondaryBorder: true,
       ),
     ),
   );
 
   static EdgeInsets get _inputPadding =>
-      EdgeInsets.symmetric(horizontal: 20.w, vertical: 17.h);
+      EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h);
 
   static TextStyle get _textFieldTextStyle => TextStylesManager.font12Regular;
 
