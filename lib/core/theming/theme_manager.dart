@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import 'package:deplfolio/core/helpers/extensions.dart';
+
 import '../utils/const_strings.dart';
 import 'color_manager.dart';
 import 'text_styles_manager.dart';
@@ -11,6 +13,7 @@ class ThemeManager {
 
   static ShadThemeData get darkTheme => ShadThemeData(
     colorScheme: const ShadSlateColorScheme.dark(
+      background: ColorManager.darkModeColor,
       primary: ColorManager.primaryColor,
     ),
     brightness: Brightness.dark,
@@ -57,6 +60,21 @@ class ThemeManager {
       ),
     ),
   );
+
+  static ThemeData materialTheme(BuildContext context) =>
+      Theme.of(context).copyWith(
+        navigationBarTheme: NavigationBarThemeData(
+          backgroundColor: context.shadTheme.colorScheme.background,
+          indicatorColor: Colors.transparent,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+            if (states.contains(WidgetState.selected)) {
+              return IconThemeData(color: Colors.white, size: 24.h);
+            }
+            return IconThemeData(color: ColorManager.primaryColor, size: 24.h);
+          }),
+        ),
+      );
 
   static EdgeInsets get _inputPadding =>
       EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h);

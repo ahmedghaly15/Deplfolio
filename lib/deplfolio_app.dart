@@ -21,7 +21,7 @@ class DeplfolioApp extends StatelessWidget {
             theme: ThemeManager.darkTheme,
             appBuilder:
                 (context) => MaterialApp(
-                  theme: Theme.of(context),
+                  theme: ThemeManager.materialTheme(context),
                   title: ConstStrings.appTitle,
                   debugShowCheckedModeBanner: false,
                   onGenerateRoute: AppRouter.onGenerateRoute,
