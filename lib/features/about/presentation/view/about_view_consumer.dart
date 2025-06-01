@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theming/color_manager.dart';
 import '../../../../core/widgets/adaptive_circular_progress_indicator.dart';
+import '../../../../core/widgets/adaptive_refresh_indicator.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../provider/about_provider.dart';
 import 'widgets/about_view.dart';
@@ -14,7 +15,11 @@ class AboutViewConsumer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncAbout = ref.watch(fetchAboutProvider);
     return asyncAbout.when(
-      data: (about) => AboutView(about: about!),
+      data:
+          (about) => AdaptiveRefreshIndicator(
+            onRefresh: () => ref.refresh(fetchAboutProvider.future),
+            child: AboutView(about: about!),
+          ),
       error:
           (error, _) => CustomErrorWidget(
             error: error.toString(),
