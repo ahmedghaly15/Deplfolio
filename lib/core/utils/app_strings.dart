@@ -25,4 +25,11 @@ class AppStrings {
       'Header big text colored string';
   static const String saveChanges = 'Save Changes';
   static const String projects = 'Projects';
+  static const String ok = 'Ok';
+  static const String name = 'Name';
+  static const String description = 'Description';
+  static const imageUrl = 'Image URL';
+  static const String downloadUrl = 'Download URL';
+  static const String promoUrl = 'Promo URL';
+  static const String githubUrl = 'GitHub URL';
 }
