@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import '../../src/core/utils/assets.dart';
+import '../enums/experience_status.dart';
 import '../utils/app_strings.dart';
 import '../widgets/primary_button.dart';
 
@@ -81,5 +83,18 @@ extension ShowDialog<T> on BuildContext {
             ),
           ),
     );
+  }
+}
+
+extension WorkExperienceAssetImgPath on ExperienceStatus {
+  String getImgPath(ExperienceStatus status) {
+    switch (status) {
+      case ExperienceStatus.freelance:
+        return Assets.imagesFreelanceIcon;
+      case ExperienceStatus.fullTime:
+        return Assets.imagesJobIcon;
+      default:
+        return Assets.imagesInternExperienceImg;
+    }
   }
 }
