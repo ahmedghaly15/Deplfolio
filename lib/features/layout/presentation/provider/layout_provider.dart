@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../about/presentation/view/about_view_consumer.dart';
 import '../../../portfolio/presentation/view/portfolio_view.dart';
-import '../../../skills/presentation/view/skills_view.dart';
+import '../../../skills/presentation/view/skills_view_consumer.dart';
 
 class LayoutActiveTabNotifier extends StateNotifier<int> {
   LayoutActiveTabNotifier() : super(0);
@@ -19,7 +19,7 @@ final layoutActiveTabProvider =
 final layoutActiveWidgetProvider = Provider.autoDispose<Widget>((ref) {
   const List<Widget> views = [
     AboutViewConsumer(),
-    SkillsView(),
+    SkillsViewConsumer(),
     PortfolioView(),
   ];
   final activeTabIndex = ref.watch(layoutActiveTabProvider);
