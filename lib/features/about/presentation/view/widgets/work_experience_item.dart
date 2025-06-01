@@ -16,9 +16,13 @@ class WorkExperienceItem extends StatelessWidget {
     return ShadCard(
       radius: BorderRadius.circular(16.r),
       columnMainAxisSize: MainAxisSize.min,
-      trailing: IconButton(
-        onPressed: () {},
-        icon: const Icon(LucideIcons.pen400),
+      columnCrossAxisAlignment: CrossAxisAlignment.center,
+      footer: Align(
+        alignment: AlignmentDirectional.centerEnd,
+        child: IconButton(
+          onPressed: () {},
+          icon: const Icon(LucideIcons.pen400),
+        ),
       ),
       title: Text(
         workExperience.title,
@@ -58,19 +62,24 @@ class WorkExperienceItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        spacing: 16.h,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Image.asset(workExperience.experienceStatus.getImgPath),
-          ),
-          Text(
-            workExperience.description.map((e) => '• $e').join('\n\n'),
-            style: context.shadTextTheme.small,
-          ),
-        ],
+      child: Container(
+        margin: EdgeInsets.only(top: 16.h),
+        child: Column(
+          spacing: 16.h,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Image.asset(workExperience.experienceStatus.getImgPath),
+            ),
+            Text(
+              workExperience.description.map((e) => '• $e').join('\n\n'),
+              style: context.shadTextTheme.small.copyWith(
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
