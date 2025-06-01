@@ -11,16 +11,12 @@ extension StringExtension on String? {
 }
 
 extension ShowMyToast on BuildContext {
-  void showToast(String message) => ScaffoldMessenger.of(this).showSnackBar(
-    SnackBar(
+  void showToast(String message) => ShadToaster.of(this).show(
+    ShadToast.destructive(
       backgroundColor: Colors.black54,
-      elevation: 0,
-      duration: const Duration(seconds: 2),
-      dismissDirection: DismissDirection.startToEnd,
-      behavior: SnackBarBehavior.floating,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.r)),
-      content: Text(message, style: shadTextTheme.blockquote),
+      duration: const Duration(milliseconds: 1500),
+      radius: BorderRadius.circular(16.r),
+      description: Text(message),
     ),
   );
 }
