@@ -32,4 +32,5 @@ class AppStrings {
   static const String downloadUrl = 'Download URL';
   static const String promoUrl = 'Promo URL';
   static const String githubUrl = 'GitHub URL';
+  static const String workExperience = 'Work Experience';
 }

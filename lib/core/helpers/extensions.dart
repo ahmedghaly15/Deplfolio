@@ -87,14 +87,21 @@ extension ShowDialog<T> on BuildContext {
 }
 
 extension WorkExperienceAssetImgPath on ExperienceStatus {
-  String getImgPath(ExperienceStatus status) {
-    switch (status) {
-      case ExperienceStatus.freelance:
-        return Assets.imagesFreelanceIcon;
-      case ExperienceStatus.fullTime:
-        return Assets.imagesJobIcon;
-      default:
-        return Assets.imagesInternExperienceImg;
-    }
-  }
+  String get getImgPath => switch (this) {
+    ExperienceStatus.freelance => Assets.imagesFreelanceIcon,
+    ExperienceStatus.fullTime => Assets.imagesJobIcon,
+    ExperienceStatus.partTime => Assets.imagesJobIcon,
+    ExperienceStatus.remote ||
+    ExperienceStatus.internship => Assets.imagesInternExperienceImg,
+  };
+}
+
+extension WorkExperienceName on ExperienceStatus {
+  String get getName => switch (this) {
+    ExperienceStatus.freelance => 'Freelance',
+    ExperienceStatus.fullTime => 'Full-time',
+    ExperienceStatus.partTime => 'Part-time',
+    ExperienceStatus.remote => 'Remote',
+    ExperienceStatus.internship => 'Internship',
+  };
 }

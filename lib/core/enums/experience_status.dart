@@ -10,4 +10,6 @@ enum ExperienceStatus {
   remote,
   @JsonValue('Freelance')
   freelance,
+  @JsonValue('Internship')
+  internship,
 }
