@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/utils/app_utils.dart';
 import '../../../data/models/about.dart';
 import '../../../data/models/introduction_section.dart';
 import 'approaches_accordion.dart';
@@ -18,7 +19,7 @@ class AboutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 16.w),
+      padding: AppUtils.screenPadding,
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [

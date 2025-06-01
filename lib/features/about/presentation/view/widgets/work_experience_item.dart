@@ -4,6 +4,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../../../../core/utils/app_utils.dart';
 import '../../../data/models/about.dart';
 
 class WorkExperienceItem extends StatelessWidget {
@@ -14,7 +15,7 @@ class WorkExperienceItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadCard(
-      radius: BorderRadius.circular(16.r),
+      radius: AppUtils.cardRadius,
       columnMainAxisSize: MainAxisSize.min,
       columnCrossAxisAlignment: CrossAxisAlignment.center,
       footer: Align(

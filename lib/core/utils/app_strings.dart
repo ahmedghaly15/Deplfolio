@@ -21,6 +21,7 @@ class AppStrings {
   static const String tryAgain = 'Try Again';
   static const String headerBigText1 = 'Header big text 1';
   static const String headerBigText2 = 'Header big text 2';
+  static const String headerBigText3 = 'Header big text 3';
   static const String headerBigTextColoredString =
       'Header big text colored string';
   static const String saveChanges = 'Save Changes';
@@ -34,4 +35,5 @@ class AppStrings {
   static const String githubUrl = 'GitHub URL';
   static const String workExperience = 'Work Experience';
   static const String approaches = 'Approaches';
+  static const String skills = 'Skills';
 }
