@@ -34,6 +34,8 @@ dependencies:
   flutter_dotenv: ^5.2.1
   # Beautiful animations
   animate_do: ^4.2.0
+  # To load and cache network images
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

@@ -24,4 +24,5 @@ class AppStrings {
   static const String headerBigTextColoredString =
       'Header big text colored string';
   static const String saveChanges = 'Save Changes';
+  static const String projects = 'Projects';
 }
