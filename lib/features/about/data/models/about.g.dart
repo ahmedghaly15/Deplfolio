@@ -103,6 +103,7 @@ const _$ExperienceStatusEnumMap = {
   ExperienceStatus.partTime: 'Part-time',
   ExperienceStatus.remote: 'Remote',
   ExperienceStatus.freelance: 'Freelance',
+  ExperienceStatus.internship: 'Internship',
 };
 
 ApproachModel _$ApproachModelFromJson(Map<String, dynamic> json) =>
