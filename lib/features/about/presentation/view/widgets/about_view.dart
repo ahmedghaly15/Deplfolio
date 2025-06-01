@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:deplfolio/core/helpers/extensions.dart';
-
-import '../../../../../core/theming/color_manager.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/about.dart';
 import '../../../data/models/introduction_section.dart';
+import 'approaches_accordion.dart';
 import 'introduction_section_card.dart';
 import 'projects_section_card.dart';
+import 'section_title.dart';
 import 'work_experience_item.dart';
 
 class AboutView extends StatelessWidget {
@@ -39,14 +38,9 @@ class AboutView extends StatelessWidget {
               child: ProjectsSectionCard(projects: about.projects),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Center(
-              child: Text(
-                AppStrings.workExperience,
-                style: context.shadTextTheme.h4.copyWith(
-                  color: ColorManager.primaryColor,
-                ),
-              ),
+              child: SectionTitle(title: AppStrings.workExperience),
             ),
           ),
           SliverPadding(
@@ -59,6 +53,12 @@ class AboutView extends StatelessWidget {
                   ),
               separatorBuilder: (_, __) => SizedBox(height: 16.h),
             ),
+          ),
+          const SliverToBoxAdapter(
+            child: Center(child: SectionTitle(title: AppStrings.approaches)),
+          ),
+          SliverToBoxAdapter(
+            child: ApproachesAccordion(approaches: about.approaches),
           ),
         ],
       ),
