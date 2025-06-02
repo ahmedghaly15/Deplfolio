@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
-import '../../../../core/utils/functions/execute_and_handle_errors.dart';
+import '../../../../core/utils/functions/supabase_execute_and_handle_errors.dart';
 import '../data_source/skills_remote_data_source.dart';
 import '../models/fetch_skills.dart';
 
@@ -16,7 +16,7 @@ class SkillsRepo {
   SkillsRepo(this._remoteDataSource);
 
   Future<SupabaseRequestResult<FetchSkills>> fetchSkills(Ref ref) {
-    return executeAndHandleErrors(
+    return supabaseExecuteAndHandleErrors(
       ref,
       () async => await _remoteDataSource.fetchSkills(),
     );

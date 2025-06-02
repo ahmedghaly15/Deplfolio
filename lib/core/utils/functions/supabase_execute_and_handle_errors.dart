@@ -6,7 +6,7 @@ import '../../supabase/error_handler.dart';
 import '../../supabase/supabase_request_result.dart';
 import '../app_strings.dart';
 
-Future<SupabaseRequestResult<T>> executeAndHandleErrors<T>(
+Future<SupabaseRequestResult<T>> supabaseExecuteAndHandleErrors<T>(
   Ref ref,
   Future<T> Function() function,
 ) async {
