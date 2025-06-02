@@ -1,5 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'about.dart';
 
+part 'introduction_section.g.dart';
+
+@JsonSerializable()
 class IntroductionSection {
   final String headerSmallText, description, seeMyWorkLink;
   final AboutHeaderTextModel headerBigText;
@@ -10,4 +15,8 @@ class IntroductionSection {
     required this.seeMyWorkLink,
     required this.headerBigText,
   });
+
+  factory IntroductionSection.fromJson(Map<String, dynamic> json) =>
+      _$IntroductionSectionFromJson(json);
+  Map<String, dynamic> toJson() => _$IntroductionSectionToJson(this);
 }
