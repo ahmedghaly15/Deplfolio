@@ -23,7 +23,7 @@ class IntroductionSectionCard extends StatelessWidget {
       title: Text(AppStrings.introduction, style: context.shadTextTheme.h4),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           IntroductionSectionFormConsumer(
             introductionSection: introductionSection,

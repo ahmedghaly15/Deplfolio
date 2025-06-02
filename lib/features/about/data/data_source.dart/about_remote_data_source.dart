@@ -34,6 +34,6 @@ class AboutRemoteDataSource {
     await _supabaseClient
         .from(ConstStrings.dataTable)
         .update({'about': aboutJson})
-        .eq('id', AppUtils.userId!);
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 }

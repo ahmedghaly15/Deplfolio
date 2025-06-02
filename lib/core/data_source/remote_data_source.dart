@@ -19,7 +19,7 @@ class RemoteDataSource {
     return await _supabaseClient
         .from(ConstStrings.dataTable)
         .select()
-        .eq('user_id', AppUtils.userId!)
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!)
         .single();
   }
 }

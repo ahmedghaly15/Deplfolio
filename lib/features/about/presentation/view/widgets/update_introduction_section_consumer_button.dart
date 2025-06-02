@@ -26,14 +26,13 @@ class UpdateIntroductionSectionConsumerButton extends ConsumerWidget {
     );
     _listener(ref, context);
     return PrimaryButton(
-      expands: true,
       text: AppStrings.saveChanges,
       onPressed:
           didValuesChange
               ? () {
                 ref
                     .read(updateIntroductionSectionProvider.notifier)
-                    .validateAndUpdate();
+                    .validateAndUpdate(introductionSection);
               }
               : null,
       child: asyncUpdate?.whenOrNull(
