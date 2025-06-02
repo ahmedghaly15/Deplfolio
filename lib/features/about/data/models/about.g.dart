@@ -53,24 +53,6 @@ Map<String, dynamic> _$AboutHeaderTextModelToJson(
   'coloredString': instance.coloredString,
 };
 
-Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
-  imgPath: json['imgPath'] as String,
-  title: json['title'] as String,
-  description: json['description'] as String,
-  downloadLink: json['downloadLink'] as String?,
-  promoLink: json['promoLink'] as String?,
-  gitHubLink: json['gitHubLink'] as String?,
-);
-
-Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
-  'imgPath': instance.imgPath,
-  'title': instance.title,
-  'description': instance.description,
-  'downloadLink': instance.downloadLink,
-  'promoLink': instance.promoLink,
-  'gitHubLink': instance.gitHubLink,
-};
-
 WorkExperienceModel _$WorkExperienceModelFromJson(Map<String, dynamic> json) =>
     WorkExperienceModel(
       title: json['title'] as String,

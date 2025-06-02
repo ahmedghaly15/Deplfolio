@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../../../../core/models/project.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_cached_network_img.dart';
 import '../../../../../core/widgets/primary_button.dart';
-import '../../../data/models/about.dart';
 import 'edit_project_dialog_content.dart';
 
 class ProjectItem extends StatelessWidget {

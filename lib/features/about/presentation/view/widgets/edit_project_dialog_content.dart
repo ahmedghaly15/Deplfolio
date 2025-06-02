@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/models/project.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_data_input.dart';
-import '../../../data/models/about.dart';
 
 class EditProjectDialogContent extends StatelessWidget {
   const EditProjectDialogContent({super.key, required this.project});

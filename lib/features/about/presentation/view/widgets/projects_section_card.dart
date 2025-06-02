@@ -4,9 +4,9 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../../../../core/models/project.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_utils.dart';
-import '../../../data/models/about.dart' show Project;
 import 'project_item.dart';
 
 class ProjectsSectionCard extends StatelessWidget {
