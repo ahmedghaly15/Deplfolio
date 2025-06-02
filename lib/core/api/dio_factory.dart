@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../utils/const_strings.dart';
 import 'dio_logger_interceptor.dart';
 
-final dioProvider = Provider<Dio>((ref) => DioFactory.getDio());
+final dioProvider = Provider.autoDispose<Dio>((ref) => DioFactory.getDio());
 
 class DioFactory {
   /// private constructor as I don't want to allow creating an instance of this class
