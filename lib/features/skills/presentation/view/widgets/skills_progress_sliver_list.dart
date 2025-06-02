@@ -7,7 +7,10 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/theming/color_manager.dart';
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/widgets/primary_button.dart';
 import '../../../data/models/fetch_skills.dart';
+import 'edit_skill_dialog_content.dart';
 
 class SkillsProgressSliverList extends StatelessWidget {
   const SkillsProgressSliverList({super.key, required this.skills});
@@ -35,7 +38,17 @@ class SkillsProgressSliverList extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap:
+                        () => context.showDialog(
+                          titleText: AppStrings.editSkill,
+                          actions: [
+                            PrimaryButton(
+                              onPressed: () {},
+                              text: AppStrings.saveChanges,
+                            ),
+                          ],
+                          child: EditSkillDialogContent(skill: skills[index]),
+                        ),
                     child: const Icon(LucideIcons.pencil400),
                   ),
                 ],

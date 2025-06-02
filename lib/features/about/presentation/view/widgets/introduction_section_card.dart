@@ -29,11 +29,13 @@ class IntroductionSectionCard extends StatelessWidget {
             child: CustomDataInput(
               initialValue: introductionSection.headerSmallText,
               labelText: AppStrings.headerSmallText,
+              textCapitalization: TextCapitalization.sentences,
             ),
           ),
           CustomDataInput(
             initialValue: introductionSection.description,
             labelText: AppStrings.myDescription,
+            textCapitalization: TextCapitalization.sentences,
           ),
           CustomDataInput(
             initialValue: introductionSection.seeMyWorkLink,
@@ -46,14 +48,17 @@ class IntroductionSectionCard extends StatelessWidget {
           CustomDataInput(
             labelText: AppStrings.headerBigText1,
             initialValue: introductionSection.headerBigText.text1,
+            textCapitalization: TextCapitalization.sentences,
           ),
           CustomDataInput(
             labelText: AppStrings.headerBigText2,
             initialValue: introductionSection.headerBigText.text2,
+            textCapitalization: TextCapitalization.sentences,
           ),
           CustomDataInput(
             labelText: AppStrings.headerBigTextColoredString,
             initialValue: introductionSection.headerBigText.coloredString,
+            textCapitalization: TextCapitalization.sentences,
           ),
           Container(
             margin: EdgeInsets.only(top: 16.h),

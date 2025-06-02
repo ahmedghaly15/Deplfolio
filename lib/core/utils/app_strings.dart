@@ -36,4 +36,7 @@ class AppStrings {
   static const String workExperience = 'Work Experience';
   static const String approaches = 'Approaches';
   static const String skills = 'Skills';
+  static const String editSkill = 'Edit Skill';
+  static const String percent = 'Percent';
+  static const String editProject = 'Edit Project';
 }
