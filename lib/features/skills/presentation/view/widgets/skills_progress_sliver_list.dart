@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart'
+    show LinearPercentIndicator;
+import 'package:shadcn_ui/shadcn_ui.dart';
+
+import 'package:deplfolio/core/helpers/extensions.dart';
+
+import '../../../../../core/theming/color_manager.dart';
+import '../../../data/models/fetch_skills.dart';
+
+class SkillsProgressSliverList extends StatelessWidget {
+  const SkillsProgressSliverList({super.key, required this.skills});
+
+  final List<SkillModel> skills;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList.separated(
+      itemCount: skills.length,
+      itemBuilder:
+          (_, index) => Column(
+            spacing: 5.h,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                spacing: 8.w,
+                children: [
+                  Expanded(
+                    child: Text(
+                      skills[index].name,
+                      style: context.shadTextTheme.p,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: const Icon(LucideIcons.pencil400),
+                  ),
+                ],
+              ),
+              LinearPercentIndicator(
+                animation: true,
+                lineHeight: 16.h,
+                animationDuration: 1500,
+                percent: skills[index].percentage,
+                linearGradient: const LinearGradient(
+                  colors: [ColorManager.primaryColor, ColorManager.colorC65647],
+                  stops: [0.0, 1.0],
+                ),
+                backgroundColor: const Color(0xff5C1CB2).withAlpha(77),
+                padding: EdgeInsets.zero,
+                barRadius: Radius.circular(24.r),
+              ),
+            ],
+          ),
+      separatorBuilder: (_, __) => SizedBox(height: 12.h),
+    );
+  }
+}

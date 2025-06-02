@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
@@ -9,6 +8,7 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_utils.dart';
 import '../../../data/models/fetch_skills.dart';
 import '../../../data/models/skills_texts.dart';
+import 'skills_progress_sliver_list.dart';
 import 'skills_texts_card.dart';
 
 class SkillsView extends StatelessWidget {
@@ -42,11 +42,7 @@ class SkillsView extends StatelessWidget {
               ),
             ),
           ),
-          SliverList.separated(
-            itemCount: skills.skills.length,
-            itemBuilder: (_, index) => const ShadProgress(),
-            separatorBuilder: (_, __) => SizedBox(height: 8.h),
-          ),
+          SkillsProgressSliverList(skills: skills.skills),
         ],
       ),
     );

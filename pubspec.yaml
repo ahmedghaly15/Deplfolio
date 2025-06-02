@@ -36,6 +36,8 @@ dependencies:
   animate_do: ^4.2.0
   # To load and cache network images
   cached_network_image: ^3.4.1
+  # To display progress widgets based on percentage
+  percent_indicator: ^4.2.5
 
 dev_dependencies:
   flutter_test:
