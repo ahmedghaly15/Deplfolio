@@ -38,6 +38,11 @@ dependencies:
   cached_network_image: ^3.4.1
   # To display progress widgets based on percentage
   percent_indicator: ^4.2.5
+  # Provides a native file explorer to pick single or multiple absolute file paths, with extension filtering support.
+  file_picker: ^10.1.9
+  # Networking
+  dio: ^5.8.0+1
+  retrofit: ^4.4.2
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +60,8 @@ dev_dependencies:
   freezed: ^3.0.6
   # A code generator for JSON serialization
   json_serializable: ^6.9.5
+  # Code generator for Retrofit
+  retrofit_generator: ^9.2.0
 
 flutter:
   uses-material-design: true

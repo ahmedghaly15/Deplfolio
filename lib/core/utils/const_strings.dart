@@ -7,4 +7,5 @@ class ConstStrings {
   static const String supabaseAnonKey = 'SUPABASE_ANON_KEY';
   static const String dataTable = 'Data';
   static const String tableEqualityKey = 'user_id';
+  static const String githubToken = 'GITHUB_TOKEN';
 }
