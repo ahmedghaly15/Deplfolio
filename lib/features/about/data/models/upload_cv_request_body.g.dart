@@ -8,16 +8,18 @@ part of 'upload_cv_request_body.dart';
 
 UploadCvRequestBody _$UploadCvRequestBodyFromJson(Map<String, dynamic> json) =>
     UploadCvRequestBody(
-      fileEncodedContent: json['fileEncodedContent'] as String,
+      fileEncodedContent: json['content'] as String,
       message:
           json['message'] as String? ?? 'Uploaded PDF via Deplfolio: Deploy 🚀',
       branchName: json['branch'] as String? ?? 'master',
+      sha: json['sha'] as String?,
     );
 
 Map<String, dynamic> _$UploadCvRequestBodyToJson(
   UploadCvRequestBody instance,
 ) => <String, dynamic>{
   'message': instance.message,
-  'fileEncodedContent': instance.fileEncodedContent,
+  'content': instance.fileEncodedContent,
   'branch': instance.branchName,
+  'sha': instance.sha,
 };

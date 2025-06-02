@@ -4,6 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/api/dio_factory.dart';
 import '../../../../core/api/end_points.dart';
+import '../models/check_for_github_file_existence_response.dart';
 import '../models/upload_cv_request_body.dart';
 
 part 'about_api_service.g.dart';
@@ -21,5 +22,10 @@ abstract class AboutApiService {
   Future<void> uploadCvToRepo(
     @Path('saferFilePathUrl') String saferFilePathUrl,
     @Body() UploadCvRequestBody body,
+  );
+
+  @GET('${EndPoints.uploadToRepo}{saferFilePathUrl}')
+  Future<CheckForGithubFileExistenceResponse> checkForGithubFileExistence(
+    @Path('saferFilePathUrl') String saferFilePathUrl,
   );
 }
