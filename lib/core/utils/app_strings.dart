@@ -39,4 +39,6 @@ class AppStrings {
   static const String editSkill = 'Edit Skill';
   static const String percent = 'Percent';
   static const String editProject = 'Edit Project';
+  static const String aboutDataUpdateSuccess =
+      'About data updated successfully.';
 }
