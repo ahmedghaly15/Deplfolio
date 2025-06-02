@@ -1,21 +1,15 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:deplfolio/core/utils/const_strings.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_utils.dart';
-import '../../../../../core/widgets/primary_button.dart';
 import '../../../data/models/about.dart';
 import '../../../data/models/introduction_section.dart';
 import 'approaches_accordion.dart';
 import 'introduction_section_card.dart';
 import 'projects_section_card.dart';
 import 'section_title.dart';
+import 'update_cv_button_consumer.dart';
 import 'work_experience_item.dart';
 
 class AboutView extends StatelessWidget {
@@ -39,6 +33,10 @@ class AboutView extends StatelessWidget {
                 headerBigText: about.headerBigText,
               ),
             ),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(top: 32.h, bottom: 16.h),
+            sliver: const SliverToBoxAdapter(child: UpdateCvButtonConsumer()),
           ),
           SliverToBoxAdapter(
             child: Container(

@@ -10,12 +10,18 @@ part 'upload_cv_to_repo.g.dart';
 class PickFileNotifier extends StateNotifier<FilePickerResult?> {
   PickFileNotifier() : super(null);
 
-  void pickFile() async {
+  Future<FilePickerResult?> pickFile() async {
+    final FilePickerResult? pickedFile = await _pickPdfFile();
+    state = pickedFile;
+    return pickedFile;
+  }
+
+  Future<FilePickerResult?> _pickPdfFile() async {
     final pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
-    state = pickedFile;
+    return pickedFile;
   }
 }
 
@@ -30,11 +36,9 @@ class UploadCvToRepo extends _$UploadCvToRepo {
   AsyncValue<void>? build() => null;
 
   void upload() async {
-    state = const AsyncLoading();
-    final pickedFile = ref.read(pickFileProvider);
-
+    final pickedFile = await ref.read(pickFileProvider.notifier).pickFile();
     if (pickedFile == null) return;
-
+    state = const AsyncLoading();
     final result = await ref.read(aboutRepoProvider).uploadCvToRepo(pickedFile);
     switch (result) {
       case ApiRequestSuccess():

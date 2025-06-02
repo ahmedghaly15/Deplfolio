@@ -6,7 +6,7 @@ part of 'upload_cv_to_repo.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uploadCvToRepoHash() => r'dca3d8c1f19af2682426504490f17759f5fc57a4';
+String _$uploadCvToRepoHash() => r'7faca2809b9b9c73cede97dcf821e7085188dbd1';
 
 /// See also [UploadCvToRepo].
 @ProviderFor(UploadCvToRepo)

@@ -44,16 +44,28 @@ class AboutRepo {
     );
   }
 
-  Future<ApiRequestResult<void>> uploadCvToRepo(FilePickerResult pickedFile) {
+  Future<String?> _checkForGithubFileExistence() async {
+    final saferFilePathUrl = Uri.encodeComponent(ConstStrings.remoteCVPath);
+    final response = await _apiService.checkForGithubFileExistence(
+      saferFilePathUrl,
+    );
+    return response.sha;
+  }
+
+  Future<ApiRequestResult<void>> uploadCvToRepo(
+    FilePickerResult pickedFile, {
+    String? sha,
+  }) {
     final saferFilePathUrl = Uri.encodeComponent(ConstStrings.remoteCVPath);
     final filePath = pickedFile.files.single.path!;
     final fileBytes = File(filePath).readAsBytesSync();
     final encodedContent = base64Encode(fileBytes);
-    return apiExecuteAndHandleErrors<void>(
-      () async => await _apiService.uploadCvToRepo(
+    return apiExecuteAndHandleErrors<void>(() async {
+      final sha = await _checkForGithubFileExistence();
+      await _apiService.uploadCvToRepo(
         saferFilePathUrl,
-        UploadCvRequestBody(fileEncodedContent: encodedContent),
-      ),
-    );
+        UploadCvRequestBody(fileEncodedContent: encodedContent, sha: sha),
+      );
+    });
   }
 }
