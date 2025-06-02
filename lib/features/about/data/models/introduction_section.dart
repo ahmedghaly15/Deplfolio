@@ -4,7 +4,7 @@ import 'about.dart';
 
 part 'introduction_section.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class IntroductionSection {
   final String headerSmallText, description, seeMyWorkLink;
   final AboutHeaderTextModel headerBigText;

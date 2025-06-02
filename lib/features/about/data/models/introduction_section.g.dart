@@ -22,5 +22,5 @@ Map<String, dynamic> _$IntroductionSectionToJson(
   'headerSmallText': instance.headerSmallText,
   'description': instance.description,
   'seeMyWorkLink': instance.seeMyWorkLink,
-  'headerBigText': instance.headerBigText,
+  'headerBigText': instance.headerBigText.toJson(),
 };

@@ -9,7 +9,7 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_data_input.dart';
 import '../../../../../core/widgets/primary_button.dart';
 import '../../../data/models/introduction_section.dart';
-import '../../provider/about_provider.dart';
+import '../../providers/introduction_section_form_providers.dart';
 
 class IntroductionSectionFormConsumer extends ConsumerWidget {
   const IntroductionSectionFormConsumer({

@@ -5,7 +5,7 @@ import '../../../../core/theming/color_manager.dart';
 import '../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../core/widgets/adaptive_refresh_indicator.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
-import '../provider/about_provider.dart';
+import '../providers/fetch_about_provider.dart';
 import 'widgets/about_view.dart';
 
 class AboutViewConsumer extends ConsumerWidget {
