@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/about.dart';
@@ -18,10 +19,9 @@ final fetchAboutProvider = FutureProvider.autoDispose<About?>((ref) async {
   }
 });
 
-final introductionSectionFormKeyProvider =
-    Provider.autoDispose<GlobalKey<FormState>>((ref) {
-      return GlobalKey<FormState>();
-    });
+@riverpod
+GlobalKey<ShadFormState> introductionSectionFormKey(Ref ref) =>
+    GlobalKey<ShadFormState>();
 
 @riverpod
 Raw<TextEditingController> aboutHeaderSmallTxtController(Ref ref) {

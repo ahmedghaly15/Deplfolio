@@ -6,6 +6,27 @@ part of 'about_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$introductionSectionFormKeyHash() =>
+    r'ac8ce1cdf6b7c698fa5c178e4e7d84c5bb4a124e';
+
+/// See also [introductionSectionFormKey].
+@ProviderFor(introductionSectionFormKey)
+final introductionSectionFormKeyProvider =
+    AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
+      introductionSectionFormKey,
+      name: r'introductionSectionFormKeyProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$introductionSectionFormKeyHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef IntroductionSectionFormKeyRef =
+    AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$aboutHeaderSmallTxtControllerHash() =>
     r'279dc4f1fad433b2a87ddccab831623aa9bb0a4c';
 
