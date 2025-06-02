@@ -4,6 +4,8 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../src/core/utils/assets.dart';
 import '../enums/experience_status.dart';
+import '../utils/app_strings.dart';
+import '../widgets/primary_button.dart';
 
 extension UnfocusKeyboard on BuildContext {
   void unfocusKeyboard() => FocusScope.of(this).unfocus();
@@ -54,8 +56,33 @@ extension ShadThemeAccess on BuildContext {
 }
 
 extension ShowDialog<T> on BuildContext {
-  Future<T?> showDialog(Widget Function(BuildContext) builder) async {
-    return showShadDialog<T?>(context: this, builder: builder);
+  Future<T?> showDialog({
+    Widget? title,
+    Widget? description,
+    Widget? child,
+    String? titleText,
+    List<Widget>? actions,
+    EdgeInsets? scrollPadding,
+    double gap = 24.0,
+    double radius = 16.0,
+  }) async {
+    return showShadDialog<T?>(
+      context: this,
+      builder:
+          (_) => ShadDialog(
+            gap: gap.h,
+            scrollPadding:
+                scrollPadding ?? EdgeInsets.symmetric(horizontal: 24.w),
+            radius: BorderRadius.circular(radius.r),
+            removeBorderRadiusWhenTiny: false,
+            title: title ?? (titleText != null ? Text(titleText) : null),
+            description: description,
+            actions:
+                actions ??
+                [PrimaryButton(onPressed: () => pop(), text: AppStrings.ok)],
+            child: child,
+          ),
+    );
   }
 }
 
