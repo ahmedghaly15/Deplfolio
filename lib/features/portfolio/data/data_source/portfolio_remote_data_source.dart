@@ -16,7 +16,7 @@ class PortfolioRemoteDataSource {
 
   Future<List<Project>> fetchPortfolio() async {
     final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
-    final projectsJson = remoteJson['projects'] as List<Map<String, dynamic>>;
+    final projectsJson = remoteJson['portfolio'] as List<dynamic>;
     return projectsJson
         .map((projectJson) => Project.fromJson(projectJson))
         .toList();
