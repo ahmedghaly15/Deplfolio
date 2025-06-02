@@ -7,7 +7,7 @@ part of 'update_introduction_section_provider.dart';
 // **************************************************************************
 
 String _$updateIntroductionSectionHash() =>
-    r'f16b2769b6009b1c808e96a82d9480ce5cd8c481';
+    r'3ff9f4838b93c8c455899dbaaddff571aebb87df';
 
 /// See also [UpdateIntroductionSection].
 @ProviderFor(UpdateIntroductionSection)

@@ -17,14 +17,13 @@ class UpdateIntroductionSection extends _$UpdateIntroductionSection {
   void _update() async {
     state = const AsyncValue.loading();
     final params = IntroductionSection(
-      headerSmallText: ref.read(aboutHeaderSmallTxtControllerProvider).text,
-      description: ref.read(aboutDescriptionControllerProvider).text,
-      seeMyWorkLink: ref.read(aboutSeeMyWorkLinkControllerProvider).text,
+      headerSmallText: ref.read(aboutHeaderSmallTxtProvider),
+      description: ref.read(aboutDescriptionProvider),
+      seeMyWorkLink: ref.read(aboutSeeMyWorkLinkProvider),
       headerBigText: AboutHeaderTextModel(
-        text1: ref.read(aboutHeaderBigText1ControllerProvider).text,
-        text2: ref.read(aboutHeaderBigText2ControllerProvider).text,
-        coloredString:
-            ref.read(aboutHeaderBigTextColoredStringControllerProvider).text,
+        text1: ref.read(aboutHeaderBigText1Provider),
+        text2: ref.read(aboutHeaderBigText2Provider),
+        coloredString: ref.read(aboutHeaderBigTextColoredStringProvider),
       ),
     );
     final result = ref

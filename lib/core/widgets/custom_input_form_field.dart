@@ -85,6 +85,7 @@ class CustomInputFormField extends StatelessWidget {
       minLines: minLines,
       validator: validator,
       onPressedOutside: (_) => context.unfocusKeyboard(),
+      onEditingComplete: onEditingComplete,
     );
   }
 }

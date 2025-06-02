@@ -22,11 +22,9 @@ Raw<TextEditingController> passController(Ref ref) {
   return controller;
 }
 
-final passFocusNodeProvider = Provider.autoDispose<FocusNode>((ref) {
-  final focusNode = FocusNode();
-  ref.onDispose(focusNode.dispose);
-  return focusNode;
-});
+final passFocusNodeProvider = Provider.autoDispose<FocusNode>(
+  (ref) => FocusNode(),
+);
 
 class PassToggleNotifier extends StateNotifier<bool> {
   PassToggleNotifier() : super(true);
