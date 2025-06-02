@@ -36,4 +36,13 @@ class AppRegex {
   static bool hasMinLength(String password) {
     return RegExp(r'^(?=.{8,})').hasMatch(password);
   }
+
+  static bool isValidUrl(String url) {
+    const pattern =
+        r'^(https?:\/\/)?' // optional http or https
+        r'(([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,})' // domain
+        r'(:\d+)?' // optional port
+        r'(\/\S*)?$'; // optional path
+    return RegExp(pattern).hasMatch(url);
+  }
 }

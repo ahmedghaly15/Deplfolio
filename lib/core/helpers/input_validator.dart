@@ -67,4 +67,13 @@ class InputValidator {
     }
     return null;
   }
+
+  static String? validatingUrlField(String? value) {
+    if (value == null || value.isEmpty) {
+      return "URL can't be blank!";
+    } else if (!AppRegex.isValidUrl(value)) {
+      return "Please enter a valid URL";
+    }
+    return null;
+  }
 }

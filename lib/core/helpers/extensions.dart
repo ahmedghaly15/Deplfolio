@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-import '../../src/core/utils/assets.dart';
 import '../enums/experience_status.dart';
 import '../utils/app_strings.dart';
+import '../utils/assets.dart';
 import '../widgets/primary_button.dart';
 
 extension UnfocusKeyboard on BuildContext {
@@ -104,4 +104,8 @@ extension WorkExperienceName on ExperienceStatus {
     ExperienceStatus.remote => 'Remote',
     ExperienceStatus.internship => 'Internship',
   };
+}
+
+extension RequestFocusOnFocusNode on BuildContext {
+  void requestFocus(FocusNode node) => FocusScope.of(this).requestFocus(node);
 }

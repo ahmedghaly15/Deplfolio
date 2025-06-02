@@ -9,10 +9,24 @@ part 'form_providers.g.dart';
 GlobalKey<ShadFormState> loginFormKey(Ref ref) => GlobalKey<ShadFormState>();
 
 @riverpod
-Raw<TextEditingController> emailController(Ref ref) => TextEditingController();
+Raw<TextEditingController> emailController(Ref ref) {
+  final controller = TextEditingController();
+  ref.onDispose(controller.dispose);
+  return controller;
+}
 
 @riverpod
-Raw<TextEditingController> passController(Ref ref) => TextEditingController();
+Raw<TextEditingController> passController(Ref ref) {
+  final controller = TextEditingController();
+  ref.onDispose(controller.dispose);
+  return controller;
+}
+
+final passFocusNodeProvider = Provider.autoDispose<FocusNode>((ref) {
+  final focusNode = FocusNode();
+  ref.onDispose(focusNode.dispose);
+  return focusNode;
+});
 
 class PassToggleNotifier extends StateNotifier<bool> {
   PassToggleNotifier() : super(true);
@@ -20,20 +34,7 @@ class PassToggleNotifier extends StateNotifier<bool> {
   void toggle() => state = !state;
 }
 
-class AutovalidateModeNotifier extends StateNotifier<AutovalidateMode> {
-  AutovalidateModeNotifier() : super(AutovalidateMode.disabled);
-
-  void enable() {
-    state = AutovalidateMode.onUserInteraction;
-  }
-}
-
 final passToggleProvider =
     StateNotifierProvider.autoDispose<PassToggleNotifier, bool>(
       (ref) => PassToggleNotifier(),
     );
-
-final autovalidateModeProvider = StateNotifierProvider.autoDispose<
-  AutovalidateModeNotifier,
-  AutovalidateMode
->((ref) => AutovalidateModeNotifier());

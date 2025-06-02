@@ -26,7 +26,7 @@ class PortfolioViewConsumer extends ConsumerWidget {
               padding: AppUtils.screenPadding,
               itemBuilder:
                   (_, index) =>
-                      FadeIn(child: ProjectItem(project: projects[index])),
+                      ElasticIn(child: ProjectItem(project: projects[index])),
               separatorBuilder: (_, __) => SizedBox(height: 24.h),
               itemCount: projects.length,
             ),

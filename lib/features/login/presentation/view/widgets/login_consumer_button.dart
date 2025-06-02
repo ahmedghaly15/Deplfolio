@@ -31,7 +31,6 @@ class LoginConsumerButton extends ConsumerWidget {
   void _listener(WidgetRef ref, BuildContext context) {
     ref.listen(loginProvider, (_, current) {
       current?.whenOrNull(
-        loading: () => context.unfocusKeyboard(),
         data: (userId) async => await _onLoginSuccess(userId, context),
         error: (error, _) => context.showToast(error.toString()),
       );

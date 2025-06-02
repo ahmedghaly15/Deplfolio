@@ -25,7 +25,7 @@ final loginFormKeyProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef LoginFormKeyRef = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$emailControllerHash() => r'02e34446413a28bed257b2ca052eaa8a81746151';
+String _$emailControllerHash() => r'0e557a3608350fbcf10e80c52d939f0f8ec39ffd';
 
 /// See also [emailController].
 @ProviderFor(emailController)
@@ -44,7 +44,7 @@ final emailControllerProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef EmailControllerRef = AutoDisposeProviderRef<Raw<TextEditingController>>;
-String _$passControllerHash() => r'537cbbaf7a180a1e5415d71c31f2a11fb87adffd';
+String _$passControllerHash() => r'd04dc96e1097c08867df4f8865d36bd1f99b0a16';
 
 /// See also [passController].
 @ProviderFor(passController)
