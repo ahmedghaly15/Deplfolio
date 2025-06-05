@@ -10,7 +10,7 @@ UploadCvRequestBody _$UploadCvRequestBodyFromJson(Map<String, dynamic> json) =>
     UploadCvRequestBody(
       fileEncodedContent: json['content'] as String,
       message:
-          json['message'] as String? ?? 'Uploaded PDF via Deplfolio: Deploy 🚀',
+          json['message'] as String? ?? 'Updated CV via Deplfolio: Deploy 🚀',
       branchName: json['branch'] as String? ?? 'master',
       sha: json['sha'] as String?,
     );

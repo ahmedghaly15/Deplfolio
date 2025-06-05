@@ -13,7 +13,7 @@ class UploadCvRequestBody {
 
   UploadCvRequestBody({
     required this.fileEncodedContent,
-    this.message = 'Uploaded PDF via Deplfolio: Deploy 🚀',
+    this.message = 'Updated CV via Deplfolio: Deploy 🚀',
     this.branchName = 'master',
     this.sha,
   });
