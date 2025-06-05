@@ -9,7 +9,7 @@ import '../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../core/widgets/adaptive_refresh_indicator.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
 import '../../../about/presentation/view/widgets/project_item.dart';
-import '../provider/portfolio_providers.dart';
+import '../providers/fetch_portfolio_provider.dart';
 
 class PortfolioViewConsumer extends ConsumerWidget {
   const PortfolioViewConsumer({super.key});
