@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../enums/experience_status.dart';
-import '../utils/app_strings.dart';
 import '../utils/assets.dart';
-import '../widgets/primary_button.dart';
 
 extension UnfocusKeyboard on BuildContext {
   void unfocusKeyboard() => FocusScope.of(this).unfocus();
@@ -77,9 +75,7 @@ extension ShowDialog<T> on BuildContext {
             removeBorderRadiusWhenTiny: false,
             title: title ?? (titleText != null ? Text(titleText) : null),
             description: description,
-            actions:
-                actions ??
-                [PrimaryButton(onPressed: () => pop(), text: AppStrings.ok)],
+            actions: actions ?? [const SizedBox.shrink()],
             child: child,
           ),
     );
