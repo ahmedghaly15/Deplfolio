@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/utils/app_utils.dart';
 import '../../../data/models/about.dart';
 import '../../../data/models/introduction_section.dart';
 import 'approaches_accordion.dart';
@@ -19,55 +18,50 @@ class AboutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppUtils.screenPadding,
-      child: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverToBoxAdapter(
-            child: IntroductionSectionCard(
-              introductionSection: IntroductionSection(
-                headerSmallText: about.headerSmallText,
-                description: about.description,
-                seeMyWorkLink: about.seeMyWorkLink,
-                headerBigText: about.headerBigText,
-              ),
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverToBoxAdapter(
+          child: IntroductionSectionCard(
+            introductionSection: IntroductionSection(
+              headerSmallText: about.headerSmallText,
+              description: about.description,
+              seeMyWorkLink: about.seeMyWorkLink,
+              headerBigText: about.headerBigText,
             ),
           ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: 32.h, bottom: 16.h),
-            sliver: const SliverToBoxAdapter(child: UpdateCvButtonConsumer()),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.only(top: 32.h, bottom: 16.h),
+          sliver: const SliverToBoxAdapter(child: UpdateCvButtonConsumer()),
+        ),
+        SliverToBoxAdapter(
+          child: Container(
+            margin: EdgeInsets.symmetric(vertical: 16.h),
+            child: ProjectsSectionCard(projects: about.projects),
           ),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 16.h),
-              child: ProjectsSectionCard(projects: about.projects),
-            ),
+        ),
+        const SliverToBoxAdapter(
+          child: Center(child: SectionTitle(title: AppStrings.workExperience)),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: 16.h),
+          sliver: SliverList.separated(
+            itemCount: about.workExperience.length,
+            itemBuilder:
+                (_, index) => WorkExperienceItem(
+                  workExperience: about.workExperience[index],
+                ),
+            separatorBuilder: (_, __) => SizedBox(height: 16.h),
           ),
-          const SliverToBoxAdapter(
-            child: Center(
-              child: SectionTitle(title: AppStrings.workExperience),
-            ),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.symmetric(vertical: 16.h),
-            sliver: SliverList.separated(
-              itemCount: about.workExperience.length,
-              itemBuilder:
-                  (_, index) => WorkExperienceItem(
-                    workExperience: about.workExperience[index],
-                  ),
-              separatorBuilder: (_, __) => SizedBox(height: 16.h),
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: Center(child: SectionTitle(title: AppStrings.approaches)),
-          ),
-          SliverToBoxAdapter(
-            child: ApproachesAccordion(approaches: about.approaches),
-          ),
-        ],
-      ),
+        ),
+        const SliverToBoxAdapter(
+          child: Center(child: SectionTitle(title: AppStrings.approaches)),
+        ),
+        SliverToBoxAdapter(
+          child: ApproachesAccordion(approaches: about.approaches),
+        ),
+      ],
     );
   }
 }
