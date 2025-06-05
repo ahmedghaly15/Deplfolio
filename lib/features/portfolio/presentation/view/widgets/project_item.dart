@@ -6,8 +6,8 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import '../../../../../core/models/project.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_cached_network_img.dart';
-import '../../../../../core/widgets/primary_button.dart';
-import 'edit_project_dialog_content.dart';
+import 'edit_project_consumer_button.dart';
+import 'edit_project_dialog_form_consumer.dart';
 
 class ProjectItem extends StatelessWidget {
   const ProjectItem({super.key, required this.project});
@@ -26,10 +26,8 @@ class ProjectItem extends StatelessWidget {
               bottom: 24.h,
             ),
             titleText: AppStrings.editProject,
-            actions: [
-              PrimaryButton(onPressed: () {}, text: AppStrings.saveChanges),
-            ],
-            child: EditProjectDialogContent(project: project),
+            actions: [EditProjectConsumerButton(project: project)],
+            child: EditProjectDialogFormConsumer(project: project),
           ),
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
