@@ -29,21 +29,18 @@ class EditProjectDialogContent extends StatelessWidget {
           initialValue: project.description,
           labelText: AppStrings.description,
         ),
-        if (project.downloadLink != null)
-          CustomDataInput(
-            initialValue: project.downloadLink!,
-            labelText: AppStrings.downloadUrl,
-          ),
-        if (project.promoLink != null)
-          CustomDataInput(
-            initialValue: project.promoLink!,
-            labelText: AppStrings.promoUrl,
-          ),
-        if (project.gitHubLink != null)
-          CustomDataInput(
-            initialValue: project.gitHubLink!,
-            labelText: AppStrings.githubUrl,
-          ),
+        CustomDataInput(
+          initialValue: project.downloadLink ?? '',
+          labelText: AppStrings.downloadUrl,
+        ),
+        CustomDataInput(
+          initialValue: project.promoLink ?? '',
+          labelText: AppStrings.promoUrl,
+        ),
+        CustomDataInput(
+          initialValue: project.gitHubLink ?? '',
+          labelText: AppStrings.githubUrl,
+        ),
       ],
     );
   }
