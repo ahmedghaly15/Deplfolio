@@ -6,11 +6,13 @@ part 'project.g.dart';
 class Project {
   final String imgPath, title, description;
   final String? downloadLink, promoLink, gitHubLink;
+  final bool shownInAbout;
 
   Project({
     required this.imgPath,
     required this.title,
     required this.description,
+    required this.shownInAbout,
     this.downloadLink,
     this.promoLink,
     this.gitHubLink,

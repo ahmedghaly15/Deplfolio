@@ -10,6 +10,7 @@ Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
   imgPath: json['imgPath'] as String,
   title: json['title'] as String,
   description: json['description'] as String,
+  shownInAbout: json['shownInAbout'] as bool,
   downloadLink: json['downloadLink'] as String?,
   promoLink: json['promoLink'] as String?,
   gitHubLink: json['gitHubLink'] as String?,
@@ -22,4 +23,5 @@ Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
   'downloadLink': instance.downloadLink,
   'promoLink': instance.promoLink,
   'gitHubLink': instance.gitHubLink,
+  'shownInAbout': instance.shownInAbout,
 };
