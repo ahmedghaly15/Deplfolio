@@ -6,24 +6,28 @@ part of 'update_project_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$projectTitleStateHash() => r'3c40f5a9933313f3a1484da37c9d08e82f28718b';
+String _$updateProjectFormKeyHash() =>
+    r'c7926f4a1f95ed0e236c7bd9c0b91e99ddffa2ea';
 
-/// See also [ProjectTitleState].
-@ProviderFor(ProjectTitleState)
-final projectTitleStateProvider =
-    AutoDisposeNotifierProvider<ProjectTitleState, String>.internal(
-      ProjectTitleState.new,
-      name: r'projectTitleStateProvider',
+/// See also [updateProjectFormKey].
+@ProviderFor(updateProjectFormKey)
+final updateProjectFormKeyProvider =
+    AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
+      updateProjectFormKey,
+      name: r'updateProjectFormKeyProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$projectTitleStateHash,
+              : _$updateProjectFormKeyHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$ProjectTitleState = AutoDisposeNotifier<String>;
-String _$updateProjectHash() => r'b6c4a761f4ec0542c8a2cd268abae5b4c5f5405b';
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef UpdateProjectFormKeyRef =
+    AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
+String _$updateProjectHash() => r'31cc3aba1c357262fbbc586c0c1604301f22a206';
 
 /// See also [UpdateProject].
 @ProviderFor(UpdateProject)

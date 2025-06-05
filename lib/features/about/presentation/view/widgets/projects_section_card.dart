@@ -7,7 +7,7 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import '../../../../../core/models/project.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_utils.dart';
-import 'project_item.dart';
+import '../../../../portfolio/presentation/view/widgets/project_item.dart';
 
 class ProjectsSectionCard extends StatelessWidget {
   const ProjectsSectionCard({super.key, required this.projects});

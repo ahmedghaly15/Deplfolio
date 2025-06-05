@@ -1,11 +1,17 @@
+import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shadcn_ui/shadcn_ui.dart' show ShadFormState;
 
 import '../../../../core/models/project.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/repository/portfolio_repo.dart';
 
 part 'update_project_provider.g.dart';
+
+@riverpod
+GlobalKey<ShadFormState> updateProjectFormKey(Ref ref) =>
+    GlobalKey<ShadFormState>();
 
 final projectTitleProvider = StateProvider.autoDispose<String>((ref) => '');
 final projectDescriptionProvider = StateProvider.autoDispose<String>(
@@ -22,7 +28,7 @@ class UpdateProject extends _$UpdateProject {
   @override
   AsyncValue<void>? build() => null;
 
-  void update(Project project) async {
+  void _update(Project project) async {
     state = const AsyncLoading();
     final title = ref.read(projectTitleProvider);
     final description = ref.read(projectDescriptionProvider);
@@ -47,6 +53,13 @@ class UpdateProject extends _$UpdateProject {
         state = const AsyncData(null);
       case SupabaseRequestFailure(:final errorModel):
         state = AsyncError(errorModel.message, StackTrace.current);
+    }
+  }
+
+  void validateAndUpdate(Project project) {
+    final formKey = ref.read(updateProjectFormKeyProvider);
+    if (formKey.currentState!.validate()) {
+      _update(project);
     }
   }
 }
