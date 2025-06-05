@@ -28,4 +28,15 @@ class PortfolioRepo {
       () async => await _remoteDataSource.updateProject(project),
     );
   }
+
+  Future<SupabaseRequestResult<void>> showOrHideProjectFromAbout(
+    Ref ref,
+    String projectTitle,
+  ) {
+    return supabaseExecuteAndHandleErrors<void>(
+      ref,
+      () async =>
+          await _remoteDataSource.showOrHideProjectFromAbout(projectTitle),
+    );
+  }
 }

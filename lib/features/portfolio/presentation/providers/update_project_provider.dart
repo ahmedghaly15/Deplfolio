@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -44,6 +45,7 @@ class UpdateProject extends _$UpdateProject {
           downloadUrl.isEmpty ? project.downloadLink : downloadUrl.trim(),
       promoLink: promoUrl.isEmpty ? project.promoLink : promoUrl.trim(),
       gitHubLink: gitHubUrl.isEmpty ? project.gitHubLink : gitHubUrl.trim(),
+      shownInAbout: project.shownInAbout,
     );
     final result = await ref
         .read(portfolioRepoProvider)

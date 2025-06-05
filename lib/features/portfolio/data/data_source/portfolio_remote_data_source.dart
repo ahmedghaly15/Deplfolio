@@ -40,4 +40,18 @@ class PortfolioRemoteDataSource {
         .update({'portfolio': projectsJson})
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
+
+  Future<void> showOrHideProjectFromAbout(String projectTitle) async {
+    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final projectsJson = remoteJson['portfolio'] as List<dynamic>;
+    final projectIndex = projectsJson.indexWhere(
+      (p) => p['title'] == projectTitle,
+    );
+    final shownInAbout = projectsJson[projectIndex]['shownInAbout'] as bool;
+    projectsJson[projectIndex]['shownInAbout'] = !shownInAbout;
+    await _supabaseClient
+        .from(ConstStrings.dataTable)
+        .update({'portfolio': projectsJson})
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+  }
 }

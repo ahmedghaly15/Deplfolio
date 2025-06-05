@@ -18,7 +18,7 @@ class ProjectsCheckboxes extends StatelessWidget {
           projects
               .map(
                 (p) => ShadCheckbox(
-                  value: true,
+                  value: p.shownInAbout,
                   onChanged: (value) {},
                   label: Text(
                     p.title,

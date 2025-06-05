@@ -24,7 +24,10 @@ class ProjectsSectionCard extends StatelessWidget {
         spacing: 16.w,
         runSpacing: 16.h,
         children:
-            projects.map((project) => ProjectItem(project: project)).toList(),
+            projects
+                .where((p) => p.shownInAbout)
+                .map((p) => ProjectItem(project: p))
+                .toList(),
       ),
     );
   }
