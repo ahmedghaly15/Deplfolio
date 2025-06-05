@@ -14,12 +14,7 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncUploadCvToRepo = ref.watch(uploadCvToRepoProvider);
-    ref.listen(uploadCvToRepoProvider, (_, current) {
-      current?.whenOrNull(
-        error: (error, _) => context.showToast(error.toString()),
-        data: (_) => context.showToast(AppStrings.cvUpdatedSuccessfully),
-      );
-    });
+    _listener(ref, context);
     return PrimaryButton(
       onPressed: () => ref.read(uploadCvToRepoProvider.notifier).upload(),
       text: AppStrings.updateCv,
@@ -27,5 +22,14 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
         loading: () => const AdaptiveCircularProgressIndicator(),
       ),
     );
+  }
+
+  void _listener(WidgetRef ref, BuildContext context) {
+    ref.listen(uploadCvToRepoProvider, (_, current) {
+      current?.whenOrNull(
+        error: (error, _) => context.showToast(error.toString()),
+        data: (_) => context.showToast(AppStrings.cvUpdatedSuccessfully),
+      );
+    });
   }
 }
