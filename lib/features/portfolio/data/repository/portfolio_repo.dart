@@ -21,4 +21,11 @@ class PortfolioRepo {
       () async => await _remoteDataSource.fetchPortfolio(),
     );
   }
+
+  Future<SupabaseRequestResult<void>> updateProject(Ref ref, Project project) {
+    return supabaseExecuteAndHandleErrors<void>(
+      ref,
+      () async => await _remoteDataSource.updateProject(project),
+    );
+  }
 }
