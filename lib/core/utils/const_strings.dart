@@ -10,4 +10,5 @@ class ConstStrings {
   static const String githubToken = 'GITHUB_TOKEN';
   static const String remoteCVPath = 'assets/cv/Ahmed Ghaly - Flutter Dev.pdf';
   static const String dataStorage = 'data';
+  static const String assetRemoteRepoPath = 'assets/images/';
 }

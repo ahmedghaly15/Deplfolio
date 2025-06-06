@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'upload_cv_request_body.g.dart';
+part 'update_remote_repo_file_request_body.g.dart';
 
 @JsonSerializable()
-class UploadCvRequestBody {
+class UpdateRemoteRepoFileRequestBody {
   final String message;
   @JsonKey(name: 'content')
   final String fileEncodedContent;
@@ -11,15 +11,16 @@ class UploadCvRequestBody {
   final String branchName;
   final String? sha;
 
-  UploadCvRequestBody({
+  UpdateRemoteRepoFileRequestBody({
     required this.fileEncodedContent,
     this.message = 'Updated CV via Deplfolio: Deploy 🚀',
     this.branchName = 'master',
     this.sha,
   });
 
-  factory UploadCvRequestBody.fromJson(Map<String, dynamic> json) =>
-      _$UploadCvRequestBodyFromJson(json);
+  factory UpdateRemoteRepoFileRequestBody.fromJson(Map<String, dynamic> json) =>
+      _$UpdateRemoteRepoFileRequestBodyFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UploadCvRequestBodyToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$UpdateRemoteRepoFileRequestBodyToJson(this);
 }

@@ -5,27 +5,27 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/api/api_request_result.dart';
+import '../../../../core/api/github_api_service.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../../../core/utils/const_strings.dart';
 import '../../../../core/utils/functions/api_execute_and_handle_errors.dart';
 import '../../../../core/utils/functions/supabase_execute_and_handle_errors.dart';
-import '../api/about_api_service.dart';
 import '../data_source.dart/about_remote_data_source.dart';
 import '../models/about.dart';
 import '../models/introduction_section.dart';
-import '../models/upload_cv_request_body.dart';
+import '../../../../core/models/update_remote_repo_file_request_body.dart';
 
 final aboutRepoProvider = Provider.autoDispose<AboutRepo>((ref) {
   final remoteDataSource = ref.read(aboutRemoteDataSourceProvider);
-  final apiService = ref.read(aboutApiServiceProvider);
-  return AboutRepo(remoteDataSource, apiService);
+  final githubApiService = ref.read(githubApiServiceProvider);
+  return AboutRepo(remoteDataSource, githubApiService);
 });
 
 class AboutRepo {
   final AboutRemoteDataSource _remoteDataSource;
-  final AboutApiService _apiService;
+  final GitHubApiService _githubApiService;
 
-  AboutRepo(this._remoteDataSource, this._apiService);
+  AboutRepo(this._remoteDataSource, this._githubApiService);
 
   Future<SupabaseRequestResult<About>> fetchAbout(Ref ref) {
     return supabaseExecuteAndHandleErrors(
@@ -46,7 +46,7 @@ class AboutRepo {
 
   Future<String?> _checkForGithubFileExistence() async {
     final saferFilePathUrl = Uri.encodeComponent(ConstStrings.remoteCVPath);
-    final response = await _apiService.checkForGithubFileExistence(
+    final response = await _githubApiService.checkForGithubFileExistence(
       saferFilePathUrl,
     );
     return response.sha;
@@ -62,9 +62,12 @@ class AboutRepo {
     final encodedContent = base64Encode(fileBytes);
     return apiExecuteAndHandleErrors<void>(() async {
       final sha = await _checkForGithubFileExistence();
-      await _apiService.uploadCvToRepo(
+      await _githubApiService.uploadCvToRepo(
         saferFilePathUrl,
-        UploadCvRequestBody(fileEncodedContent: encodedContent, sha: sha),
+        UpdateRemoteRepoFileRequestBody(
+          fileEncodedContent: encodedContent,
+          sha: sha,
+        ),
       );
     });
   }
