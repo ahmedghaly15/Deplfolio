@@ -24,6 +24,9 @@ final projectDownloadUrlProvider = StateProvider.autoDispose<String>(
 );
 final projectPromoUrlProvider = StateProvider.autoDispose<String>((ref) => '');
 final projectGitHubUrlProvider = StateProvider.autoDispose<String>((ref) => '');
+final projectImgPathProvider = StateProvider.autoDispose.family<String, String>(
+  (ref, intialImgPth) => intialImgPth,
+);
 
 @riverpod
 class UpdateProject extends _$UpdateProject {
