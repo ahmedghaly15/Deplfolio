@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../../../../core/models/update_remote_repo_file_params.dart';
 import '../../../../../core/providers/update_remote_repo_file_provider.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/const_strings.dart';
@@ -20,7 +21,12 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
       onPressed:
           () => ref
               .read(updateRemoteRepoFileProvider.notifier)
-              .updateRemoteRepoFile(ConstStrings.remoteCVPath),
+              .updateRemoteRepoFile(
+                const UpdateRemoteRepoFileParams(
+                  pickedFileAllowedExtensions: ['pdf'],
+                  remoteFilePath: ConstStrings.remoteCVPath,
+                ),
+              ),
       text: AppStrings.updateCv,
       child: asyncUploadCvToRepo?.whenOrNull(
         loading: () => const AdaptiveCircularProgressIndicator(),
