@@ -4,7 +4,7 @@ part 'update_remote_repo_file_request_body.g.dart';
 
 @JsonSerializable()
 class UpdateRemoteRepoFileRequestBody {
-  final String message;
+  final String? message;
   @JsonKey(name: 'content')
   final String fileEncodedContent;
   @JsonKey(name: 'branch')

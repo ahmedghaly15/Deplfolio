@@ -12,20 +12,15 @@ class UpdateRemoteRepoFile extends _$UpdateRemoteRepoFile {
   @override
   AsyncValue<void>? build() => null;
 
-  void updateRemoteRepoFile(String remoteFilePath) async {
-    final pickedFile = await ref.read(pickFileProvider.notifier).pickFile([
-      'pdf',
-    ]);
+  void updateRemoteRepoFile(UpdateRemoteRepoFileParams params) async {
+    final pickedFile = await ref
+        .read(pickFileProvider.notifier)
+        .pickFile(params.pickedFileAllowedExtensions);
     if (pickedFile == null) return;
     state = const AsyncLoading();
     final result = await ref
         .read(githubRepoProvider)
-        .updateRemoteRepoFile(
-          UpdateRemoteRepoFileParams(
-            pickedFile: pickedFile,
-            remoteFilePath: remoteFilePath,
-          ),
-        );
+        .updateRemoteRepoFile(params.copyWith(pickedFile: pickedFile));
     switch (result) {
       case ApiRequestSuccess():
         state = const AsyncData(null);
