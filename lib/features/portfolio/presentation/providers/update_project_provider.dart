@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -36,7 +37,7 @@ class UpdateProject extends _$UpdateProject {
     final downloadUrl = ref.read(projectDownloadUrlProvider);
     final promoUrl = ref.read(projectPromoUrlProvider);
     final gitHubUrl = ref.read(projectGitHubUrlProvider);
-    final updateProject = Project(
+    project = project.copyWith(
       imgPath: project.imgPath,
       title: title.isEmpty ? project.title.trim() : title.trim(),
       description:
@@ -49,7 +50,7 @@ class UpdateProject extends _$UpdateProject {
     );
     final result = await ref
         .read(portfolioRepoProvider)
-        .updateProject(ref, updateProject);
+        .updateProject(ref, project);
     switch (result) {
       case SupabaseRequestSuccess():
         state = const AsyncData(null);
@@ -66,20 +67,20 @@ class UpdateProject extends _$UpdateProject {
   }
 }
 
-final isUpdateProjectButtonEnabledProvider = StateProvider.autoDispose.family<
-  bool,
-  Project
->((ref, initialValues) {
-  final title = ref.watch(projectTitleProvider);
-  final description = ref.watch(projectDescriptionProvider);
-  final downloadUrl = ref.watch(projectDownloadUrlProvider);
-  final promoUrl = ref.watch(projectPromoUrlProvider);
-  final gitHubUrl = ref.watch(projectGitHubUrlProvider);
-  final hasChanged =
-      (title.isNotEmpty && title != initialValues.title) ||
-      (description.isNotEmpty && description != initialValues.description) ||
-      (downloadUrl.isNotEmpty && downloadUrl != initialValues.downloadLink) ||
-      (promoUrl.isNotEmpty && promoUrl != initialValues.promoLink) ||
-      (gitHubUrl.isNotEmpty && gitHubUrl != initialValues.gitHubLink);
-  return hasChanged;
-});
+final isUpdateProjectButtonEnabledProvider = StateProvider.autoDispose
+    .family<bool, Project>((ref, initialValues) {
+      final title = ref.watch(projectTitleProvider);
+      final description = ref.watch(projectDescriptionProvider);
+      final downloadUrl = ref.watch(projectDownloadUrlProvider);
+      final promoUrl = ref.watch(projectPromoUrlProvider);
+      final gitHubUrl = ref.watch(projectGitHubUrlProvider);
+      final hasChanged =
+          (title.isNotEmpty && title != initialValues.title) ||
+          (description.isNotEmpty &&
+              description != initialValues.description) ||
+          (!downloadUrl.isNullOrEmpty &&
+              downloadUrl != initialValues.downloadLink) ||
+          (!promoUrl.isNullOrEmpty && promoUrl != initialValues.promoLink) ||
+          (!gitHubUrl.isNullOrEmpty && gitHubUrl != initialValues.gitHubLink);
+      return hasChanged;
+    });

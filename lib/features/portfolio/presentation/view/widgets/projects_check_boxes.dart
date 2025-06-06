@@ -14,6 +14,7 @@ class ProjectsCheckboxes extends StatelessWidget {
     return Column(
       spacing: 16.h,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children:
           projects
               .map(

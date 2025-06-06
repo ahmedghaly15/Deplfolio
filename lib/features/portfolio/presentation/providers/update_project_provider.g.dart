@@ -27,7 +27,7 @@ final updateProjectFormKeyProvider =
 // ignore: unused_element
 typedef UpdateProjectFormKeyRef =
     AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$updateProjectHash() => r'c294da147dba870832176ca640aef8a43a5775ef';
+String _$updateProjectHash() => r'0e4496f5893ce328dd54029b9e5535c4f81f956f';
 
 /// See also [UpdateProject].
 @ProviderFor(UpdateProject)
