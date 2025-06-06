@@ -49,7 +49,7 @@ class _GitHubApiService implements GitHubApiService {
   }
 
   @override
-  Future<void> uploadCvToRepo(
+  Future<void> updateRemoteFile(
     String saferFilePathUrl,
     UpdateRemoteRepoFileRequestBody body,
   ) async {

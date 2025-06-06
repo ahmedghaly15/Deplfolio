@@ -24,7 +24,7 @@ abstract class GitHubApiService {
   );
 
   @PUT('${EndPoints.contents}{saferFilePathUrl}')
-  Future<void> uploadCvToRepo(
+  Future<void> updateRemoteFile(
     @Path('saferFilePathUrl') String saferFilePathUrl,
     @Body() UpdateRemoteRepoFileRequestBody body,
   );
