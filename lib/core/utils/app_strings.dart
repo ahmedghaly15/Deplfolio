@@ -48,4 +48,5 @@ class AppStrings {
   static const String aboutProjects = 'Projects Shown In About';
   static const String updateImg = 'Update Image';
   static const String imgUpdatedSuccessfully = 'Image updated successfully.';
+  static const String fileSavedSuccessfully = 'File saved successfully.';
 }
