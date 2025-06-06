@@ -43,6 +43,10 @@ dependencies:
   # Networking
   dio: ^5.8.0+1
   retrofit: ^4.4.2
+  # Flutter plugin for selecting images from the Android and iOS image library
+  image_picker: ^1.1.2
+  # Effectively reduce the size of the transmission
+  flutter_image_compress: ^2.4.0
 
 dev_dependencies:
   flutter_test:
