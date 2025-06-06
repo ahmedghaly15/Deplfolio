@@ -7,7 +7,7 @@ import '../../../../../core/models/project.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_cached_network_img.dart';
 import 'edit_project_consumer_button.dart';
-import 'edit_project_dialog_form_consumer.dart';
+import 'edit_project_dialog_content.dart';
 
 class ProjectItem extends StatelessWidget {
   const ProjectItem({super.key, required this.project});
@@ -27,7 +27,7 @@ class ProjectItem extends StatelessWidget {
             ),
             titleText: AppStrings.editProject,
             actions: [EditProjectConsumerButton(project: project)],
-            child: EditProjectDialogFormConsumer(project: project),
+            child: EditProjectDialogContent(project: project),
           ),
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
