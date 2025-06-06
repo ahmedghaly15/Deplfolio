@@ -1,4 +1,6 @@
+import 'dart:typed_data';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart' show XFile;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/data_source/remote_data_source.dart';
@@ -71,5 +73,27 @@ class PortfolioRemoteDataSource {
         .from(ConstStrings.dataTable)
         .update({'portfolio': projectsJson})
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+  }
+
+  Future<String> uploadImgToSupabase(XFile pickedImgFile) async {
+    final storageFilePath = 'images/${pickedImgFile.path}';
+    final fileByets = await pickedImgFile.readAsBytes();
+    await _uploadToBucket(storageFilePath, fileByets);
+    return await _createSignedUrl(storageFilePath);
+  }
+
+  Future<String> _createSignedUrl(String storageFilePath) async {
+    return await _supabaseClient.storage
+        .from(ConstStrings.dataStorage)
+        .createSignedUrl(storageFilePath, 60 * 60 * 360 * 60);
+  }
+
+  Future<String> _uploadToBucket(
+    String storageFilePath,
+    Uint8List fileByets,
+  ) async {
+    return await _supabaseClient.storage
+        .from(ConstStrings.dataStorage)
+        .uploadBinary(storageFilePath, fileByets);
   }
 }
