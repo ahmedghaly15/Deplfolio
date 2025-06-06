@@ -17,7 +17,10 @@ class ProjectPromoUrlFieldConsumer extends ConsumerWidget {
       initialValue: promoUrl ?? '',
       labelText: AppStrings.promoUrl,
       onChanged: (value) {
-        ref.read(projectPromoUrlProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(projectPromoUrlProvider)) {
+          ref.read(projectPromoUrlProvider.notifier).state = value;
+        }
       },
     );
   }

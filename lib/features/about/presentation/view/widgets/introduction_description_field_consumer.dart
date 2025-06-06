@@ -27,7 +27,10 @@ class IntroductionDescriptionFieldConsumer extends ConsumerWidget {
       textCapitalization: TextCapitalization.sentences,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        ref.read(aboutDescriptionProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(aboutDescriptionProvider)) {
+          ref.read(aboutDescriptionProvider.notifier).state = value;
+        }
       },
     );
   }

@@ -18,7 +18,10 @@ class ProjectTitleFieldConsumer extends ConsumerWidget {
       labelText: AppStrings.name,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        ref.read(projectTitleProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(projectTitleProvider)) {
+          ref.read(projectTitleProvider.notifier).state = value;
+        }
       },
     );
   }

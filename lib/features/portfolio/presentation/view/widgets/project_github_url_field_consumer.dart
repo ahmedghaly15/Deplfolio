@@ -17,7 +17,10 @@ class ProjectGitHubUrlFieldConsumer extends ConsumerWidget {
       initialValue: githubUrl ?? '',
       labelText: AppStrings.githubUrl,
       onChanged: (value) {
-        ref.read(projectGitHubUrlProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(projectGitHubUrlProvider)) {
+          ref.read(projectGitHubUrlProvider.notifier).state = value;
+        }
       },
     );
   }

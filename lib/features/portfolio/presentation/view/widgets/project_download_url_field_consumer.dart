@@ -17,7 +17,10 @@ class ProjectDownloadUrlFieldConsumer extends ConsumerWidget {
       initialValue: downloadUrl ?? '',
       labelText: AppStrings.downloadUrl,
       onChanged: (value) {
-        ref.read(projectDownloadUrlProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(projectDownloadUrlProvider)) {
+          ref.read(projectDownloadUrlProvider.notifier).state = value;
+        }
       },
     );
   }

@@ -26,8 +26,11 @@ class IntroductionColorfulBigTextFieldConsumer extends ConsumerWidget {
       textCapitalization: TextCapitalization.sentences,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        ref.read(aboutHeaderBigTextColoredStringProvider.notifier).state =
-            value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(aboutHeaderBigTextColoredStringProvider)) {
+          ref.read(aboutHeaderBigTextColoredStringProvider.notifier).state =
+              value;
+        }
       },
     );
   }

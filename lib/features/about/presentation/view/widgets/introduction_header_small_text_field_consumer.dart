@@ -27,7 +27,10 @@ class IntroductionHeaderSmallTextFieldConsumer extends ConsumerWidget {
       textCapitalization: TextCapitalization.sentences,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        ref.read(aboutHeaderSmallTxtProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(aboutHeaderSmallTxtProvider)) {
+          ref.read(aboutHeaderSmallTxtProvider.notifier).state = value;
+        }
       },
     );
   }

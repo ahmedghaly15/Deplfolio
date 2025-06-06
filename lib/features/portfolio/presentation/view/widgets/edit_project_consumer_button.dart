@@ -16,13 +16,21 @@ class EditProjectConsumerButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isButtonEnabled = ref.watch(
+      isUpdateProjectButtonEnabledProvider(project),
+    );
     final asyncUpdate = ref.watch(updateProjectProvider);
     _listener(ref, context);
     return PrimaryButton(
       text: AppStrings.editProject,
-      onPressed: () {
-        ref.read(updateProjectProvider.notifier).validateAndUpdate(project);
-      },
+      onPressed:
+          isButtonEnabled
+              ? () {
+                ref
+                    .read(updateProjectProvider.notifier)
+                    .validateAndUpdate(project);
+              }
+              : null,
       child: asyncUpdate?.whenOrNull(
         loading: () => const AdaptiveCircularProgressIndicator(),
       ),

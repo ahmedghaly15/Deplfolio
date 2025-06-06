@@ -26,7 +26,10 @@ class IntroductionSeeMyWorkFieldConsumer extends ConsumerWidget {
       labelText: AppStrings.seeMyWorkUrl,
       validator: (value) => InputValidator.validatingUrlField(value),
       onChanged: (value) {
-        ref.read(aboutSeeMyWorkLinkProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(aboutSeeMyWorkLinkProvider)) {
+          ref.read(aboutSeeMyWorkLinkProvider.notifier).state = value;
+        }
       },
     );
   }

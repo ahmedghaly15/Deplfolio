@@ -19,7 +19,10 @@ class ProjectDescriptionFieldConsumer extends ConsumerWidget {
       labelText: AppStrings.description,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        ref.read(projectDescriptionProvider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(projectDescriptionProvider)) {
+          ref.read(projectDescriptionProvider.notifier).state = value;
+        }
       },
     );
   }

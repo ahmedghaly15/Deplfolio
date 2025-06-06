@@ -27,7 +27,10 @@ class IntroductionBigText2FieldConsumer extends ConsumerWidget {
       textCapitalization: TextCapitalization.sentences,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        ref.read(aboutHeaderBigText2Provider.notifier).state = value;
+        // comapring new value with old state stored in provider
+        if (value != ref.read(aboutHeaderBigText2Provider)) {
+          ref.read(aboutHeaderBigText2Provider.notifier).state = value;
+        }
       },
     );
   }
