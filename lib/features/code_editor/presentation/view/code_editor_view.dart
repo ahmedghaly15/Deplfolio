@@ -6,6 +6,7 @@ import 'package:flutter_highlight/themes/atom-one-dark.dart'
 import 'code_field_consumer.dart';
 import 'widgets/read_code_file_button_consumer.dart';
 import 'widgets/save_code_file_button_consumer.dart';
+import 'widgets/upload_code_file_to_github_button_consumer.dart';
 
 class CodeEditorView extends StatelessWidget {
   const CodeEditorView({super.key});
@@ -19,6 +20,7 @@ class CodeEditorView extends StatelessWidget {
           slivers: [
             SliverAppBar(
               actions: [
+                UploadCodeFileToGitHubButtonConsumer(),
                 ReadCodeFileButtonConsumer(),
                 SaveCodeFileButtonConsumer(),
               ],
