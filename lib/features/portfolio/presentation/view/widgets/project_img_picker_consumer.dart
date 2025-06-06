@@ -17,9 +17,6 @@ class ProjectImgPickerConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pickedImg = ref.watch(imagePickerNotifierProvider);
-    ref.listen(imagePickerNotifierProvider, (_, current) {
-      if (current != null) {}
-    });
     return Stack(
       alignment: AlignmentDirectional.bottomEnd,
       children: [

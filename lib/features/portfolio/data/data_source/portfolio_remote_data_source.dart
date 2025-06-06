@@ -8,6 +8,7 @@ import '../../../../core/models/project.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../../../core/utils/app_utils.dart';
 import '../../../../core/utils/const_strings.dart';
+import '../models/update_project_img_params.dart';
 
 final portfolioRemoteDataSourceProvider =
     Provider.autoDispose<PortfolioRemoteDataSource>((ref) {
@@ -75,6 +76,13 @@ class PortfolioRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
+  Future<String> updateProjectImg(UpdateProjectImgParams params) async {
+    final existingPath = '${(params.projectTitle).toLowerCase()}_icon.png';
+    final fileBytes = await params.pickedImgFile.readAsBytes();
+    await _uploadToBucket(existingPath, fileBytes);
+    return await _createSignedUrl(existingPath);
+  }
+
   Future<String> uploadImgToSupabase(XFile pickedImgFile) async {
     final storageFilePath = 'images/${pickedImgFile.path}';
     final fileByets = await pickedImgFile.readAsBytes();
@@ -82,18 +90,15 @@ class PortfolioRemoteDataSource {
     return await _createSignedUrl(storageFilePath);
   }
 
-  Future<String> _createSignedUrl(String storageFilePath) async {
+  Future<String> _createSignedUrl(String imgPath) async {
     return await _supabaseClient.storage
         .from(ConstStrings.dataStorage)
-        .createSignedUrl(storageFilePath, 60 * 60 * 360 * 60);
+        .createSignedUrl('images/$imgPath', 60 * 60 * 360 * 60);
   }
 
-  Future<String> _uploadToBucket(
-    String storageFilePath,
-    Uint8List fileByets,
-  ) async {
+  Future<String> _uploadToBucket(String imgPath, Uint8List fileByets) async {
     return await _supabaseClient.storage
         .from(ConstStrings.dataStorage)
-        .uploadBinary(storageFilePath, fileByets);
+        .uploadBinary('images/$imgPath', fileByets);
   }
 }

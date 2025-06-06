@@ -5,6 +5,7 @@ import '../../../../core/models/project.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../../../core/utils/functions/supabase_execute_and_handle_errors.dart';
 import '../data_source/portfolio_remote_data_source.dart';
+import '../models/update_project_img_params.dart';
 
 final portfolioRepoProvider = Provider.autoDispose<PortfolioRepo>((ref) {
   final remoteDataSource = ref.read(portfolioRemoteDataSourceProvider);
@@ -38,6 +39,16 @@ class PortfolioRepo {
       ref,
       () async =>
           await _remoteDataSource.showOrHideProjectFromAbout(projectTitle),
+    );
+  }
+
+  Future<SupabaseRequestResult<String>> updateProjectImg(
+    Ref ref,
+    UpdateProjectImgParams params,
+  ) {
+    return supabaseExecuteAndHandleErrors<String>(
+      ref,
+      () async => await _remoteDataSource.updateProjectImg(params),
     );
   }
 
