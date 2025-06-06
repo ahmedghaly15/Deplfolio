@@ -51,6 +51,8 @@ dependencies:
   flutter_code_editor: ^0.3.3
   flutter_highlight: ^0.7.0
   highlight: ^0.7.0
+  # Provides a cross-platform (iOS, Android) API to request and check permissions.
+  permission_handler: ^12.0.0+1
 
 dev_dependencies:
   flutter_test:

@@ -5,18 +5,33 @@ import 'package:flutter_code_editor/flutter_code_editor.dart'
     show CodeController;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:highlight/languages/dart.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 final codeEditorControllerProvider = Provider.autoDispose<CodeController>(
   (ref) => CodeController(language: dart),
 );
 
 final pickCodeFileProvider = FutureProvider.autoDispose<String?>((ref) async {
+  final status = await Permission.storage.request();
+
+  if (status.isGranted) {
+    return await _handlePickCodeFile();
+  } else if (status.isDenied) {
+    await Permission.storage.request();
+  } else if (status.isPermanentlyDenied) {
+    await openAppSettings();
+  }
+
+  return null;
+});
+
+Future<String?> _handlePickCodeFile() async {
   try {
     return await _pickCodeFile();
   } catch (e) {
-    throw e.toString();
+    return null;
   }
-});
+}
 
 Future<String?> _pickCodeFile() async {
   final result = await FilePicker.platform.pickFiles(
