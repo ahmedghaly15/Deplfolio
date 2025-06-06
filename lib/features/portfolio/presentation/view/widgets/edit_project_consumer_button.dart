@@ -69,7 +69,7 @@ class EditProjectConsumerButton extends ConsumerWidget {
   void _onPressed(XFile? pickedImg, WidgetRef ref, bool isButtonEnabled) {
     pickedImg != null
         ? () {
-          ref.read(uploadImgProvider.notifier).uploadImg();
+          ref.read(uploadImgProvider.notifier).execute();
         }
         : (isButtonEnabled
             ? () {

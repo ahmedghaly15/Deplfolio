@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'upload_img_provider.dart';
+part of 'update_project_img.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uploadImgHash() => r'1ca9f794a2f28c54c084bfec42bc3d8e7bce3af8';
+String _$updateProjectImgHash() => r'30369f50a6f6123d21e84e8196ae85613e80a6d1';
 
-/// See also [UploadImg].
-@ProviderFor(UploadImg)
-final uploadImgProvider =
-    AutoDisposeNotifierProvider<UploadImg, AsyncValue<String>>.internal(
-      UploadImg.new,
-      name: r'uploadImgProvider',
+/// See also [UpdateProjectImg].
+@ProviderFor(UpdateProjectImg)
+final updateProjectImgProvider =
+    AutoDisposeNotifierProvider<UpdateProjectImg, AsyncValue<String>>.internal(
+      UpdateProjectImg.new,
+      name: r'updateProjectImgProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$uploadImgHash,
+              : _$updateProjectImgHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$UploadImg = AutoDisposeNotifier<AsyncValue<String>>;
+typedef _$UpdateProjectImg = AutoDisposeNotifier<AsyncValue<String>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
