@@ -1,8 +1,10 @@
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import '../../../../../core/theming/color_manager.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/introduction_section.dart';
 import '../../providers/introduction_section_form_providers.dart';
@@ -43,7 +45,12 @@ class IntroductionSectionFormConsumer extends ConsumerWidget {
           ),
           Container(
             margin: EdgeInsets.only(top: 8.h),
-            child: const Text(AppStrings.headerBigText),
+            child: Text(
+              AppStrings.headerBigText,
+              style: context.shadTextTheme.p.copyWith(
+                color: ColorManager.primaryColor,
+              ),
+            ),
           ),
           IntroductionBigText1FieldConsumer(
             headerBigText1: introductionSection.headerBigText.text1,
