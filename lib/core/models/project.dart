@@ -1,24 +1,22 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'project.freezed.dart';
 part 'project.g.dart';
 
-@JsonSerializable()
-class Project {
-  final String imgPath, title, description;
-  final String? downloadLink, promoLink, gitHubLink;
-  final bool shownInAbout;
-
-  Project({
-    required this.imgPath,
-    required this.title,
-    required this.description,
-    required this.shownInAbout,
-    this.downloadLink,
-    this.promoLink,
-    this.gitHubLink,
-  });
+@freezed
+abstract class Project with _$Project {
+  @JsonSerializable()
+  const factory Project({
+    required String id,
+    required String imgPath,
+    required String title,
+    required String description,
+    required bool shownInAbout,
+    String? downloadLink,
+    String? promoLink,
+    String? gitHubLink,
+  }) = _Project;
 
   factory Project.fromJson(Map<String, dynamic> json) =>
       _$ProjectFromJson(json);
-  Map<String, dynamic> toJson() => _$ProjectToJson(this);
 }

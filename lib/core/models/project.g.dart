@@ -6,7 +6,8 @@ part of 'project.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
+_Project _$ProjectFromJson(Map<String, dynamic> json) => _Project(
+  id: json['id'] as String,
   imgPath: json['imgPath'] as String,
   title: json['title'] as String,
   description: json['description'] as String,
@@ -16,12 +17,13 @@ Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
   gitHubLink: json['gitHubLink'] as String?,
 );
 
-Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
+Map<String, dynamic> _$ProjectToJson(_Project instance) => <String, dynamic>{
+  'id': instance.id,
   'imgPath': instance.imgPath,
   'title': instance.title,
   'description': instance.description,
+  'shownInAbout': instance.shownInAbout,
   'downloadLink': instance.downloadLink,
   'promoLink': instance.promoLink,
   'gitHubLink': instance.gitHubLink,
-  'shownInAbout': instance.shownInAbout,
 };
