@@ -30,15 +30,16 @@ class GitHubRepo {
   Future<ApiRequestResult<void>> updateRemoteRepoFile(
     UpdateRemoteRepoFileParams params,
   ) {
-    final saferFilePathUrl = Uri.encodeComponent(params.remoteFilePath);
-    final filePath = params.pickedFile.files.single.path!;
-    final fileBytes = File(filePath).readAsBytesSync();
+    final saferFilePathUrl = Uri.encodeComponent(params.remoteFilePath!);
+    final filePath = params.pickedFile?.files.single.path!;
+    final fileBytes = File(filePath!).readAsBytesSync();
     final encodedContent = base64Encode(fileBytes);
     return apiExecuteAndHandleErrors<void>(() async {
-      final sha = await _checkForGithubFileExistence(params.remoteFilePath);
+      final sha = await _checkForGithubFileExistence(params.remoteFilePath!);
       await _apiService.updateRemoteFile(
         saferFilePathUrl,
         UpdateRemoteRepoFileRequestBody(
+          message: params.commitMessage,
           fileEncodedContent: encodedContent,
           sha: sha,
         ),
