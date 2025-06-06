@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'update_project_img.dart';
+part of 'save_code_file_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$updateProjectImgHash() => r'7802f47781d3043d95444fdef2d7532e60369b28';
+String _$saveCodeFileHash() => r'927202fb1ae363d1cc8c1091f0105c1913bae013';
 
-/// See also [UpdateProjectImg].
-@ProviderFor(UpdateProjectImg)
-final updateProjectImgProvider =
-    AutoDisposeNotifierProvider<UpdateProjectImg, AsyncValue<String>>.internal(
-      UpdateProjectImg.new,
-      name: r'updateProjectImgProvider',
+/// See also [SaveCodeFile].
+@ProviderFor(SaveCodeFile)
+final saveCodeFileProvider =
+    AutoDisposeNotifierProvider<SaveCodeFile, AsyncValue<void>?>.internal(
+      SaveCodeFile.new,
+      name: r'saveCodeFileProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$updateProjectImgHash,
+              : _$saveCodeFileHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$UpdateProjectImg = AutoDisposeNotifier<AsyncValue<String>>;
+typedef _$SaveCodeFile = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -1,21 +1,25 @@
 import 'dart:io' show File;
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart'
     show CodeController;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'pick_code_file_provider.dart';
+
 final codeEditorControllerProvider = Provider.autoDispose<CodeController>(
   (ref) => CodeController(language: dart),
 );
 
-final pickCodeFileProvider = FutureProvider.autoDispose<String?>((ref) async {
+final pickedFileContentProvider = FutureProvider.autoDispose<String?>((
+  ref,
+) async {
   final status = await Permission.storage.request();
 
   if (status.isGranted) {
-    return await _handlePickCodeFile();
+    final pickedFilePath = ref.read(pickCodeFilePathProvider);
+    return await _readPickedFileContent(pickedFilePath);
   } else if (status.isDenied) {
     await Permission.storage.request();
   } else if (status.isPermanentlyDenied) {
@@ -25,24 +29,9 @@ final pickCodeFileProvider = FutureProvider.autoDispose<String?>((ref) async {
   return null;
 });
 
-Future<String?> _handlePickCodeFile() async {
-  try {
-    return await _pickCodeFile();
-  } catch (e) {
-    return null;
-  }
-}
-
-Future<String?> _pickCodeFile() async {
-  final result = await FilePicker.platform.pickFiles(
-    type: FileType.custom,
-    allowedExtensions: ['dart', 'txt'],
-  );
-
-  final filePath = result?.files.single.path;
-
-  if (result != null && filePath != null) {
-    final file = File(filePath);
+Future<String?> _readPickedFileContent(String? pickedFilePath) async {
+  if (pickedFilePath != null) {
+    final file = File(pickedFilePath);
     return await file.readAsString();
   } else {
     return null;
