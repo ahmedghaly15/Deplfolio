@@ -20,27 +20,31 @@ class ProjectImgPickerConsumer extends ConsumerWidget {
     return Stack(
       alignment: AlignmentDirectional.bottomEnd,
       children: [
-        AspectRatio(
-          aspectRatio: 4,
-          child:
-              pickedImg == null
-                  ? CustomCachedNetworkImg(
-                    imageUrl: projectImgPath,
-                    imageBuilder:
-                        (_, img) =>
-                            CircleAvatar(backgroundImage: img, radius: 24.r),
-                  )
-                  : CircleAvatar(
-                    backgroundImage:
-                        FileImage(File(pickedImg.path)) as ImageProvider,
-                    radius: 24.r,
+        pickedImg == null
+            ? CustomCachedNetworkImg(
+              imageUrl: projectImgPath,
+              imageBuilder:
+                  (_, img) => CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: img,
+                    radius: 48.r,
                   ),
-        ),
+            )
+            : CircleAvatar(
+              backgroundColor: Colors.transparent,
+              backgroundImage: FileImage(File(pickedImg.path)) as ImageProvider,
+              radius: 48.r,
+            ),
         IconButton.filled(
+          style: IconButton.styleFrom(
+            padding: EdgeInsets.zero,
+            minimumSize: Size(24.h, 24.h),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
           onPressed: () {
             ref.read(imagePickerNotifierProvider.notifier).pickImage();
           },
-          icon: const Icon(LucideIcons.pen400, color: Colors.white),
+          icon: Icon(LucideIcons.pen400, color: Colors.white, size: 12.h),
         ),
       ],
     );

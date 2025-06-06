@@ -12,18 +12,20 @@ class CodeEditorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CodeTheme(
-      data: CodeThemeData(styles: atomOneDarkTheme),
-      child: const CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            actions: [
-              ReadCodeFileButtonConsumer(),
-              SaveCodeFileButtonConsumer(),
-            ],
-          ),
-          SliverFillRemaining(hasScrollBody: false, child: CodeFieldConsumer()),
-        ],
+    return Scaffold(
+      body: CodeTheme(
+        data: CodeThemeData(styles: atomOneDarkTheme),
+        child: const CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              actions: [
+                ReadCodeFileButtonConsumer(),
+                SaveCodeFileButtonConsumer(),
+              ],
+            ),
+            SliverFillRemaining(child: CodeFieldConsumer()),
+          ],
+        ),
       ),
     );
   }

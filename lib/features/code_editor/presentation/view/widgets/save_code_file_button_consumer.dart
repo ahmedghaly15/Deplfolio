@@ -1,7 +1,8 @@
-import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
+
+import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../providers/save_code_file_provider.dart';
@@ -11,17 +12,21 @@ class SaveCodeFileButtonConsumer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(saveCodeFileProvider, (_, currnet) {
-      currnet?.whenOrNull(
-        data: (_) => context.showToast(AppStrings.fileSavedSuccessfully),
-        error: (error, _) => context.showToast(error.toString()),
-      );
-    });
+    _listener(ref, context);
     return IconButton(
       onPressed: () {
         ref.read(saveCodeFileProvider.notifier).execute();
       },
       icon: const Icon(LucideIcons.save400),
     );
+  }
+
+  void _listener(WidgetRef ref, BuildContext context) {
+    ref.listen(saveCodeFileProvider, (_, currnet) {
+      currnet?.whenOrNull(
+        data: (_) => context.showToast(AppStrings.fileSavedSuccessfully),
+        error: (error, _) => context.showToast(error.toString()),
+      );
+    });
   }
 }

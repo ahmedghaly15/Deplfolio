@@ -15,6 +15,6 @@ class PickCodeFilePathNotifier extends StateNotifier<String?> {
 }
 
 final pickCodeFilePathProvider =
-    StateNotifierProvider.autoDispose<PickCodeFilePathNotifier, String?>(
+    StateNotifierProvider<PickCodeFilePathNotifier, String?>(
       (ref) => PickCodeFilePathNotifier(),
     );
