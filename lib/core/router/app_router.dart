@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../features/code_editor/presentation/view/code_editor_view.dart';
 import '../../features/layout/presentation/view/layout_view.dart';
 import '../../features/login/presentation/view/login_view.dart';
 import '../utils/app_strings.dart';
@@ -17,6 +18,8 @@ class AppRouter {
         return _loginRoute();
       case Routes.layout:
         return _layoutRoute();
+      case Routes.codeEditor:
+        return MaterialPageRoute(builder: (_) => const CodeEditorView());
       default:
         return _unFoundRoute();
     }
