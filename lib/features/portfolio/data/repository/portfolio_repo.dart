@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart' show XFile;
 
 import '../../../../core/models/project.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
@@ -37,6 +38,16 @@ class PortfolioRepo {
       ref,
       () async =>
           await _remoteDataSource.showOrHideProjectFromAbout(projectTitle),
+    );
+  }
+
+  Future<SupabaseRequestResult<String>> uploadImgToSupabase(
+    Ref ref,
+    XFile pickedImgFile,
+  ) {
+    return supabaseExecuteAndHandleErrors<String>(
+      ref,
+      () async => await _remoteDataSource.uploadImgToSupabase(pickedImgFile),
     );
   }
 }
