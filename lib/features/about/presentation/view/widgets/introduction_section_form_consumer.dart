@@ -3,12 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-import '../../../../../core/helpers/input_validator.dart';
-import '../../../../../core/providers/autovalidate_mode_notifier.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/widgets/custom_data_input.dart';
 import '../../../data/models/introduction_section.dart';
 import '../../providers/introduction_section_form_providers.dart';
+import 'introduction_big_text_1_field_consumer.dart';
+import 'introduction_big_text_2_field_consumer.dart';
+import 'introduction_colorful_big_text_field_consumer.dart';
+import 'introduction_description_field_consumer.dart';
+import 'introduction_header_small_text_field_consumer.dart';
+import 'introduction_see_my_work_field_consumer.dart';
 
 class IntroductionSectionFormConsumer extends ConsumerWidget {
   const IntroductionSectionFormConsumer({
@@ -21,7 +24,6 @@ class IntroductionSectionFormConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = ref.watch(introductionSectionFormKeyProvider);
-    final autovalidateMode = ref.watch(autovalidateModeProvider);
     return ShadForm(
       key: formKey,
       child: Column(
@@ -29,70 +31,28 @@ class IntroductionSectionFormConsumer extends ConsumerWidget {
         children: [
           Container(
             margin: EdgeInsets.only(top: 16.h),
-            child: CustomDataInput(
-              autovalidateMode: autovalidateMode,
-              initialValue: introductionSection.headerSmallText,
-              labelText: AppStrings.headerSmallText,
-              textCapitalization: TextCapitalization.sentences,
-              validator: (value) => InputValidator.validatingEmptyField(value),
-              onChanged: (value) {
-                ref.read(aboutHeaderSmallTxtProvider.notifier).state = value;
-              },
+            child: IntroductionHeaderSmallTextFieldConsumer(
+              headerSmallText: introductionSection.headerSmallText,
             ),
           ),
-          CustomDataInput(
-            initialValue: introductionSection.description,
-            autovalidateMode: autovalidateMode,
-            labelText: AppStrings.myDescription,
-            textCapitalization: TextCapitalization.sentences,
-            validator: (value) => InputValidator.validatingEmptyField(value),
-            onChanged: (value) {
-              ref.read(aboutDescriptionProvider.notifier).state = value;
-            },
+          IntroductionDescriptionFieldConsumer(
+            description: introductionSection.description,
           ),
-          CustomDataInput(
-            initialValue: introductionSection.seeMyWorkLink,
-            autovalidateMode: autovalidateMode,
-            labelText: AppStrings.seeMyWorkUrl,
-            validator: (value) => InputValidator.validatingUrlField(value),
-            onChanged: (value) {
-              ref.read(aboutSeeMyWorkLinkProvider.notifier).state = value;
-            },
+          IntroductionSeeMyWorkFieldConsumer(
+            seeMyWorkLink: introductionSection.seeMyWorkLink,
           ),
           Container(
             margin: EdgeInsets.only(top: 8.h),
             child: const Text(AppStrings.headerBigText),
           ),
-          CustomDataInput(
-            autovalidateMode: autovalidateMode,
-            labelText: AppStrings.headerBigText1,
-            initialValue: introductionSection.headerBigText.text1,
-            textCapitalization: TextCapitalization.sentences,
-            validator: (value) => InputValidator.validatingEmptyField(value),
-            onChanged: (value) {
-              ref.read(aboutHeaderBigText1Provider.notifier).state = value;
-            },
+          IntroductionBigText1FieldConsumer(
+            headerBigText1: introductionSection.headerBigText.text1,
           ),
-          CustomDataInput(
-            autovalidateMode: autovalidateMode,
-            labelText: AppStrings.headerBigText2,
-            initialValue: introductionSection.headerBigText.text2,
-            textCapitalization: TextCapitalization.sentences,
-            validator: (value) => InputValidator.validatingEmptyField(value),
-            onChanged: (value) {
-              ref.read(aboutHeaderBigText2Provider.notifier).state = value;
-            },
+          IntroductionBigText2FieldConsumer(
+            headerBigText2: introductionSection.headerBigText.text2,
           ),
-          CustomDataInput(
-            autovalidateMode: autovalidateMode,
-            labelText: AppStrings.headerBigTextColoredString,
-            initialValue: introductionSection.headerBigText.coloredString,
-            textCapitalization: TextCapitalization.sentences,
-            validator: (value) => InputValidator.validatingEmptyField(value),
-            onChanged: (value) {
-              ref.read(aboutHeaderBigTextColoredStringProvider.notifier).state =
-                  value;
-            },
+          IntroductionColorfulBigTextFieldConsumer(
+            colorfulString: introductionSection.headerBigText.coloredString,
           ),
         ],
       ),

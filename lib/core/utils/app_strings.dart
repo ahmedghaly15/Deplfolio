@@ -45,5 +45,5 @@ class AppStrings {
   static const String cvUpdatedSuccessfully = 'CV updated successfully.';
   static const String projectUpdatedSuccessfully =
       'Project updated successfully.';
-  static const String aboutProjects = 'About Projects';
+  static const String aboutProjects = 'Projects Shown In About';
 }
