@@ -31,10 +31,28 @@ class PortfolioRemoteDataSource {
   Future<void> updateProject(Project project) async {
     final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
     final projectsJson = remoteJson['portfolio'] as List<dynamic>;
-    final projectIndex = projectsJson.indexWhere(
-      (p) => p['title'] == project.title,
-    );
+    final projectIndex = projectsJson.indexWhere((p) => p['id'] == project.id);
     projectsJson[projectIndex] = project.toJson();
+    Map<String, dynamic> aboutJson = remoteJson['about'];
+    aboutJson = {
+      ...aboutJson,
+      ...{'projects': projectsJson},
+    };
+    // Because They don't depend on each other, Run both updates concurrently
+    await Future.wait([
+      _updateProjectInPortfolio(projectsJson),
+      _updateProjectInAbout(aboutJson),
+    ]);
+  }
+
+  Future<void> _updateProjectInAbout(Map<String, dynamic> aboutJson) async {
+    await _supabaseClient
+        .from(ConstStrings.dataTable)
+        .update({'about': aboutJson})
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+  }
+
+  Future<void> _updateProjectInPortfolio(List<dynamic> projectsJson) async {
     await _supabaseClient
         .from(ConstStrings.dataTable)
         .update({'portfolio': projectsJson})
