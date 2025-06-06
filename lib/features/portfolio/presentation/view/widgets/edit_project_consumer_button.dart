@@ -10,8 +10,8 @@ import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
 import '../../providers/image_picker_providers.dart'
     show imagePickerNotifierProvider;
+import '../../providers/update_project_img.dart';
 import '../../providers/update_project_provider.dart';
-import '../../providers/upload_img_provider.dart';
 
 class EditProjectConsumerButton extends ConsumerWidget {
   const EditProjectConsumerButton({super.key, required this.project});
@@ -25,9 +25,9 @@ class EditProjectConsumerButton extends ConsumerWidget {
     );
     final pickedImg = ref.watch(imagePickerNotifierProvider);
     final asyncUpdateProject = ref.watch(updateProjectProvider);
-    final asyncUploadImg = ref.watch(uploadImgProvider);
+    final asyncUploadImg = ref.watch(updateProjectImgProvider);
     _updateProjectProviderListener(ref, context);
-    _uploadImgProviderListener(ref, context);
+    _updateProjectImgProviderListener(ref, context);
     return PrimaryButton(
       text: pickedImg != null ? AppStrings.updateImg : AppStrings.editProject,
       onPressed: () => _onPressed(pickedImg, ref, isButtonEnabled),
@@ -39,8 +39,8 @@ class EditProjectConsumerButton extends ConsumerWidget {
     );
   }
 
-  void _uploadImgProviderListener(WidgetRef ref, BuildContext context) {
-    ref.listen(uploadImgProvider, (_, current) {
+  void _updateProjectImgProviderListener(WidgetRef ref, BuildContext context) {
+    ref.listen(updateProjectImgProvider, (_, current) {
       current.whenOrNull(
         data: (imgUrl) {
           ref.read(projectImgPathProvider(project.imgPath).notifier).state =
@@ -69,7 +69,7 @@ class EditProjectConsumerButton extends ConsumerWidget {
   void _onPressed(XFile? pickedImg, WidgetRef ref, bool isButtonEnabled) {
     pickedImg != null
         ? () {
-          ref.read(uploadImgProvider.notifier).execute();
+          ref.read(updateProjectImgProvider.notifier).execute(project.title);
         }
         : (isButtonEnabled
             ? () {
