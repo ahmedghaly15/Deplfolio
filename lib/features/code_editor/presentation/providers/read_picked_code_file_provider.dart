@@ -3,7 +3,7 @@ import 'dart:io' show File;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'pick_code_file_provider.dart';
+import '../../../../core/providers/pick_file_provider.dart';
 
 part 'read_picked_code_file_provider.g.dart';
 
@@ -36,8 +36,11 @@ class ReadPickedCodeFile extends _$ReadPickedCodeFile {
   }
 
   Future<String?> _readPickedCodeFileContent() async {
-    final pickedFilePath =
-        await ref.read(pickCodeFilePathProvider.notifier).pickCodeFilePath();
+    final pickedFile = await ref.read(pickFileProvider.notifier).pickFile([
+      'dart',
+      'txt',
+    ]);
+    final pickedFilePath = pickedFile?.files.single.path;
     if (pickedFilePath != null) {
       final file = File(pickedFilePath);
       return await file.readAsString();

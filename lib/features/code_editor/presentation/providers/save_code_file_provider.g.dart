@@ -6,7 +6,7 @@ part of 'save_code_file_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$saveCodeFileHash() => r'a85f7e8fb9f29be1bb28280e78cc487ffd1ba739';
+String _$saveCodeFileHash() => r'680396f96d2a1dcc7c7f4eb3ca881414b8d7b0a3';
 
 /// See also [SaveCodeFile].
 @ProviderFor(SaveCodeFile)

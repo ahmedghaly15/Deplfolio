@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:deplfolio/core/helpers/extensions.dart';
 
 import 'code_editor_providers.dart' show codeEditorControllerProvider;
-import 'pick_code_file_provider.dart';
+import '../../../../core/providers/pick_file_provider.dart';
 
 part 'save_code_file_provider.g.dart';
 
@@ -27,7 +27,11 @@ class SaveCodeFile extends _$SaveCodeFile {
 
   Future<void> _save() async {
     final content = ref.watch(codeEditorControllerProvider).text;
-    final pickedFilePath = ref.read(pickCodeFilePathProvider);
+    final pickedFile = await ref.read(pickFileProvider.notifier).pickFile([
+      'dart',
+      'txt',
+    ]);
+    final pickedFilePath = pickedFile?.files.single.path;
     final file = File(pickedFilePath!);
     await file.writeAsString(content);
   }
