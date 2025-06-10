@@ -30,7 +30,7 @@ class EditProjectConsumerButton extends ConsumerWidget {
     _updateProjectImgProviderListener(ref, context);
     return PrimaryButton(
       text: pickedImg != null ? AppStrings.updateImg : AppStrings.editProject,
-      onPressed: () => _onPressed(pickedImg, ref, isButtonEnabled),
+      onPressed: _onPressed(pickedImg, ref, isButtonEnabled),
       child: _buildAdaptiveLoadingIndicator(
         pickedImg,
         asyncUploadImg,
@@ -39,12 +39,34 @@ class EditProjectConsumerButton extends ConsumerWidget {
     );
   }
 
+  VoidCallback? _onPressed(
+    XFile? pickedImg,
+    WidgetRef ref,
+    bool isButtonEnabled,
+  ) {
+    if (pickedImg != null) {
+      return () {
+        ref.read(updateProjectImgProvider.notifier).execute(project.title);
+      };
+    } else {
+      return (isButtonEnabled
+          ? () {
+            ref.read(updateProjectProvider.notifier).validateAndUpdate(project);
+          }
+          : null);
+    }
+  }
+
   void _updateProjectImgProviderListener(WidgetRef ref, BuildContext context) {
     ref.listen(updateProjectImgProvider, (_, current) {
       current.whenOrNull(
-        data: (imgUrl) {
+        data: (imgUrl) async {
+          print('IMG URL: $imgUrl');
           ref.read(projectImgPathProvider(project.imgPath).notifier).state =
               imgUrl;
+          await ref
+              .read(updateProjectProvider.notifier)
+              .update(project.copyWith(imgPath: imgUrl));
           context.showToast(AppStrings.imgUpdatedSuccessfully);
         },
         error: (error, _) => context.showToast(error.toString()),
@@ -64,20 +86,6 @@ class EditProjectConsumerButton extends ConsumerWidget {
         : asyncUpdateProject?.whenOrNull(
           loading: () => const AdaptiveCircularProgressIndicator(),
         );
-  }
-
-  void _onPressed(XFile? pickedImg, WidgetRef ref, bool isButtonEnabled) {
-    pickedImg != null
-        ? () {
-          ref.read(updateProjectImgProvider.notifier).execute(project.title);
-        }
-        : (isButtonEnabled
-            ? () {
-              ref
-                  .read(updateProjectProvider.notifier)
-                  .validateAndUpdate(project);
-            }
-            : null);
   }
 
   void _updateProjectProviderListener(WidgetRef ref, BuildContext context) {
