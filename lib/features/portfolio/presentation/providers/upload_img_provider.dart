@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';

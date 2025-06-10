@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../api/api_request_result.dart';
@@ -12,7 +13,7 @@ class UpdateRemoteRepoFile extends _$UpdateRemoteRepoFile {
   @override
   AsyncValue<void>? build() => null;
 
-  void updateRemoteRepoFile(UpdateRemoteRepoFileParams params) async {
+  Future<void> updateRemoteRepoFile(UpdateRemoteRepoFileParams params) async {
     final pickedFile = await ref
         .read(pickFileProvider.notifier)
         .pickFile(params.pickedFileAllowedExtensions);

@@ -7,8 +7,8 @@ part 'update_remote_repo_file_params.freezed.dart';
 abstract class UpdateRemoteRepoFileParams with _$UpdateRemoteRepoFileParams {
   const factory UpdateRemoteRepoFileParams({
     required List<String> pickedFileAllowedExtensions,
+    required String remoteFilePath,
     FilePickerResult? pickedFile,
-    String? remoteFilePath,
     String? commitMessage,
   }) = _UpdateRemoteRepoFileParams;
 }

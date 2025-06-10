@@ -22,8 +22,8 @@ class SaveCodeFileButtonConsumer extends ConsumerWidget {
   }
 
   void _listener(WidgetRef ref, BuildContext context) {
-    ref.listen(saveCodeFileProvider, (_, currnet) {
-      currnet?.whenOrNull(
+    ref.listen(saveCodeFileProvider, (_, current) {
+      current?.whenOrNull(
         data: (_) => context.showToast(AppStrings.fileSavedSuccessfully),
         error: (error, _) => context.showToast(error.toString()),
       );

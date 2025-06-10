@@ -84,9 +84,9 @@ class PortfolioRemoteDataSource {
   }
 
   Future<String> uploadImgToSupabase(XFile pickedImgFile) async {
-    final storageFilePath = 'images/${pickedImgFile.path}';
-    final fileByets = await pickedImgFile.readAsBytes();
-    await _uploadToBucket(storageFilePath, fileByets);
+    final storageFilePath = pickedImgFile.path;
+    final fileBytes = await pickedImgFile.readAsBytes();
+    await _uploadToBucket(storageFilePath, fileBytes);
     return await _createSignedUrl(storageFilePath);
   }
 
@@ -96,9 +96,9 @@ class PortfolioRemoteDataSource {
         .createSignedUrl('images/$imgPath', 60 * 60 * 360 * 60);
   }
 
-  Future<String> _uploadToBucket(String imgPath, Uint8List fileByets) async {
+  Future<String> _uploadToBucket(String imgPath, Uint8List fileBytes) async {
     return await _supabaseClient.storage
         .from(ConstStrings.dataStorage)
-        .uploadBinary('images/$imgPath', fileByets);
+        .uploadBinary('images/$imgPath', fileBytes);
   }
 }
