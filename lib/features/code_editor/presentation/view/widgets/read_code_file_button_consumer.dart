@@ -23,7 +23,7 @@ class ReadCodeFileButtonConsumer extends ConsumerWidget {
 
   void _listener(WidgetRef ref, BuildContext context) {
     ref.listen(readPickedCodeFileProvider, (_, current) {
-      current.whenOrNull(
+      current?.whenOrNull(
         data: (pickedCodeFileContent) {
           if (!pickedCodeFileContent.isNullOrEmpty) {
             ref.read(codeEditorControllerProvider).text =

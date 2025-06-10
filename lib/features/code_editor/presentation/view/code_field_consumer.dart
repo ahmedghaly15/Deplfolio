@@ -10,6 +10,6 @@ class CodeFieldConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final codeController = ref.watch(codeEditorControllerProvider);
-    return CodeField(controller: codeController);
+    return CodeField(controller: codeController, expands: true);
   }
 }

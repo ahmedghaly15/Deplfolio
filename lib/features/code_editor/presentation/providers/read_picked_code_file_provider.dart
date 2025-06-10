@@ -10,29 +10,17 @@ part 'read_picked_code_file_provider.g.dart';
 @riverpod
 class ReadPickedCodeFile extends _$ReadPickedCodeFile {
   @override
-  AsyncValue<String?> build() => const AsyncValue.data(null);
+  AsyncValue<String?>? build() => null;
 
   void execute() async {
+    await Permission.storage.request();
     state = const AsyncLoading();
     try {
-      final pickedFileContent = await _requestPermissionAndReadCodeFile();
+      final pickedFileContent = await _readPickedCodeFileContent();
       state = AsyncData(pickedFileContent);
     } catch (e) {
       state = AsyncError(e.toString(), StackTrace.current);
     }
-  }
-
-  Future<String?> _requestPermissionAndReadCodeFile() async {
-    final status = await Permission.storage.request();
-    if (status.isGranted) {
-      return await _readPickedCodeFileContent();
-    } else if (status.isDenied) {
-      await Permission.storage.request();
-    } else if (status.isPermanentlyDenied) {
-      await openAppSettings();
-    }
-
-    return null;
   }
 
   Future<String?> _readPickedCodeFileContent() async {
