@@ -79,8 +79,14 @@ class PortfolioRemoteDataSource {
   Future<String> updateProjectImg(UpdateProjectImgParams params) async {
     final existingPath = '${(params.projectTitle).toLowerCase()}_icon.png';
     final fileBytes = await params.pickedImgFile.readAsBytes();
-    await _uploadToBucket(existingPath, fileBytes);
+    await _updateToBucket(existingPath, fileBytes);
     return await _createSignedUrl(existingPath);
+  }
+
+  Future<String> _updateToBucket(String imgPath, Uint8List fileBytes) async {
+    return await _supabaseClient.storage
+        .from(ConstStrings.dataStorage)
+        .updateBinary('images/$imgPath', fileBytes);
   }
 
   Future<String> uploadImgToSupabase(XFile pickedImgFile) async {

@@ -33,7 +33,7 @@ class UpdateProject extends _$UpdateProject {
   @override
   AsyncValue<void>? build() => null;
 
-  void _update(Project project) async {
+  Future<void> update(Project project) async {
     state = const AsyncLoading();
     final title = ref.read(projectTitleProvider);
     final description = ref.read(projectDescriptionProvider);
@@ -65,7 +65,7 @@ class UpdateProject extends _$UpdateProject {
   void validateAndUpdate(Project project) {
     final formKey = ref.read(updateProjectFormKeyProvider);
     if (formKey.currentState!.validate()) {
-      _update(project);
+      update(project);
     }
   }
 }
