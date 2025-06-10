@@ -12,6 +12,7 @@ import '../../providers/image_picker_providers.dart'
     show imagePickerNotifierProvider;
 import '../../providers/update_project_img.dart';
 import '../../providers/update_project_provider.dart';
+import '../../providers/upload_img_to_github_provider.dart';
 
 class EditProjectConsumerButton extends ConsumerWidget {
   const EditProjectConsumerButton({super.key, required this.project});
@@ -61,17 +62,30 @@ class EditProjectConsumerButton extends ConsumerWidget {
     ref.listen(updateProjectImgProvider, (_, current) {
       current.whenOrNull(
         data: (imgUrl) async {
-          print('IMG URL: $imgUrl');
-          ref.read(projectImgPathProvider(project.imgPath).notifier).state =
-              imgUrl;
-          await ref
-              .read(updateProjectProvider.notifier)
-              .update(project.copyWith(imgPath: imgUrl));
-          context.showToast(AppStrings.imgUpdatedSuccessfully);
+          await _onUpdateProjectImgSuccess(ref, imgUrl, context);
         },
         error: (error, _) => context.showToast(error.toString()),
       );
     });
+  }
+
+  Future<void> _onUpdateProjectImgSuccess(
+    WidgetRef ref,
+    String imgUrl,
+    BuildContext context,
+  ) async {
+    ref.read(projectImgPathProvider(project.imgPath).notifier).state = imgUrl;
+    await _updateProjectAndRemoteRepo(ref, imgUrl);
+    context.showToast(AppStrings.imgUpdatedSuccessfully);
+  }
+
+  Future<void> _updateProjectAndRemoteRepo(WidgetRef ref, String imgUrl) async {
+    await Future.wait([
+      ref
+          .read(updateProjectProvider.notifier)
+          .update(project.copyWith(imgPath: imgUrl)),
+      ref.read(uploadImgToGithubProvider.notifier).execute(project.title),
+    ]);
   }
 
   Widget? _buildAdaptiveLoadingIndicator(
