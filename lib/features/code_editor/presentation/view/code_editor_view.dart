@@ -19,6 +19,7 @@ class CodeEditorView extends StatelessWidget {
         child: const CustomScrollView(
           slivers: [
             SliverAppBar(
+              pinned: true,
               actions: [
                 UploadCodeFileToGitHubButtonConsumer(),
                 ReadCodeFileButtonConsumer(),

@@ -27,10 +27,7 @@ class SaveCodeFile extends _$SaveCodeFile {
 
   Future<void> _save() async {
     final content = ref.watch(codeEditorControllerProvider).text;
-    final pickedFile = await ref.read(pickFileProvider.notifier).pickFile([
-      'dart',
-      'txt',
-    ]);
+    final pickedFile = ref.watch(pickFileProvider);
     final pickedFilePath = pickedFile?.files.single.path;
     final file = File(pickedFilePath!);
     await file.writeAsString(content);
