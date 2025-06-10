@@ -11,5 +11,5 @@ class ConstStrings {
   static const String remoteCVPath = 'assets/cv/Ahmed Ghaly - Flutter Dev.pdf';
   static const String dataStorage = 'data';
   static const String assetsRemoteRepoFilePath =
-      'src/core/utils/app_assets.dart';
+      'lib/src/core/utils/app_assets.dart';
 }

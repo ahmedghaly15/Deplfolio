@@ -7,7 +7,7 @@ part of 'read_picked_code_file_provider.dart';
 // **************************************************************************
 
 String _$readPickedCodeFileHash() =>
-    r'e0dc32cc5d703c44488020d1908c0ca791822d8e';
+    r'0356b56787f9d1e08f7862bcb4fb06f35cf4d349';
 
 /// See also [ReadPickedCodeFile].
 @ProviderFor(ReadPickedCodeFile)

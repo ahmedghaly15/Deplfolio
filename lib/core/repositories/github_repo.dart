@@ -7,6 +7,8 @@ import '../api/api_request_result.dart';
 import '../api/github_api_service.dart';
 import '../models/update_remote_repo_file_params.dart';
 import '../models/update_remote_repo_file_request_body.dart';
+import '../models/update_remote_repo_img_params.dart';
+import '../utils/const_strings.dart';
 import '../utils/functions/api_execute_and_handle_errors.dart';
 
 final githubRepoProvider = Provider.autoDispose<GitHubRepo>((ref) {
@@ -39,6 +41,28 @@ class GitHubRepo {
         saferFilePathUrl,
         UpdateRemoteRepoFileRequestBody(
           message: params.commitMessage,
+          fileEncodedContent: encodedContent,
+          sha: sha,
+        ),
+      );
+    });
+  }
+
+  Future<ApiRequestResult<void>> updateRemoteRepoImg(
+    UpdateRemoteRepoImgParams params,
+  ) async {
+    final saferUrl = Uri.encodeComponent(
+      '${ConstStrings.assetsRemoteRepoFilePath}/${params.projectTitle}_icon.png',
+    );
+    final fileBytes = await params.pickedFile?.readAsBytes();
+    final encodedContent = base64Encode(fileBytes!.toList());
+    return apiExecuteAndHandleErrors<void>(() async {
+      final sha = await _checkForGithubFileExistence(saferUrl);
+      await _apiService.updateRemoteFile(
+        saferUrl,
+        UpdateRemoteRepoFileRequestBody(
+          message:
+              'Updated ${params.projectTitle} icon via Deplfolio: Deploy 🚀',
           fileEncodedContent: encodedContent,
           sha: sha,
         ),
