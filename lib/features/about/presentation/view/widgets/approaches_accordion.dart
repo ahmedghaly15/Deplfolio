@@ -6,6 +6,7 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/about.dart' show ApproachModel;
+import 'confirm_delete_approach_consumer_button.dart';
 import 'edit_approach_consumer_button.dart';
 import 'edit_approach_form_consumer.dart';
 
@@ -33,7 +34,12 @@ class ApproachesAccordion extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        approach.description,
+                        approach.description
+                            .split('.')
+                            .map((e) => e.trim())
+                            .where((e) => e.isNotEmpty)
+                            .map((e) => '• $e.')
+                            .join('\n\n'),
                         style: context.shadTextTheme.muted.copyWith(
                           fontSize: 12.sp,
                         ),
@@ -41,7 +47,21 @@ class ApproachesAccordion extends StatelessWidget {
                       Row(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed:
+                                () => context.showAlertDialog(
+                                  titleText: AppStrings.deleteApproach,
+                                  descriptionText:
+                                      AppStrings.sureToDeleteApproach,
+                                  actions: [
+                                    ShadButton.outline(
+                                      child: const Text(AppStrings.cancel),
+                                      onPressed: () => context.pop(),
+                                    ),
+                                    ConfirmDeleteApproachConsumerButton(
+                                      approachId: approach.id,
+                                    ),
+                                  ],
+                                ),
                             icon: const Icon(LucideIcons.trash400),
                           ),
                           IconButton(
