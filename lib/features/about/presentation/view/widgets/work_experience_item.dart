@@ -74,7 +74,12 @@ class WorkExperienceItem extends StatelessWidget {
               child: Image.asset(workExperience.experienceStatus.getImgPath),
             ),
             Text(
-              workExperience.description.map((e) => '• $e').join('\n\n'),
+              workExperience.description
+                  .split('.')
+                  .map((e) => e.trim()) // Remove leading/trailing whitespace
+                  .where((e) => e.isNotEmpty) // Filter out empty strings
+                  .map((e) => '• $e.')
+                  .join('\n\n'),
               style: context.shadTextTheme.small.copyWith(
                 fontWeight: FontWeight.w400,
               ),
