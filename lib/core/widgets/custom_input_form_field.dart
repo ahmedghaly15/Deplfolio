@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shadcn_ui/shadcn_ui.dart';
-
-import 'package:deplfolio/core/helpers/extensions.dart';
+import 'package:shadcn_ui/shadcn_ui.dart' show ShadBorder, ShadInputFormField;
 
 class CustomInputFormField extends StatelessWidget {
   const CustomInputFormField({
@@ -84,7 +82,6 @@ class CustomInputFormField extends StatelessWidget {
       maxLines: maxLines,
       minLines: minLines,
       validator: validator,
-      onPressedOutside: (_) => context.unfocusKeyboard(),
       onEditingComplete: onEditingComplete,
     );
   }

@@ -131,6 +131,15 @@ extension ShowAlertDialog<T> on BuildContext {
       context: this,
       builder:
           (_) => ShadDialog.alert(
+            scrollPadding: EdgeInsets.symmetric(horizontal: 24.w),
+            radius: BorderRadius.circular(16.r),
+            removeBorderRadiusWhenTiny: false,
+            gap: 24.h,
+            expandActionsWhenTiny: false,
+            actionsAxis: Axis.horizontal,
+            actionsMainAxisAlignment: MainAxisAlignment.end,
+            actionsMainAxisSize: MainAxisSize.min,
+            actionsGap: 16.w,
             title: Text(titleText),
             description: Text(descriptionText),
             actions: actions,
