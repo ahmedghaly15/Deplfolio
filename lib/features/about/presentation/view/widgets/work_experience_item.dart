@@ -4,8 +4,11 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_utils.dart';
 import '../../../data/models/about.dart';
+import 'edit_work_experience_consumer_button.dart';
+import 'edit_work_experience_form_consumer.dart';
 
 class WorkExperienceItem extends StatelessWidget {
   final WorkExperienceModel workExperience;
@@ -21,7 +24,22 @@ class WorkExperienceItem extends StatelessWidget {
       footer: Align(
         alignment: AlignmentDirectional.centerEnd,
         child: IconButton(
-          onPressed: () {},
+          onPressed:
+              () => context.showDialog(
+                scrollPadding: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                  vertical: 48.h,
+                ),
+                titleText: AppStrings.editWorkExperience,
+                child: EditWorkExperienceFormConsumer(
+                  workExperienceModel: workExperience,
+                ),
+                actions: [
+                  EditWorkExperienceConsumerButton(
+                    workExperience: workExperience,
+                  ),
+                ],
+              ),
           icon: const Icon(LucideIcons.pen400),
         ),
       ),
