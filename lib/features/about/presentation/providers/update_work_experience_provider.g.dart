@@ -28,7 +28,7 @@ final editWorkExperienceFormKeyProvider =
 typedef EditWorkExperienceFormKeyRef =
     AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$updateWorkExperienceHash() =>
-    r'c73273ad8227e8129af5bc4711ab5f75e352ea65';
+    r'6f05b0125d91b08a8b4d7c6b1acdda6708157b19';
 
 /// See also [UpdateWorkExperience].
 @ProviderFor(UpdateWorkExperience)

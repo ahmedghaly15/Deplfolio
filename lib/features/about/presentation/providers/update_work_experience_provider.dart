@@ -1,9 +1,12 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show ShadFormState;
 
 import '../../../../core/enums/experience_status.dart';
+import '../../../../core/providers/autovalidate_mode_notifier.dart'
+    show autovalidateModeProvider;
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/about.dart' show WorkExperienceModel;
 import '../../data/repository/about_repo.dart';
@@ -86,6 +89,8 @@ class UpdateWorkExperience extends _$UpdateWorkExperience {
     final formKey = ref.read(editWorkExperienceFormKeyProvider);
     if (formKey.currentState!.validate()) {
       _update(workExperience);
+    } else {
+      ref.read(autovalidateModeProvider.notifier).enable();
     }
   }
 }
