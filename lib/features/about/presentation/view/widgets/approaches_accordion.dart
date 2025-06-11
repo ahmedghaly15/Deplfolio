@@ -25,11 +25,25 @@ class ApproachesAccordion extends StatelessWidget {
                     fontSize: 12.sp,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  child: Text(
-                    approach.description,
-                    style: context.shadTextTheme.muted.copyWith(
-                      fontSize: 12.sp,
-                    ),
+                  child: Column(
+                    spacing: 8.h,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        approach.description,
+                        style: context.shadTextTheme.muted.copyWith(
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                      IconButton(
+                        style: IconButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        onPressed: () {},
+                        icon: const Icon(LucideIcons.pen400),
+                      ),
+                    ],
                   ),
                 ),
               )
