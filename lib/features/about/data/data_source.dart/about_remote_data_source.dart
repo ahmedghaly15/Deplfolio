@@ -36,4 +36,22 @@ class AboutRemoteDataSource {
         .update({'about': aboutJson})
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
+
+  Future<void> updateWorkExperience(WorkExperienceModel workExperience) async {
+    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    Map<String, dynamic> aboutJson = remoteJson['about'];
+    final workExperiencesJson = aboutJson['workExperience'] as List<dynamic>;
+    final workExperienceIndex = workExperiencesJson.indexWhere(
+      (we) => we['id'] == workExperience.id,
+    );
+    workExperiencesJson[workExperienceIndex] = workExperience.toJson();
+    aboutJson = {
+      ...aboutJson,
+      ...{'workExperience': workExperiencesJson},
+    };
+    await _supabaseClient
+        .from(ConstStrings.dataTable)
+        .update({'about': aboutJson})
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+  }
 }
