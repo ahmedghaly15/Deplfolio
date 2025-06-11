@@ -1,6 +1,8 @@
 import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
@@ -20,6 +22,10 @@ class ConfirmDeleteApproachConsumerButton extends ConsumerWidget {
     final asyncDeleteApproach = ref.watch(deleteApproachProvider);
     _deleteApproachProviderListener(ref, context);
     return PrimaryButton(
+      size: ShadButtonSize.sm,
+      decoration: ShadDecoration(
+        border: ShadBorder(radius: BorderRadius.all(Radius.circular(8.r))),
+      ),
       onPressed: () {
         ref.read(deleteApproachProvider.notifier).execute(approachId);
       },

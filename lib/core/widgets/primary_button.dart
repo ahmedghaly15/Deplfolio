@@ -10,16 +10,22 @@ class PrimaryButton extends StatelessWidget {
     this.leading,
     this.onPressed,
     this.expands,
+    this.size,
+    this.decoration,
   });
 
   final String? text;
   final Widget? child, leading;
   final VoidCallback? onPressed;
   final bool? expands;
+  final ShadButtonSize? size;
+  final ShadDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
     return ShadButton(
+      size: size,
+      decoration: decoration,
       onPressed: onPressed,
       leading: leading,
       expands: expands,

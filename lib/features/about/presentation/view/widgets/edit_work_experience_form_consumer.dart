@@ -40,8 +40,11 @@ class EditWorkExperienceFormConsumer extends ConsumerWidget {
           WorkExperienceCompanyFieldConsumer(
             company: workExperienceModel.company,
           ),
-          WorkExperienceStatusShadSelectConsumer(
-            experienceStatus: workExperienceModel.experienceStatus,
+          SizedBox(
+            width: double.infinity,
+            child: WorkExperienceStatusShadSelectConsumer(
+              experienceStatus: workExperienceModel.experienceStatus,
+            ),
           ),
           WorkExperienceDescriptionFieldConsumer(
             description: workExperienceModel.description,
