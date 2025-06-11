@@ -74,6 +74,12 @@ class ThemeManager {
             return IconThemeData(color: ColorManager.primaryColor, size: 24.h);
           }),
         ),
+        iconButtonTheme: IconButtonThemeData(
+          style: IconButton.styleFrom(
+            padding: EdgeInsets.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+        ),
       );
 
   static EdgeInsets get _inputPadding =>

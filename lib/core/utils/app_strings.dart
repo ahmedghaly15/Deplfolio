@@ -60,4 +60,7 @@ class AppStrings {
   static const String descriptionText = 'Description';
   static const String workExperienceUpdatedSuccessfully =
       'Work Experience updated successfully.';
+  static const String editApproach = 'Edit Approach';
+  static const String approachUpdatedSuccessfully =
+      'Approach updated successfully.';
 }
