@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shadcn_ui/shadcn_ui.dart' show ShadFormState;
 
 import '../../../../core/enums/experience_status.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
@@ -7,6 +9,10 @@ import '../../data/models/about.dart' show WorkExperienceModel;
 import '../../data/repository/about_repo.dart';
 
 part 'update_work_experience_provider.g.dart';
+
+@riverpod
+GlobalKey<ShadFormState> editWorkExperienceFormKey(Ref ref) =>
+    GlobalKey<ShadFormState>();
 
 final workExperienceTitleProvider = StateProvider.autoDispose<String>(
   (ref) => '',
@@ -38,7 +44,7 @@ class UpdateWorkExperience extends _$UpdateWorkExperience {
   @override
   AsyncValue<void>? build() => null;
 
-  void execute(WorkExperienceModel workExperience) async {
+  void _update(WorkExperienceModel workExperience) async {
     final title = ref.read(workExperienceTitleProvider);
     final startDate = ref.read(workExperienceStartDateProvider);
     final endDate = ref.read(workExperienceEndDateProvider);
@@ -73,6 +79,13 @@ class UpdateWorkExperience extends _$UpdateWorkExperience {
         state = const AsyncData(null);
       case SupabaseRequestFailure(:final errorModel):
         state = AsyncError(errorModel.message, StackTrace.current);
+    }
+  }
+
+  void validateAndUpdate(WorkExperienceModel workExperience) {
+    final formKey = ref.read(editWorkExperienceFormKeyProvider);
+    if (formKey.currentState!.validate()) {
+      _update(workExperience);
     }
   }
 }

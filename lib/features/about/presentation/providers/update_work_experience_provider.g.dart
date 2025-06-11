@@ -6,8 +6,29 @@ part of 'update_work_experience_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$editWorkExperienceFormKeyHash() =>
+    r'3feb1093ad11ef8212612c649b3b27d1110bef8b';
+
+/// See also [editWorkExperienceFormKey].
+@ProviderFor(editWorkExperienceFormKey)
+final editWorkExperienceFormKeyProvider =
+    AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
+      editWorkExperienceFormKey,
+      name: r'editWorkExperienceFormKeyProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$editWorkExperienceFormKeyHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef EditWorkExperienceFormKeyRef =
+    AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$updateWorkExperienceHash() =>
-    r'd3dc3cd8d859d3e3e6a98378f3ce542bccf75369';
+    r'c73273ad8227e8129af5bc4711ab5f75e352ea65';
 
 /// See also [UpdateWorkExperience].
 @ProviderFor(UpdateWorkExperience)

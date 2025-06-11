@@ -51,4 +51,13 @@ class AppStrings {
   static const String fileSavedSuccessfully = 'File saved successfully.';
   static const String codeUpdatedSuccessfully =
       'Code file updated successfully.';
+  static const String editWorkExperience = 'Edit Work Experience';
+  static const String title = 'Title';
+  static const String startDate = 'Start Date';
+  static const String endDate = 'End Date';
+  static const String company = 'Company';
+  static const String status = 'Status';
+  static const String descriptionText = 'Description';
+  static const String workExperienceUpdatedSuccessfully =
+      'Work Experience updated successfully.';
 }
