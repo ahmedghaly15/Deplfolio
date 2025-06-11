@@ -36,7 +36,7 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
         .updateRemoteRepoFile(
           const UpdateRemoteRepoFileParams(
             pickedFileAllowedExtensions: ['dart'],
-            remoteFilePath: ConstStrings.assetsRemoteRepoFilePath,
+            remoteFilePath: ConstStrings.appAssetsRemoteRepoFilePath,
             commitMessage: 'Updated AppAssets via Deplfolio: Deploy 🚀',
           ),
         );
