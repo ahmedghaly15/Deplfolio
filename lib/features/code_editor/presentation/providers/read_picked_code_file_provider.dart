@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'dart:io' show File;
 
 import 'package:permission_handler/permission_handler.dart';
