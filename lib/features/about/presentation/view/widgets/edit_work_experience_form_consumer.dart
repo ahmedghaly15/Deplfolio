@@ -9,7 +9,7 @@ import 'work_experience_company_field_consumer.dart';
 import 'work_experience_description_field_consumer.dart';
 import 'work_experience_end_date_field_consumer.dart';
 import 'work_experience_start_date_field_consumer.dart';
-import 'work_experience_status_field_consumer.dart';
+import 'work_experience_status_shad_select_consumer.dart';
 import 'work_experience_title_field_consumer.dart';
 
 class EditWorkExperienceFormConsumer extends ConsumerWidget {
@@ -40,7 +40,7 @@ class EditWorkExperienceFormConsumer extends ConsumerWidget {
           WorkExperienceCompanyFieldConsumer(
             company: workExperienceModel.company,
           ),
-          WorkExperienceStatusFieldConsumer(
+          WorkExperienceStatusShadSelectConsumer(
             experienceStatus: workExperienceModel.experienceStatus,
           ),
           WorkExperienceDescriptionFieldConsumer(

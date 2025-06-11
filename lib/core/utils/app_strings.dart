@@ -56,7 +56,7 @@ class AppStrings {
   static const String startDate = 'Start Date';
   static const String endDate = 'End Date';
   static const String company = 'Company';
-  static const String status = 'Status';
+  static const String selectStatus = 'Select Status';
   static const String descriptionText = 'Description';
   static const String workExperienceUpdatedSuccessfully =
       'Work Experience updated successfully.';
