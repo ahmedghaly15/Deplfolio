@@ -8,8 +8,10 @@ class ConstStrings {
   static const String dataTable = 'Data';
   static const String tableEqualityKey = 'user_id';
   static const String githubToken = 'GITHUB_TOKEN';
-  static const String remoteCVPath = 'assets/cv/Ahmed Ghaly - Flutter Dev.pdf';
+  static const String assetsRemoteRepoPath = 'assets/';
+  static const String remoteCVPath =
+      '${assetsRemoteRepoPath}cv/Ahmed Ghaly - Flutter Dev.pdf';
   static const String dataStorage = 'data';
-  static const String assetsRemoteRepoFilePath =
+  static const String appAssetsRemoteRepoFilePath =
       'lib/src/core/utils/app_assets.dart';
 }

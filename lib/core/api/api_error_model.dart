@@ -7,8 +7,14 @@ class ApiErrorModel {
   final String message;
   @JsonKey(name: 'status')
   final int? statusCode;
+  @JsonKey(name: 'documentation_url')
+  final String? documentationUrl;
 
-  const ApiErrorModel({required this.message, this.statusCode});
+  const ApiErrorModel({
+    required this.message,
+    this.statusCode,
+    this.documentationUrl,
+  });
 
   factory ApiErrorModel.fromJson(Map<String, dynamic> json) =>
       _$ApiErrorModelFromJson(json);
