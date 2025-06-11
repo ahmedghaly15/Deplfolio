@@ -120,3 +120,21 @@ extension GenerateRandomId on String {
     ).join();
   }
 }
+
+extension ShowAlertDialog<T> on BuildContext {
+  Future<T?> showAlertDialog({
+    required String titleText,
+    required String descriptionText,
+    required List<Widget> actions,
+  }) async {
+    return await showShadDialog<T?>(
+      context: this,
+      builder:
+          (_) => ShadDialog.alert(
+            title: Text(titleText),
+            description: Text(descriptionText),
+            actions: actions,
+          ),
+    );
+  }
+}
