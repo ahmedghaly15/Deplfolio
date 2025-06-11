@@ -63,4 +63,11 @@ class AppStrings {
   static const String editApproach = 'Edit Approach';
   static const String approachUpdatedSuccessfully =
       'Approach updated successfully.';
+  static const String deleteApproach = 'Delete Approach';
+  static const String sureToDeleteApproach =
+      'Are you sure you want to delete this approach?';
+  static const String cancel = 'Cancel';
+  static const String confirm = 'Confirm';
+  static const String approachDeletedSuccessfully =
+      'Approach deleted successfully.';
 }
