@@ -29,7 +29,7 @@ class WorkExperienceDescriptionFieldConsumer extends ConsumerWidget {
       onChanged: (value) {
         // comparing new value with old state stored in provider
         if (value != descriptionValue) {
-          ref.read(workExperienceTitleProvider.notifier).state = value;
+          ref.read(workExperienceDescriptionProvider.notifier).state = value;
         }
       },
     );

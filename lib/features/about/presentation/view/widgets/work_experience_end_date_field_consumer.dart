@@ -26,7 +26,7 @@ class WorkExperienceEndDateFieldConsumer extends ConsumerWidget {
       onChanged: (value) {
         // comparing new value with old state stored in provider
         if (value != endDateProviderValue) {
-          ref.read(workExperienceTitleProvider.notifier).state = value;
+          ref.read(workExperienceEndDateProvider.notifier).state = value;
         }
       },
     );
