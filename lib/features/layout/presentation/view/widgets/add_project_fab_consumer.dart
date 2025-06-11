@@ -4,8 +4,8 @@ import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import '../../provider/layout_provider.dart' show layoutActiveTabProvider;
 
-class FAPConsumerButton extends ConsumerWidget {
-  const FAPConsumerButton({super.key});
+class AddProjectFABConsumer extends ConsumerWidget {
+  const AddProjectFABConsumer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

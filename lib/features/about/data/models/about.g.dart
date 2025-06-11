@@ -55,6 +55,7 @@ Map<String, dynamic> _$AboutHeaderTextModelToJson(
 
 WorkExperienceModel _$WorkExperienceModelFromJson(Map<String, dynamic> json) =>
     WorkExperienceModel(
+      id: json['id'] as String,
       title: json['title'] as String,
       startDate: json['startDate'] as String,
       endDate: json['endDate'] as String,
@@ -72,6 +73,7 @@ WorkExperienceModel _$WorkExperienceModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$WorkExperienceModelToJson(
   WorkExperienceModel instance,
 ) => <String, dynamic>{
+  'id': instance.id,
   'title': instance.title,
   'startDate': instance.startDate,
   'endDate': instance.endDate,
@@ -90,12 +92,14 @@ const _$ExperienceStatusEnumMap = {
 
 ApproachModel _$ApproachModelFromJson(Map<String, dynamic> json) =>
     ApproachModel(
+      id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
     );
 
 Map<String, dynamic> _$ApproachModelToJson(ApproachModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'description': instance.description,
     };

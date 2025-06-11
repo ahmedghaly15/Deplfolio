@@ -45,11 +45,12 @@ class AboutHeaderTextModel {
 
 @JsonSerializable()
 class WorkExperienceModel {
-  final String title, startDate, endDate, company;
+  final String id, title, startDate, endDate, company;
   final ExperienceStatus experienceStatus;
   final List<String> description;
 
   WorkExperienceModel({
+    required this.id,
     required this.title,
     required this.startDate,
     required this.endDate,
@@ -65,9 +66,13 @@ class WorkExperienceModel {
 
 @JsonSerializable()
 class ApproachModel {
-  final String title, description;
+  final String id, title, description;
 
-  ApproachModel({required this.title, required this.description});
+  ApproachModel({
+    required this.id,
+    required this.title,
+    required this.description,
+  });
 
   factory ApproachModel.fromJson(Map<String, dynamic> json) =>
       _$ApproachModelFromJson(json);
