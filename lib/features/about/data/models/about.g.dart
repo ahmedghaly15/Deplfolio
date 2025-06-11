@@ -53,8 +53,22 @@ Map<String, dynamic> _$AboutHeaderTextModelToJson(
   'coloredString': instance.coloredString,
 };
 
-WorkExperienceModel _$WorkExperienceModelFromJson(Map<String, dynamic> json) =>
-    WorkExperienceModel(
+ApproachModel _$ApproachModelFromJson(Map<String, dynamic> json) =>
+    ApproachModel(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+    );
+
+Map<String, dynamic> _$ApproachModelToJson(ApproachModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'description': instance.description,
+    };
+
+_WorkExperienceModel _$WorkExperienceModelFromJson(Map<String, dynamic> json) =>
+    _WorkExperienceModel(
       id: json['id'] as String,
       title: json['title'] as String,
       startDate: json['startDate'] as String,
@@ -64,14 +78,11 @@ WorkExperienceModel _$WorkExperienceModelFromJson(Map<String, dynamic> json) =>
         _$ExperienceStatusEnumMap,
         json['experienceStatus'],
       ),
-      description:
-          (json['description'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
+      description: json['description'] as String,
     );
 
 Map<String, dynamic> _$WorkExperienceModelToJson(
-  WorkExperienceModel instance,
+  _WorkExperienceModel instance,
 ) => <String, dynamic>{
   'id': instance.id,
   'title': instance.title,
@@ -89,17 +100,3 @@ const _$ExperienceStatusEnumMap = {
   ExperienceStatus.freelance: 'Freelance',
   ExperienceStatus.internship: 'Internship',
 };
-
-ApproachModel _$ApproachModelFromJson(Map<String, dynamic> json) =>
-    ApproachModel(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-    );
-
-Map<String, dynamic> _$ApproachModelToJson(ApproachModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'description': instance.description,
-    };

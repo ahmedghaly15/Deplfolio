@@ -1,9 +1,11 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../core/enums/experience_status.dart';
 import '../../../../core/models/project.dart';
 
 part 'about.g.dart';
+part 'about.freezed.dart';
 
 @JsonSerializable(explicitToJson: true)
 class About {
@@ -43,25 +45,20 @@ class AboutHeaderTextModel {
   Map<String, dynamic> toJson() => _$AboutHeaderTextModelToJson(this);
 }
 
-@JsonSerializable()
-class WorkExperienceModel {
-  final String id, title, startDate, endDate, company;
-  final ExperienceStatus experienceStatus;
-  final List<String> description;
-
-  WorkExperienceModel({
-    required this.id,
-    required this.title,
-    required this.startDate,
-    required this.endDate,
-    required this.company,
-    required this.experienceStatus,
-    required this.description,
-  });
+@freezed
+abstract class WorkExperienceModel with _$WorkExperienceModel {
+  const factory WorkExperienceModel({
+    required String id,
+    required String title,
+    required String startDate,
+    required String endDate,
+    required String company,
+    required ExperienceStatus experienceStatus,
+    required String description,
+  }) = _WorkExperienceModel;
 
   factory WorkExperienceModel.fromJson(Map<String, dynamic> json) =>
       _$WorkExperienceModelFromJson(json);
-  Map<String, dynamic> toJson() => _$WorkExperienceModelToJson(this);
 }
 
 @JsonSerializable()
