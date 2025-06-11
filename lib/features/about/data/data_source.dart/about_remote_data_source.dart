@@ -72,4 +72,22 @@ class AboutRemoteDataSource {
         .update({'about': aboutJson})
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
+
+  Future<void> deleteApproach(String approachId) async {
+    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    Map<String, dynamic> aboutJson = remoteJson['about'];
+    final approachesJson = aboutJson['approaches'] as List<dynamic>;
+    final approachIndex = approachesJson.indexWhere(
+      (a) => a['id'] == approachId,
+    );
+    approachesJson.removeAt(approachIndex);
+    aboutJson = {
+      ...aboutJson,
+      ...{'approaches': approachesJson},
+    };
+    await _supabaseClient
+        .from(ConstStrings.dataTable)
+        .update({'about': aboutJson})
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+  }
 }

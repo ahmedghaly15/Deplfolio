@@ -52,4 +52,14 @@ class AboutRepo {
       () async => await _remoteDataSource.updateApproach(approach),
     );
   }
+
+  Future<SupabaseRequestResult<void>> deleteApproach(
+    Ref ref,
+    String approachId,
+  ) {
+    return supabaseExecuteAndHandleErrors(
+      ref,
+      () async => await _remoteDataSource.deleteApproach(approachId),
+    );
+  }
 }

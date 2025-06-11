@@ -27,7 +27,7 @@ final updateApproachFormKeyProvider =
 // ignore: unused_element
 typedef UpdateApproachFormKeyRef =
     AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$updateApproachHash() => r'2a32dbb22864db75e146297a7896936f13f8ac89';
+String _$updateApproachHash() => r'ea9874521559cae89153539b5faef2aece7a0fc4';
 
 /// See also [UpdateApproach].
 @ProviderFor(UpdateApproach)
