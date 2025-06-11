@@ -42,4 +42,14 @@ class AboutRepo {
       () async => await _remoteDataSource.updateWorkExperience(workExperience),
     );
   }
+
+  Future<SupabaseRequestResult<void>> updateApproach(
+    Ref ref,
+    ApproachModel approach,
+  ) {
+    return supabaseExecuteAndHandleErrors(
+      ref,
+      () async => await _remoteDataSource.updateApproach(approach),
+    );
+  }
 }
