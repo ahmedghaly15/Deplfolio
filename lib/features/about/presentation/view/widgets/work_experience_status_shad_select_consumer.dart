@@ -22,6 +22,7 @@ class WorkExperienceStatusShadSelectConsumer extends ConsumerWidget {
     );
     return ShadSelect<ExperienceStatus>(
       itemCount: ExperienceStatus.values.length,
+      padding: context.shadTheme.inputTheme.inputPadding,
       decoration: context.shadTheme.inputTheme.decoration,
       options: [
         ...ExperienceStatus.values.map(
