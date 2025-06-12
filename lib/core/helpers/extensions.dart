@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -106,19 +104,6 @@ extension WorkExperienceName on ExperienceStatus {
 
 extension RequestFocusOnFocusNode on BuildContext {
   void requestFocus(FocusNode node) => FocusScope.of(this).requestFocus(node);
-}
-
-extension GenerateRandomId on String {
-  String generateRandomId() {
-    const int idLength = 16;
-    const chars =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    final random = Random();
-    return List.generate(
-      idLength,
-      (index) => chars[random.nextInt(chars.length)],
-    ).join();
-  }
 }
 
 extension ShowAlertDialog<T> on BuildContext {
