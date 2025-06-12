@@ -14,7 +14,7 @@ import '../../data/repository/about_repo.dart';
 part 'update_work_experience_provider.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> editWorkExperienceFormKey(Ref ref) =>
+GlobalKey<ShadFormState> editWorkExperienceFormKey() =>
     GlobalKey<ShadFormState>();
 
 final workExperienceTitleProvider = StateProvider.autoDispose<String>(

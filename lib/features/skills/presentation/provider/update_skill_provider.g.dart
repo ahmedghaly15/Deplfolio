@@ -7,7 +7,7 @@ part of 'update_skill_provider.dart';
 // **************************************************************************
 
 String _$updateSkillFormKeyHash() =>
-    r'81a9593e1281b45bcf13c410a96e0aa628954f93';
+    r'5537c685a5d875de6474508cfa0a2593682f9523';
 
 /// See also [updateSkillFormKey].
 @ProviderFor(updateSkillFormKey)
@@ -27,7 +27,7 @@ final updateSkillFormKeyProvider =
 // ignore: unused_element
 typedef UpdateSkillFormKeyRef =
     AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$updateSkillHash() => r'5717db466631a084f471acf0d81c045c9a02a0da';
+String _$updateSkillHash() => r'487526a7ee16c67051e908738051836214cd8b67';
 
 /// See also [UpdateSkill].
 @ProviderFor(UpdateSkill)

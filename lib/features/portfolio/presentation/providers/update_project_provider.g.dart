@@ -7,7 +7,7 @@ part of 'update_project_provider.dart';
 // **************************************************************************
 
 String _$updateProjectFormKeyHash() =>
-    r'c7926f4a1f95ed0e236c7bd9c0b91e99ddffa2ea';
+    r'4e712744b353ad927ee81038a67742b8bfbcc68f';
 
 /// See also [updateProjectFormKey].
 @ProviderFor(updateProjectFormKey)

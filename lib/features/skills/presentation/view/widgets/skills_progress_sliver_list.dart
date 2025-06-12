@@ -57,7 +57,7 @@ class SkillsProgressSliverList extends StatelessWidget {
                 animation: true,
                 lineHeight: 16.h,
                 animationDuration: 1500,
-                percent: skills[index].percentage,
+                percent: skills[index].percent,
                 linearGradient: const LinearGradient(
                   colors: [ColorManager.primaryColor, ColorManager.colorC65647],
                   stops: [0.0, 1.0],

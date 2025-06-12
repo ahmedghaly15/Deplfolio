@@ -23,7 +23,7 @@ class EditSkillDialogContent extends StatelessWidget {
           textCapitalization: TextCapitalization.words,
         ),
         CustomDataInput(
-          initialValue: skill.percentage.toString(),
+          initialValue: skill.percent.toString(),
           labelText: AppStrings.percent,
           keyboardType: TextInputType.number,
         ),

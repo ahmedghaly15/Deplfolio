@@ -12,8 +12,7 @@ import '../../data/repository/portfolio_repo.dart';
 part 'update_project_provider.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> updateProjectFormKey(Ref ref) =>
-    GlobalKey<ShadFormState>();
+GlobalKey<ShadFormState> updateProjectFormKey() => GlobalKey<ShadFormState>();
 
 final projectTitleProvider = StateProvider.autoDispose<String>((ref) => '');
 final projectDescriptionProvider = StateProvider.autoDispose<String>(

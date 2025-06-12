@@ -8,7 +8,7 @@ import '../../data/models/introduction_section.dart';
 part 'introduction_section_form_providers.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> introductionSectionFormKey(Ref ref) =>
+GlobalKey<ShadFormState> introductionSectionFormKey() =>
     GlobalKey<ShadFormState>();
 
 final aboutHeaderSmallTxtProvider = StateProvider.autoDispose<String>(
