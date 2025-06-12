@@ -1,6 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'fetch_skills.g.dart';
+part 'fetch_skills.freezed.dart';
 
 @JsonSerializable(explicitToJson: true)
 class FetchSkills {
@@ -19,16 +20,16 @@ class FetchSkills {
   Map<String, dynamic> toJson() => _$FetchSkillsToJson(this);
 }
 
-@JsonSerializable()
-class SkillModel {
-  final String id, name;
-  final double percentage;
-
-  SkillModel({required this.id, required this.name, required this.percentage});
+@freezed
+abstract class SkillModel with _$SkillModel {
+  const factory SkillModel({
+    required String id,
+    required String name,
+    @JsonKey(name: 'percentage') required double percent,
+  }) = _SkillModel;
 
   factory SkillModel.fromJson(Map<String, dynamic> json) =>
       _$SkillModelFromJson(json);
-  Map<String, dynamic> toJson() => _$SkillModelToJson(this);
 }
 
 @JsonSerializable()
