@@ -25,7 +25,7 @@ final addSkillFormKeyProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddSkillFormKeyRef = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$addSkillHash() => r'e54c90531f76d76b42a3a83c0b50f0be526774f0';
+String _$addSkillHash() => r'a71a4a6db714472614d9f28057b16be84ffaf012';
 
 /// See also [AddSkill].
 @ProviderFor(AddSkill)
