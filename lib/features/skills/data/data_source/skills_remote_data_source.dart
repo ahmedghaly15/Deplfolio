@@ -44,4 +44,19 @@ class SkillsRemoteDataSource {
         .update({'skills': fetchSkillsJson})
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
+
+  Future<void> addSkill(SkillModel skill) async {
+    final portfolioJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    Map<String, dynamic> fetchSkillsJson = portfolioJson['skills'];
+    final skillsListJson = fetchSkillsJson['skills'] as List<dynamic>;
+    skillsListJson.add(skill.toJson());
+    fetchSkillsJson = {
+      ...fetchSkillsJson,
+      ...{'skills': skillsListJson},
+    };
+    await _supabaseClient
+        .from(ConstStrings.dataTable)
+        .update({'skills': fetchSkillsJson})
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+  }
 }

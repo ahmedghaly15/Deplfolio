@@ -28,4 +28,11 @@ class SkillsRepo {
       () async => await _remoteDataSource.updateSkill(skill),
     );
   }
+
+  Future<SupabaseRequestResult<void>> addSkill(Ref ref, SkillModel skill) {
+    return supabaseExecuteAndHandleErrors<void>(
+      ref,
+      () async => await _remoteDataSource.addSkill(skill),
+    );
+  }
 }
