@@ -21,10 +21,10 @@ class FetchSkills {
 
 @JsonSerializable()
 class SkillModel {
-  final String name;
+  final String id, name;
   final double percentage;
 
-  SkillModel({required this.name, required this.percentage});
+  SkillModel({required this.id, required this.name, required this.percentage});
 
   factory SkillModel.fromJson(Map<String, dynamic> json) =>
       _$SkillModelFromJson(json);

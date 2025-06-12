@@ -25,12 +25,17 @@ Map<String, dynamic> _$FetchSkillsToJson(FetchSkills instance) =>
     };
 
 SkillModel _$SkillModelFromJson(Map<String, dynamic> json) => SkillModel(
+  id: json['id'] as String,
   name: json['name'] as String,
   percentage: (json['percentage'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$SkillModelToJson(SkillModel instance) =>
-    <String, dynamic>{'name': instance.name, 'percentage': instance.percentage};
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'percentage': instance.percentage,
+    };
 
 SkillHeaderTextModel _$SkillHeaderTextModelFromJson(
   Map<String, dynamic> json,
