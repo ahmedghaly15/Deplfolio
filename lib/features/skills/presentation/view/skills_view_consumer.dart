@@ -5,7 +5,7 @@ import '../../../../core/theming/color_manager.dart';
 import '../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../core/widgets/adaptive_refresh_indicator.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
-import '../provider/skills_providers.dart';
+import '../provider/fetch_skills_providers.dart';
 import 'widgets/skills_view.dart';
 
 class SkillsViewConsumer extends ConsumerWidget {
