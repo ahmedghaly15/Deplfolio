@@ -59,4 +59,22 @@ class SkillsRemoteDataSource {
         .update({'skills': fetchSkillsJson})
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
+
+  Future<void> deleteSkill(String skillId) async {
+    final portfolioJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    Map<String, dynamic> fetchSkillsJson = portfolioJson['skills'];
+    final skillsListJson = fetchSkillsJson['skills'] as List<dynamic>;
+    final skillIndex = skillsListJson.indexWhere(
+      (json) => json['id'] == skillId,
+    );
+    skillsListJson.removeAt(skillIndex);
+    fetchSkillsJson = {
+      ...fetchSkillsJson,
+      ...{'skills': skillsListJson},
+    };
+    await _supabaseClient
+        .from(ConstStrings.dataTable)
+        .update({'skills': fetchSkillsJson})
+        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+  }
 }

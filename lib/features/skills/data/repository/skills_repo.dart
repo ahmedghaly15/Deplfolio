@@ -35,4 +35,11 @@ class SkillsRepo {
       () async => await _remoteDataSource.addSkill(skill),
     );
   }
+
+  Future<SupabaseRequestResult<void>> deleteSkill(Ref ref, String skillId) {
+    return supabaseExecuteAndHandleErrors<void>(
+      ref,
+      () async => await _remoteDataSource.deleteSkill(skillId),
+    );
+  }
 }
