@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/add_project_fab_consumer.dart';
+import 'widgets/fab_consumer.dart';
 import 'widgets/layout_view_body_consumer.dart';
 import 'widgets/navigation_bar_consumer.dart';
 
@@ -12,7 +12,7 @@ class LayoutView extends StatelessWidget {
     return const Scaffold(
       body: LayoutViewBodyConsumer(),
       bottomNavigationBar: NavigationBarConsumer(),
-      floatingActionButton: AddProjectFABConsumer(),
+      floatingActionButton: FABConsumer(),
     );
   }
 }
