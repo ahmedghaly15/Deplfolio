@@ -7,7 +7,7 @@ import '../../../../core/supabase/supabase_request_result.dart'
 import '../../../../core/utils/app_utils.dart';
 import '../../../../core/utils/const_strings.dart';
 import '../models/fetch_skills.dart';
-import '../models/update_skill_header_texts_params.dart';
+import '../models/skills_texts.dart';
 
 final skillsRemoteDataSourceProvider =
     Provider.autoDispose<SkillsRemoteDataSource>((ref) {
@@ -28,7 +28,7 @@ class SkillsRemoteDataSource {
     return FetchSkills.fromJson(skillsJson);
   }
 
-  Future<void> updateSkillHeader(UpdateSkillHeaderTextsParams params) async {
+  Future<void> updateSkillHeader(SkillsTexts params) async {
     final portfolioJson = await _remoteDataSource.fetchRemotePortfolioJson();
     final fetchSkillsJson = portfolioJson['skills'];
     fetchSkillsJson['headerSmallText'] = params.headerSmallText;

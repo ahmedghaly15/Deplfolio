@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show ShadFormState;
 
+import '../../../../core/providers/autovalidate_mode_notifier.dart'
+    show autovalidateModeProvider;
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/fetch_skills.dart' show SkillHeaderTextModel;
-import '../../data/models/update_skill_header_texts_params.dart';
+import '../../data/models/skills_texts.dart';
 import '../../data/repository/skills_repo.dart';
 
 part 'update_skill_header_provider.g.dart';
@@ -32,12 +34,12 @@ class UpdateSkillHeader extends _$UpdateSkillHeader {
   @override
   AsyncValue<void>? build() => null;
 
-  void _update(UpdateSkillHeaderTextsParams params) async {
+  void _update(SkillsTexts params) async {
     final headerSmallText = ref.read(skillHeaderSmallTextProvider);
     final headerBigText1 = ref.read(skillHeaderBigText1Provider);
     final headerColorfulText = ref.read(skillHeaderColorfulTextProvider);
     final headerBigText3 = ref.read(skillHeaderBigText3Provider);
-    final targetParams = UpdateSkillHeaderTextsParams(
+    final targetParams = SkillsTexts(
       headerSmallText:
           headerSmallText.isEmpty
               ? params.headerSmallText.trim()
@@ -60,12 +62,21 @@ class UpdateSkillHeader extends _$UpdateSkillHeader {
     state = const AsyncValue.loading();
     final result = await ref
         .read(skillsRepoProvider)
-        .updateSkillHeader(targetParams);
+        .updateSkillHeader(ref, targetParams);
     switch (result) {
       case SupabaseRequestSuccess():
         state = const AsyncValue.data(null);
       case SupabaseRequestFailure(:final errorModel):
         state = AsyncValue.error(errorModel.message, StackTrace.current);
+    }
+  }
+
+  void validateAndUpdate(SkillsTexts params) {
+    final formKey = ref.read(updateSkillHeaderFormKeyProvider);
+    if (formKey.currentState!.validate()) {
+      _update(params);
+    } else {
+      ref.read(autovalidateModeProvider.notifier).enable();
     }
   }
 }

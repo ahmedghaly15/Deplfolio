@@ -4,7 +4,7 @@ import '../../../../core/supabase/supabase_request_result.dart';
 import '../../../../core/utils/functions/supabase_execute_and_handle_errors.dart';
 import '../data_source/skills_remote_data_source.dart';
 import '../models/fetch_skills.dart';
-import '../models/update_skill_header_texts_params.dart';
+import '../models/skills_texts.dart';
 
 final skillsRepoProvider = Provider.autoDispose<SkillsRepo>((ref) {
   final remoteDataSource = ref.read(skillsRemoteDataSourceProvider);
@@ -25,7 +25,7 @@ class SkillsRepo {
 
   Future<SupabaseRequestResult<void>> updateSkillHeader(
     Ref ref,
-    UpdateSkillHeaderTextsParams params,
+    SkillsTexts params,
   ) {
     return supabaseExecuteAndHandleErrors<void>(
       ref,
