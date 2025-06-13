@@ -73,4 +73,8 @@ class AppStrings {
   static const String addSkill = 'Add a new skill';
   static const String newSkillAddedSuccessfully =
       'New skill added successfully.';
+  static const String deleteSkill = 'Delete Skill';
+  static const String sureToDeleteSkill =
+      'Are you sure you want to delete this skill?';
+  static const String skillDeletedSuccessfully = 'Skill deleted successfully.';
 }
