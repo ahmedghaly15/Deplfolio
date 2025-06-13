@@ -71,4 +71,6 @@ class AppStrings {
   static const String approachDeletedSuccessfully =
       'Approach deleted successfully.';
   static const String addSkill = 'Add a new skill';
+  static const String newSkillAddedSuccessfully =
+      'New skill added successfully.';
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../skills/presentation/view/widgets/add_new_skill_consumer_button.dart';
 import '../../../../skills/presentation/view/widgets/add_new_skill_form_consumer.dart';
 import '../../provider/layout_provider.dart' show layoutActiveTabProvider;
 
@@ -17,12 +18,11 @@ class FABConsumer extends ConsumerWidget {
         ? FloatingActionButton(
           onPressed:
               activeIndex == 1
-                  ? () {
-                    context.showDialog(
-                      titleText: AppStrings.addSkill,
-                      child: const AddNewSkillFormConsumer(),
-                    );
-                  }
+                  ? () => context.showDialog(
+                    titleText: AppStrings.addSkill,
+                    child: const AddNewSkillFormConsumer(),
+                    actions: [const AddNewSkillConsumerButton()],
+                  )
                   : () {},
           child: const Icon(LucideIcons.badgePlus400, color: Colors.white),
         )
