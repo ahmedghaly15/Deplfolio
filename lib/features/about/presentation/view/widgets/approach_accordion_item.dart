@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/widgets/cancel_button.dart';
 import '../../../data/models/about.dart' show ApproachModel;
 import 'confirm_delete_approach_consumer_button.dart';
 import 'edit_approach_consumer_button.dart';
@@ -45,10 +46,7 @@ class ApproachAccordionItem extends StatelessWidget {
                       titleText: AppStrings.deleteApproach,
                       descriptionText: AppStrings.sureToDeleteApproach,
                       actions: [
-                        ShadButton.outline(
-                          child: const Text(AppStrings.cancel),
-                          onPressed: () => context.pop(),
-                        ),
+                        const CancelButton(),
                         ConfirmDeleteApproachConsumerButton(
                           approachId: approach.id,
                         ),
