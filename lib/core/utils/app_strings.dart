@@ -77,4 +77,6 @@ class AppStrings {
   static const String sureToDeleteSkill =
       'Are you sure you want to delete this skill?';
   static const String skillDeletedSuccessfully = 'Skill deleted successfully.';
+  static const String skillsHeaderUpdatedSuccessfully =
+      'Skills header updated successfully.';
 }
