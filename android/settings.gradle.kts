@@ -15,11 +15,12 @@ pluginManagement {
         gradlePluginPortal()
     }
 
-plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android") // ✅ Use the correct plugin ID
-    id("com.google.gms.google-services")
-    id("dev.flutter.flutter-gradle-plugin")
+    plugins {
+        id("dev.flutter.flutter-plugin-loader") version "1.0.0"
+        id("com.android.application") version "8.7.0" apply false
+        id("org.jetbrains.kotlin.android") version "1.8.22" apply false
+        id("com.google.gms.google-services") version "4.4.1"
+    }
 }
 
 include(":app")
