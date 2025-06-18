@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("com.google.gms.google-services")
-    id("kotlin-android")
-    id("dev.flutter.flutter-gradle-plugin")
+    id("com.android.application") version "8.1.1"
+    id("com.google.gms.google-services") version "4.4.0"
+    id("org.jetbrains.kotlin.android") version "1.9.23"
+    id("dev.flutter.flutter-gradle-plugin") version "1.0.0" // or whatever version you use
 }
 
 android {
