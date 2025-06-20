@@ -27,7 +27,7 @@ final updateSkillFormKeyProvider =
 // ignore: unused_element
 typedef UpdateSkillFormKeyRef =
     AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$updateSkillHash() => r'a8d720706f61c80fd203ce28d1cdd0671db69b80';
+String _$updateSkillHash() => r'a89ec7d8d324d1c65340a4b7f23da86b076da209';
 
 /// See also [UpdateSkill].
 @ProviderFor(UpdateSkill)

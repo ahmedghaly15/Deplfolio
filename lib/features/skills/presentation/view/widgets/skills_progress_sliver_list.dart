@@ -9,12 +9,16 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import '../../../../../core/theming/color_manager.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/cancel_button.dart';
-import '../../../../../core/widgets/primary_button.dart';
 import '../../../data/models/fetch_skills.dart';
+import '../../../data/models/update_or_add_skill_form_params.dart';
 import '../../provider/update_skill_provider.dart'
-    show updateSkillPercentProvider, updateSkillNameProvider;
+    show
+        updateSkillPercentProvider,
+        updateSkillNameProvider,
+        updateSkillFormKeyProvider;
 import 'delete_skill_confirm_consumer_button.dart';
 import 'update_or_add_skill_form_consumer.dart';
+import 'update_skill_consumer_button.dart';
 
 class SkillsProgressSliverList extends StatelessWidget {
   const SkillsProgressSliverList({super.key, required this.skills});
@@ -68,17 +72,15 @@ class SkillProgressItem extends StatelessWidget {
               onTap:
                   () => context.showDialog(
                     titleText: AppStrings.editSkill,
-                    actions: [
-                      PrimaryButton(
-                        onPressed: () {},
-                        text: AppStrings.saveChanges,
-                      ),
-                    ],
+                    actions: [UpdateSkillConsumerButton(skill: skill)],
                     child: UpdateOrAddSkillFormConsumer(
-                      skill: skill,
-                      skillNameProvider: updateSkillNameProvider(skill.name),
-                      skillPercentProvider: updateSkillPercentProvider(
-                        skill.percent,
+                      params: UpdateOrAddSkillFormParams(
+                        skill: skill,
+                        skillNameProvider: updateSkillNameProvider(skill.name),
+                        skillPercentProvider: updateSkillPercentProvider(
+                          skill.percent,
+                        ),
+                        formKeyProvider: updateSkillFormKeyProvider,
                       ),
                     ),
                   ),

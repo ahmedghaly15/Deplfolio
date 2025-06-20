@@ -12,7 +12,7 @@ import '../../data/repository/skills_repo.dart';
 
 part 'add_skill_provider.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 GlobalKey<ShadFormState> addSkillFormKey(Ref ref) => GlobalKey<ShadFormState>();
 
 final addSKillNameProvider = StateProvider.autoDispose<String>((ref) => '');
