@@ -30,7 +30,7 @@ final skillHeaderBigText3Provider = StateProvider.autoDispose<String>(
   (ref) => '',
 );
 
-final isUpdateSkillHeaderButtonEnabled = StateProvider.autoDispose
+final isUpdateSkillHeaderButtonEnabledProvider = StateProvider.autoDispose
     .family<bool, SkillsTexts>((ref, initialValue) {
       final headerSmallText = ref.watch(skillHeaderSmallTextProvider);
       final headerBigText1 = ref.watch(skillHeaderBigText1Provider);

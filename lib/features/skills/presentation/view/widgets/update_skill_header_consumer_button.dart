@@ -17,7 +17,7 @@ class UpdateSkillHeaderConsumerButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncConfirm = ref.watch(updateSkillHeaderProvider);
     final isButtonEnabled = ref.watch(
-      isUpdateSkillHeaderButtonEnabled(skillsText),
+      isUpdateSkillHeaderButtonEnabledProvider(skillsText),
     );
     _updateSkillHeaderProviderListener(ref, context);
     return PrimaryButton(
