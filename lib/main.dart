@@ -10,6 +10,7 @@ import 'deplfolio_app.dart';
 import 'riverpod_observer.dart';
 
 void main() async {
+  // fake commit
   WidgetsFlutterBinding.ensureInitialized();
   // To fix texts being hidden bug in release mode
   await ScreenUtil.ensureScreenSize();
