@@ -6,7 +6,8 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
 import '../../../data/models/fetch_skills.dart' show SkillModel;
-import '../../provider/update_skill_provider.dart' show updateSkillProvider;
+import '../../provider/update_skill_provider.dart'
+    show updateSkillProvider, isUpdateSkillButtonEnabledProvider;
 
 class UpdateSkillConsumerButton extends ConsumerWidget {
   const UpdateSkillConsumerButton({super.key, required this.skill});
@@ -16,11 +17,17 @@ class UpdateSkillConsumerButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncUpdateSkill = ref.watch(updateSkillProvider);
+    final isButtonEnabled = ref.watch(
+      isUpdateSkillButtonEnabledProvider(skill),
+    );
     _updateSkillProviderListener(ref, context);
     return PrimaryButton(
-      onPressed: () {
-        ref.read(updateSkillProvider.notifier).validateAndUpdate(skill);
-      },
+      onPressed:
+          isButtonEnabled
+              ? () {
+                ref.read(updateSkillProvider.notifier).validateAndUpdate(skill);
+              }
+              : null,
       text: AppStrings.saveChanges,
       child: asyncUpdateSkill?.whenOrNull(
         loading: () => const AdaptiveCircularProgressIndicator(),
