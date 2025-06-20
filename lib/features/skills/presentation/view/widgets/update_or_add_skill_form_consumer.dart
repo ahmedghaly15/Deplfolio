@@ -1,43 +1,37 @@
-import 'package:deplfolio/core/helpers/extensions.dart';
-import 'package:deplfolio/features/skills/data/models/fetch_skills.dart'
-    show SkillModel;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
+
+import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/helpers/input_validator.dart';
 import '../../../../../core/providers/autovalidate_mode_notifier.dart'
     show autovalidateModeProvider;
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_data_input.dart';
-import '../../provider/add_skill_provider.dart' show addSkillFormKeyProvider;
+import '../../../data/models/update_or_add_skill_form_params.dart';
 
 class UpdateOrAddSkillFormConsumer extends ConsumerWidget {
-  const UpdateOrAddSkillFormConsumer({
-    super.key,
-    required this.skillPercentProvider,
-    required this.skillNameProvider,
-    this.skill,
-  });
+  const UpdateOrAddSkillFormConsumer({super.key, required this.params});
 
-  final AutoDisposeStateProvider<double> skillPercentProvider;
-  final AutoDisposeStateProvider<String> skillNameProvider;
-  final SkillModel? skill;
+  final UpdateOrAddSkillFormParams params;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formKey = ref.read(addSkillFormKeyProvider);
+    final formKey = ref.read(params.formKeyProvider);
     return ShadForm(
       key: formKey,
       child: Column(
         spacing: 16.h,
         mainAxisSize: MainAxisSize.min,
         children: [
-          AddSkillNameFieldConsumer(skillNameProvider: skillNameProvider),
+          AddSkillNameFieldConsumer(
+            skillNameProvider: params.skillNameProvider,
+          ),
           AddSkillPercentSliderConsumer(
-            skillPercentProvider: skillPercentProvider,
-            initialValue: skill?.percent,
+            skillPercentProvider: params.skillPercentProvider,
+            initialValue: params.skill?.percent,
           ),
         ],
       ),
