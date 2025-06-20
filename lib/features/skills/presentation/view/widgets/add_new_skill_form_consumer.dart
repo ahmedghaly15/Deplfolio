@@ -38,6 +38,7 @@ class AddSkillNameFieldConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final autovalidateMode = ref.watch(autovalidateModeProvider);
+    final skillName = ref.watch(addSKillNameProvider);
     return CustomDataInput(
       autofocus: true,
       autovalidateMode: autovalidateMode,
@@ -45,7 +46,7 @@ class AddSkillNameFieldConsumer extends ConsumerWidget {
       textCapitalization: TextCapitalization.words,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        if (value != ref.read(addSKillNameProvider)) {
+        if (value != skillName) {
           ref.read(addSKillNameProvider.notifier).state = value;
         }
       },

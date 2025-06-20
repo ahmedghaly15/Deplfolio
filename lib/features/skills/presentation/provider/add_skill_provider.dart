@@ -24,8 +24,8 @@ class AddSkill extends _$AddSkill {
   AsyncValue<void>? build() => null;
 
   void _add() async {
-    final skillName = ref.watch(addSKillNameProvider);
-    final skillPercent = ref.watch(addSkillPercentProvider);
+    final skillName = ref.read(addSKillNameProvider);
+    final skillPercent = ref.read(addSkillPercentProvider);
     state = const AsyncValue.loading();
     final result = await ref
         .read(skillsRepoProvider)
