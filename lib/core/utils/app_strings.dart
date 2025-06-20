@@ -79,4 +79,5 @@ class AppStrings {
   static const String skillDeletedSuccessfully = 'Skill deleted successfully.';
   static const String skillsHeaderUpdatedSuccessfully =
       'Skills header updated successfully.';
+  static const String updateSkillSuccessfully = 'Skill updated successfully.';
 }
