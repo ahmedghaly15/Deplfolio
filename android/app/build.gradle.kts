@@ -1,14 +1,15 @@
 plugins {
-    id("com.android.application") version "8.1.1"
-    id("com.google.gms.google-services") version "4.4.0"
-    id("org.jetbrains.kotlin.android") version "1.9.23"
-    id("dev.flutter.flutter-gradle-plugin") version "1.0.0" // or whatever version you use
+    id("com.android.application")
+    id("kotlin-android")
+    id("com.google.gms.google-services") 
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.example.deplfolio"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "29.0.13599879"
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
