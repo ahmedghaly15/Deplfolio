@@ -16,13 +16,20 @@ class UpdateSkillHeaderConsumerButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncConfirm = ref.watch(updateSkillHeaderProvider);
+    final isButtonEnabled = ref.watch(
+      isUpdateSkillHeaderButtonEnabled(skillsText),
+    );
     _updateSkillHeaderProviderListener(ref, context);
     return PrimaryButton(
-      onPressed: () {
-        ref
-            .read(updateSkillHeaderProvider.notifier)
-            .validateAndUpdate(skillsText);
-      },
+      expands: true,
+      onPressed:
+          isButtonEnabled
+              ? () {
+                ref
+                    .read(updateSkillHeaderProvider.notifier)
+                    .validateAndUpdate(skillsText);
+              }
+              : null,
       text: AppStrings.saveChanges,
       child: asyncConfirm?.whenOrNull(
         loading: () => const AdaptiveCircularProgressIndicator(),
