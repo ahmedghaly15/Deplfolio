@@ -17,9 +17,8 @@ GlobalKey<ShadFormState> updateSkillFormKey(Ref ref) =>
     GlobalKey<ShadFormState>();
 
 final updateSkillNameProvider = StateProvider.autoDispose<String>((ref) => '');
-final updateSkillPercentProvider = StateProvider.autoDispose<String>(
-  (ref) => '',
-);
+final updateSkillPercentProvider = StateProvider.autoDispose
+    .family<double, double>((ref, initialValue) => initialValue);
 
 @riverpod
 class UpdateSkill extends _$UpdateSkill {
@@ -27,8 +26,10 @@ class UpdateSkill extends _$UpdateSkill {
   AsyncValue<void>? build() => null;
 
   void _update(SkillModel skill) async {
-    final nameProviderValue = ref.watch(updateSkillNameProvider);
-    final percentProviderValue = ref.watch(updateSkillPercentProvider);
+    final nameProviderValue = ref.read(updateSkillNameProvider);
+    final percentProviderValue = ref.read(
+      updateSkillPercentProvider(skill.percent),
+    );
     final targetSkill = SkillModel(
       id: skill.id,
       name:
@@ -36,9 +37,9 @@ class UpdateSkill extends _$UpdateSkill {
               ? skill.name.trim()
               : nameProviderValue.trim(),
       percent:
-          percentProviderValue.isEmpty
-              ? skill.percent
-              : double.parse(percentProviderValue.trim()),
+          percentProviderValue != skill.percent
+              ? percentProviderValue
+              : skill.percent,
     );
     state = const AsyncLoading();
     final result = await ref
