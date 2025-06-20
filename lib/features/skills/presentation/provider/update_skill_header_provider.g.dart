@@ -7,7 +7,7 @@ part of 'update_skill_header_provider.dart';
 // **************************************************************************
 
 String _$updateSkillHeaderFormKeyHash() =>
-    r'4f8505858f15bc4b521842b52df507f2ebaf7cf1';
+    r'66c4fd5573ffb9ab633811606a671b359127da0e';
 
 /// See also [updateSkillHeaderFormKey].
 @ProviderFor(updateSkillHeaderFormKey)
@@ -27,7 +27,7 @@ final updateSkillHeaderFormKeyProvider =
 // ignore: unused_element
 typedef UpdateSkillHeaderFormKeyRef =
     AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$updateSkillHeaderHash() => r'be762bc814eaf10f8ed24502a5aa6ca9f7805d32';
+String _$updateSkillHeaderHash() => r'ebf7489f3a28f0cb323db960a5f133833cffb281';
 
 /// See also [UpdateSkillHeader].
 @ProviderFor(UpdateSkillHeader)

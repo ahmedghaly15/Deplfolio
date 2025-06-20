@@ -12,11 +12,11 @@ import '../../data/repository/skills_repo.dart';
 
 part 'add_skill_provider.g.dart';
 
-@riverpod
-GlobalKey<ShadFormState> addSkillFormKey() => GlobalKey<ShadFormState>();
+@Riverpod(keepAlive: true)
+GlobalKey<ShadFormState> addSkillFormKey(Ref ref) => GlobalKey<ShadFormState>();
 
-final skillNameProvider = StateProvider.autoDispose<String>((ref) => '');
-final skillPercentProvider = StateProvider.autoDispose<String>((ref) => '');
+final addSKillNameProvider = StateProvider.autoDispose<String>((ref) => '');
+final addSkillPercentProvider = StateProvider.autoDispose<double>((ref) => 0.0);
 
 @riverpod
 class AddSkill extends _$AddSkill {
@@ -24,8 +24,8 @@ class AddSkill extends _$AddSkill {
   AsyncValue<void>? build() => null;
 
   void _add() async {
-    final skillName = ref.read(skillNameProvider);
-    final skillPercent = ref.read(skillPercentProvider);
+    final skillName = ref.watch(addSKillNameProvider);
+    final skillPercent = ref.watch(addSkillPercentProvider);
     state = const AsyncValue.loading();
     final result = await ref
         .read(skillsRepoProvider)
@@ -34,7 +34,7 @@ class AddSkill extends _$AddSkill {
           SkillModel(
             id: generateRandomId(),
             name: skillName,
-            percent: double.parse(skillPercent),
+            percent: skillPercent,
           ),
         );
     switch (result) {

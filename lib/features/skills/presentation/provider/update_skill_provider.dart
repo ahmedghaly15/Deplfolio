@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,10 +13,13 @@ import '../../data/repository/skills_repo.dart';
 part 'update_skill_provider.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> updateSkillFormKey() => GlobalKey<ShadFormState>();
+GlobalKey<ShadFormState> updateSkillFormKey(Ref ref) =>
+    GlobalKey<ShadFormState>();
 
-final skillNameProvider = StateProvider.autoDispose<String>((ref) => '');
-final skillPercentProvider = StateProvider.autoDispose<String>((ref) => '');
+final updateSkillNameProvider = StateProvider.autoDispose<String>((ref) => '');
+final updateSkillPercentProvider = StateProvider.autoDispose<String>(
+  (ref) => '',
+);
 
 @riverpod
 class UpdateSkill extends _$UpdateSkill {
@@ -23,8 +27,8 @@ class UpdateSkill extends _$UpdateSkill {
   AsyncValue<void>? build() => null;
 
   void _update(SkillModel skill) async {
-    final nameProviderValue = ref.read(skillNameProvider);
-    final percentProviderValue = ref.read(skillPercentProvider);
+    final nameProviderValue = ref.watch(updateSkillNameProvider);
+    final percentProviderValue = ref.watch(updateSkillPercentProvider);
     final targetSkill = SkillModel(
       id: skill.id,
       name:

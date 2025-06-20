@@ -13,7 +13,7 @@ import '../../data/repository/skills_repo.dart';
 part 'update_skill_header_provider.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> updateSkillHeaderFormKey() =>
+GlobalKey<ShadFormState> updateSkillHeaderFormKey(Ref ref) =>
     GlobalKey<ShadFormState>();
 
 final skillHeaderSmallTextProvider = StateProvider.autoDispose<String>(

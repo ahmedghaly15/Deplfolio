@@ -11,7 +11,7 @@ import '../../data/repository/about_repo.dart' show aboutRepoProvider;
 part 'update_approach_provider.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> updateApproachFormKey() => GlobalKey<ShadFormState>();
+GlobalKey<ShadFormState> updateApproachFormKey(Ref ref) => GlobalKey<ShadFormState>();
 
 final approachTitleProvider = StateProvider.autoDispose<String>((ref) => '');
 

@@ -6,7 +6,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 part 'form_providers.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> loginFormKey() => GlobalKey<ShadFormState>();
+GlobalKey<ShadFormState> loginFormKey(Ref ref) => GlobalKey<ShadFormState>();
 
 @riverpod
 Raw<TextEditingController> emailController(Ref ref) {

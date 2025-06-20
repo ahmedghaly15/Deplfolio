@@ -6,26 +6,25 @@ part of 'add_skill_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addSkillFormKeyHash() => r'3c1cf38d1b466d3a0582849d9d2ea3fd2dd85c23';
+String _$addSkillFormKeyHash() => r'8deb89012d306239f380c939336200573d363960';
 
 /// See also [addSkillFormKey].
 @ProviderFor(addSkillFormKey)
-final addSkillFormKeyProvider =
-    AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
-      addSkillFormKey,
-      name: r'addSkillFormKeyProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$addSkillFormKeyHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final addSkillFormKeyProvider = Provider<GlobalKey<ShadFormState>>.internal(
+  addSkillFormKey,
+  name: r'addSkillFormKeyProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$addSkillFormKeyHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef AddSkillFormKeyRef = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$addSkillHash() => r'a71a4a6db714472614d9f28057b16be84ffaf012';
+typedef AddSkillFormKeyRef = ProviderRef<GlobalKey<ShadFormState>>;
+String _$addSkillHash() => r'23e260c0dba471c4082039ace0c4d6cae42d39ba';
 
 /// See also [AddSkill].
 @ProviderFor(AddSkill)
