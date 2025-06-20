@@ -21,6 +21,17 @@ final updateSkillNameProvider = StateProvider.autoDispose
 final updateSkillPercentProvider = StateProvider.autoDispose
     .family<double, double>((ref, initialValue) => initialValue);
 
+final isUpdateSkillButtonEnabledProvider = StateProvider.autoDispose
+    .family<bool, SkillModel>((ref, skill) {
+      final nameProviderValue = ref.watch(updateSkillNameProvider(skill.name));
+      final percentProviderValue = ref.watch(
+        updateSkillPercentProvider(skill.percent),
+      );
+      return (nameProviderValue.isNotEmpty ||
+              nameProviderValue != skill.name) &&
+          (percentProviderValue != skill.percent);
+    });
+
 @riverpod
 class UpdateSkill extends _$UpdateSkill {
   @override
