@@ -11,17 +11,18 @@ import '../../../../../core/providers/autovalidate_mode_notifier.dart'
     show autovalidateModeProvider;
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_data_input.dart';
-import '../../provider/add_skill_provider.dart'
-    show addSKillNameProvider, addSkillFormKeyProvider;
+import '../../provider/add_skill_provider.dart' show addSkillFormKeyProvider;
 
 class UpdateOrAddSkillFormConsumer extends ConsumerWidget {
   const UpdateOrAddSkillFormConsumer({
     super.key,
     required this.skillPercentProvider,
+    required this.skillNameProvider,
     this.skill,
   });
 
   final AutoDisposeStateProvider<double> skillPercentProvider;
+  final AutoDisposeStateProvider<String> skillNameProvider;
   final SkillModel? skill;
 
   @override
@@ -33,7 +34,7 @@ class UpdateOrAddSkillFormConsumer extends ConsumerWidget {
         spacing: 16.h,
         mainAxisSize: MainAxisSize.min,
         children: [
-          AddSkillNameFieldConsumer(skillName: skill?.name),
+          AddSkillNameFieldConsumer(skillNameProvider: skillNameProvider),
           AddSkillPercentSliderConsumer(
             skillPercentProvider: skillPercentProvider,
             initialValue: skill?.percent,
@@ -45,14 +46,14 @@ class UpdateOrAddSkillFormConsumer extends ConsumerWidget {
 }
 
 class AddSkillNameFieldConsumer extends ConsumerWidget {
-  const AddSkillNameFieldConsumer({super.key, this.skillName});
+  const AddSkillNameFieldConsumer({super.key, required this.skillNameProvider});
 
-  final String? skillName;
+  final AutoDisposeStateProvider<String> skillNameProvider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final autovalidateMode = ref.watch(autovalidateModeProvider);
-    final skillName = ref.watch(addSKillNameProvider);
+    final skillName = ref.watch(skillNameProvider);
     return CustomDataInput(
       initialValue: skillName,
       autofocus: true,
@@ -62,7 +63,7 @@ class AddSkillNameFieldConsumer extends ConsumerWidget {
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
         if (value != skillName) {
-          ref.read(addSKillNameProvider.notifier).state = value;
+          ref.read(skillNameProvider.notifier).state = value;
         }
       },
     );
