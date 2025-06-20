@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderScope;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart'
     show LinearPercentIndicator;
@@ -73,14 +74,20 @@ class SkillProgressItem extends StatelessWidget {
                   () => context.showDialog(
                     titleText: AppStrings.editSkill,
                     actions: [UpdateSkillConsumerButton(skill: skill)],
-                    child: UpdateOrAddSkillFormConsumer(
-                      params: UpdateOrAddSkillFormParams(
-                        skill: skill,
-                        skillNameProvider: updateSkillNameProvider(skill.name),
-                        skillPercentProvider: updateSkillPercentProvider(
-                          skill.percent,
+                    // used ProviderScope so that every time, the widget is built
+                    // the formKey is fresh and disposable at the same time
+                    child: ProviderScope(
+                      child: UpdateOrAddSkillFormConsumer(
+                        params: UpdateOrAddSkillFormParams(
+                          skill: skill,
+                          skillNameProvider: updateSkillNameProvider(
+                            skill.name,
+                          ),
+                          skillPercentProvider: updateSkillPercentProvider(
+                            skill.percent,
+                          ),
+                          formKeyProvider: updateSkillFormKeyProvider,
                         ),
-                        formKeyProvider: updateSkillFormKeyProvider,
                       ),
                     ),
                   ),

@@ -22,11 +22,15 @@ class FABConsumer extends ConsumerWidget {
               activeIndex == 1
                   ? () => context.showDialog(
                     titleText: AppStrings.addSkill,
-                    child: UpdateOrAddSkillFormConsumer(
-                      params: UpdateOrAddSkillFormParams(
-                        skillNameProvider: addSKillNameProvider,
-                        skillPercentProvider: addSkillPercentProvider,
-                        formKeyProvider: addSkillFormKeyProvider,
+                    // used ProviderScope so that every time, the widget is built
+                    // the formKey is fresh and disposable at the same time
+                    child: ProviderScope(
+                      child: UpdateOrAddSkillFormConsumer(
+                        params: UpdateOrAddSkillFormParams(
+                          skillNameProvider: addSKillNameProvider,
+                          skillPercentProvider: addSkillPercentProvider,
+                          formKeyProvider: addSkillFormKeyProvider,
+                        ),
                       ),
                     ),
                     actions: [const AddNewSkillConsumerButton()],

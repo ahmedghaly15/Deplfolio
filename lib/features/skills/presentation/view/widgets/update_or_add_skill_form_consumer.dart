@@ -19,7 +19,7 @@ class UpdateOrAddSkillFormConsumer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formKey = ref.read(params.formKeyProvider);
+    final formKey = ref.watch(params.formKeyProvider);
     return ShadForm(
       key: formKey,
       child: Column(
