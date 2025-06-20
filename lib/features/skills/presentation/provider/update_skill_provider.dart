@@ -16,7 +16,8 @@ part 'update_skill_provider.g.dart';
 GlobalKey<ShadFormState> updateSkillFormKey(Ref ref) =>
     GlobalKey<ShadFormState>();
 
-final updateSkillNameProvider = StateProvider.autoDispose<String>((ref) => '');
+final updateSkillNameProvider = StateProvider.autoDispose
+    .family<String, String>((ref, initialValue) => initialValue);
 final updateSkillPercentProvider = StateProvider.autoDispose
     .family<double, double>((ref, initialValue) => initialValue);
 
@@ -26,7 +27,7 @@ class UpdateSkill extends _$UpdateSkill {
   AsyncValue<void>? build() => null;
 
   void _update(SkillModel skill) async {
-    final nameProviderValue = ref.read(updateSkillNameProvider);
+    final nameProviderValue = ref.read(updateSkillNameProvider(skill.name));
     final percentProviderValue = ref.read(
       updateSkillPercentProvider(skill.percent),
     );
