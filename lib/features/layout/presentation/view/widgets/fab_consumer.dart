@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../skills/presentation/provider/add_skill_provider.dart'
-    show addSkillPercentProvider;
+import '../../../../skills/presentation/provider/add_skill_provider.dart';
 import '../../../../skills/presentation/view/widgets/add_new_skill_consumer_button.dart';
 import '../../../../skills/presentation/view/widgets/update_or_add_skill_form_consumer.dart';
 import '../../provider/layout_provider.dart' show layoutActiveTabProvider;
@@ -23,6 +22,7 @@ class FABConsumer extends ConsumerWidget {
                   ? () => context.showDialog(
                     titleText: AppStrings.addSkill,
                     child: UpdateOrAddSkillFormConsumer(
+                      skillNameProvider: addSKillNameProvider,
                       skillPercentProvider: addSkillPercentProvider,
                     ),
                     actions: [const AddNewSkillConsumerButton()],

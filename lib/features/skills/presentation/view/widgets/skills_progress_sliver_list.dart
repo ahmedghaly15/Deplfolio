@@ -12,7 +12,7 @@ import '../../../../../core/widgets/cancel_button.dart';
 import '../../../../../core/widgets/primary_button.dart';
 import '../../../data/models/fetch_skills.dart';
 import '../../provider/update_skill_provider.dart'
-    show updateSkillPercentProvider;
+    show updateSkillPercentProvider, updateSkillNameProvider;
 import 'delete_skill_confirm_consumer_button.dart';
 import 'update_or_add_skill_form_consumer.dart';
 
@@ -76,6 +76,7 @@ class SkillProgressItem extends StatelessWidget {
                     ],
                     child: UpdateOrAddSkillFormConsumer(
                       skill: skill,
+                      skillNameProvider: updateSkillNameProvider(skill.name),
                       skillPercentProvider: updateSkillPercentProvider(
                         skill.percent,
                       ),
