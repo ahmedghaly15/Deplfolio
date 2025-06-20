@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -28,6 +29,26 @@ final skillHeaderColorfulTextProvider = StateProvider.autoDispose<String>(
 final skillHeaderBigText3Provider = StateProvider.autoDispose<String>(
   (ref) => '',
 );
+
+final isUpdateSkillHeaderButtonEnabled = StateProvider.autoDispose
+    .family<bool, SkillsTexts>((ref, initialValue) {
+      final headerSmallText = ref.watch(skillHeaderSmallTextProvider);
+      final headerBigText1 = ref.watch(skillHeaderBigText1Provider);
+      final headerColorfulText = ref.watch(skillHeaderColorfulTextProvider);
+      final headerBigText3 = ref.watch(skillHeaderBigText3Provider);
+
+      final hasChanged =
+          (headerSmallText.isNotEmpty &&
+              headerSmallText != initialValue.headerSmallText) ||
+          (headerBigText1.isNotEmpty &&
+              headerBigText1 != initialValue.headerBigText.text1) ||
+          (headerColorfulText.isNotEmpty &&
+              headerColorfulText !=
+                  initialValue.headerBigText.colorfulString) ||
+          (headerBigText3.isNotEmpty &&
+              headerBigText3 != initialValue.headerBigText.text3);
+      return hasChanged;
+    });
 
 @riverpod
 class UpdateSkillHeader extends _$UpdateSkillHeader {
