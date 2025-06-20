@@ -11,8 +11,10 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/cancel_button.dart';
 import '../../../../../core/widgets/primary_button.dart';
 import '../../../data/models/fetch_skills.dart';
+import '../../provider/update_skill_provider.dart'
+    show updateSkillPercentProvider;
 import 'delete_skill_confirm_consumer_button.dart';
-import 'edit_skill_dialog_content.dart';
+import 'update_or_add_skill_form_consumer.dart';
 
 class SkillsProgressSliverList extends StatelessWidget {
   const SkillsProgressSliverList({super.key, required this.skills});
@@ -72,7 +74,12 @@ class SkillProgressItem extends StatelessWidget {
                         text: AppStrings.saveChanges,
                       ),
                     ],
-                    child: EditSkillDialogContent(skill: skill),
+                    child: UpdateOrAddSkillFormConsumer(
+                      skill: skill,
+                      skillPercentProvider: updateSkillPercentProvider(
+                        skill.percent,
+                      ),
+                    ),
                   ),
               child: const Icon(LucideIcons.pencil400),
             ),
