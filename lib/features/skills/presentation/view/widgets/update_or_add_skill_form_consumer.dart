@@ -1,4 +1,6 @@
 import 'package:deplfolio/core/helpers/extensions.dart';
+import 'package:deplfolio/features/skills/data/models/fetch_skills.dart'
+    show SkillModel;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,10 +12,17 @@ import '../../../../../core/providers/autovalidate_mode_notifier.dart'
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_data_input.dart';
 import '../../provider/add_skill_provider.dart'
-    show addSKillNameProvider, addSkillFormKeyProvider, addSkillPercentProvider;
+    show addSKillNameProvider, addSkillFormKeyProvider;
 
-class AddNewSkillFormConsumer extends ConsumerWidget {
-  const AddNewSkillFormConsumer({super.key});
+class UpdateOrAddSkillFormConsumer extends ConsumerWidget {
+  const UpdateOrAddSkillFormConsumer({
+    super.key,
+    required this.skillPercentProvider,
+    this.skill,
+  });
+
+  final AutoDisposeStateProvider<double> skillPercentProvider;
+  final SkillModel? skill;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,9 +32,12 @@ class AddNewSkillFormConsumer extends ConsumerWidget {
       child: Column(
         spacing: 16.h,
         mainAxisSize: MainAxisSize.min,
-        children: const [
-          AddSkillNameFieldConsumer(),
-          AddSkillPercentSliderConsumer(),
+        children: [
+          AddSkillNameFieldConsumer(skillName: skill?.name),
+          AddSkillPercentSliderConsumer(
+            skillPercentProvider: skillPercentProvider,
+            initialValue: skill?.percent,
+          ),
         ],
       ),
     );
@@ -33,13 +45,16 @@ class AddNewSkillFormConsumer extends ConsumerWidget {
 }
 
 class AddSkillNameFieldConsumer extends ConsumerWidget {
-  const AddSkillNameFieldConsumer({super.key});
+  const AddSkillNameFieldConsumer({super.key, this.skillName});
+
+  final String? skillName;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final autovalidateMode = ref.watch(autovalidateModeProvider);
     final skillName = ref.watch(addSKillNameProvider);
     return CustomDataInput(
+      initialValue: skillName,
       autofocus: true,
       autovalidateMode: autovalidateMode,
       labelText: AppStrings.name,
@@ -55,23 +70,30 @@ class AddSkillNameFieldConsumer extends ConsumerWidget {
 }
 
 class AddSkillPercentSliderConsumer extends ConsumerWidget {
-  const AddSkillPercentSliderConsumer({super.key});
+  const AddSkillPercentSliderConsumer({
+    super.key,
+    required this.skillPercentProvider,
+    this.initialValue,
+  });
+
+  final AutoDisposeStateProvider<double> skillPercentProvider;
+  final double? initialValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final skillPercent = ref.watch(addSkillPercentProvider);
+    final skillPercent = ref.watch(skillPercentProvider);
     return Row(
       spacing: 16.w,
       children: [
         Expanded(
           child: Material(
             child: ShadSlider(
-              initialValue: 0.0,
+              initialValue: skillPercent,
               max: 1.0,
               divisions: 10,
               onChanged: (newValue) {
-                if (newValue != ref.read(addSkillPercentProvider)) {
-                  ref.read(addSkillPercentProvider.notifier).state = newValue;
+                if (newValue != ref.read(skillPercentProvider)) {
+                  ref.read(skillPercentProvider.notifier).state = newValue;
                 }
               },
             ),
