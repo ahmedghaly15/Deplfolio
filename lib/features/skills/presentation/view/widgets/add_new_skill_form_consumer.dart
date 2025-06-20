@@ -1,7 +1,8 @@
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shadcn_ui/shadcn_ui.dart' show ShadForm;
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../../../../core/helpers/input_validator.dart';
 import '../../../../../core/providers/autovalidate_mode_notifier.dart'
@@ -9,8 +10,7 @@ import '../../../../../core/providers/autovalidate_mode_notifier.dart'
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_data_input.dart';
 import '../../provider/add_skill_provider.dart'
-    show skillNameProvider, addSkillFormKeyProvider;
-import '../../provider/update_skill_provider.dart' hide skillNameProvider;
+    show addSKillNameProvider, addSkillFormKeyProvider, addSkillPercentProvider;
 
 class AddNewSkillFormConsumer extends ConsumerWidget {
   const AddNewSkillFormConsumer({super.key});
@@ -25,27 +25,9 @@ class AddNewSkillFormConsumer extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: const [
           AddSkillNameFieldConsumer(),
-          AddSkillPercentFieldConsumer(),
+          AddSkillPercentSliderConsumer(),
         ],
       ),
-    );
-  }
-}
-
-class AddSkillPercentFieldConsumer extends ConsumerWidget {
-  const AddSkillPercentFieldConsumer({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final autovalidateMode = ref.watch(autovalidateModeProvider);
-    return CustomDataInput(
-      autovalidateMode: autovalidateMode,
-      labelText: AppStrings.percent,
-      keyboardType: TextInputType.number,
-      validator: (value) => InputValidator.validatingEmptyField(value),
-      onChanged: (value) {
-        ref.read(skillPercentProvider.notifier).state = value;
-      },
     );
   }
 }
@@ -57,13 +39,45 @@ class AddSkillNameFieldConsumer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final autovalidateMode = ref.watch(autovalidateModeProvider);
     return CustomDataInput(
+      autofocus: true,
       autovalidateMode: autovalidateMode,
       labelText: AppStrings.name,
       textCapitalization: TextCapitalization.words,
       validator: (value) => InputValidator.validatingEmptyField(value),
       onChanged: (value) {
-        ref.read(skillNameProvider.notifier).state = value;
+        if (value != ref.read(addSKillNameProvider)) {
+          ref.read(addSKillNameProvider.notifier).state = value;
+        }
       },
+    );
+  }
+}
+
+class AddSkillPercentSliderConsumer extends ConsumerWidget {
+  const AddSkillPercentSliderConsumer({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final skillPercent = ref.watch(addSkillPercentProvider);
+    return Row(
+      spacing: 16.w,
+      children: [
+        Expanded(
+          child: Material(
+            child: ShadSlider(
+              initialValue: 0.0,
+              max: 1.0,
+              divisions: 10,
+              onChanged: (newValue) {
+                if (newValue != ref.read(addSkillPercentProvider)) {
+                  ref.read(addSkillPercentProvider.notifier).state = newValue;
+                }
+              },
+            ),
+          ),
+        ),
+        Text(skillPercent.toString(), style: context.shadTextTheme.p),
+      ],
     );
   }
 }
