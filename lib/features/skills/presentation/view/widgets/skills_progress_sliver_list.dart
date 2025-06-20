@@ -12,11 +12,7 @@ import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/cancel_button.dart';
 import '../../../data/models/fetch_skills.dart';
 import '../../../data/models/update_or_add_skill_form_params.dart';
-import '../../provider/update_skill_provider.dart'
-    show
-        updateSkillPercentProvider,
-        updateSkillNameProvider,
-        updateSkillFormKeyProvider;
+import '../../provider/update_skill_provider.dart';
 import 'delete_skill_confirm_consumer_button.dart';
 import 'update_or_add_skill_form_consumer.dart';
 import 'update_skill_consumer_button.dart';
