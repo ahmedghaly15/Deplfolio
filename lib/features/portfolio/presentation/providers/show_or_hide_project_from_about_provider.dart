@@ -1,10 +1,14 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/repository/portfolio_repo.dart';
 
 part 'show_or_hide_project_from_about_provider.g.dart';
+
+final toggleShowOrHideProjectFromAboutProvider = StateProvider.autoDispose
+    .family<bool, bool>((ref, isShown) => isShown);
 
 @riverpod
 class ShowOrHideProjectFromAbout extends _$ShowOrHideProjectFromAbout {
