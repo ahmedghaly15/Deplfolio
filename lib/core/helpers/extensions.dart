@@ -63,11 +63,13 @@ extension ShowDialog<T> on BuildContext {
     EdgeInsets? scrollPadding,
     double gap = 24.0,
     double radius = 16.0,
+    bool? scrollable,
   }) async {
     return showShadDialog<T?>(
       context: this,
       builder:
           (_) => ShadDialog(
+            scrollable: scrollable ?? false,
             gap: gap.h,
             scrollPadding:
                 scrollPadding ?? EdgeInsets.symmetric(horizontal: 24.w),

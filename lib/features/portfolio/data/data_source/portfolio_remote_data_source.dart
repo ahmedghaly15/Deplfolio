@@ -62,18 +62,22 @@ class PortfolioRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
-  Future<void> showOrHideProjectFromAbout(String projectTitle) async {
+  Future<void> showOrHideProjectFromAbout(String projectId) async {
     final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
     final projectsJson = remoteJson['portfolio'] as List<dynamic>;
-    final projectIndex = projectsJson.indexWhere(
-      (p) => p['title'] == projectTitle,
-    );
-    final shownInAbout = projectsJson[projectIndex]['shownInAbout'] as bool;
-    projectsJson[projectIndex]['shownInAbout'] = !shownInAbout;
-    await _supabaseClient
-        .from(ConstStrings.dataTable)
-        .update({'portfolio': projectsJson})
-        .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
+    final projectIndex = projectsJson.indexWhere((p) => p['id'] == projectId);
+    final isShown = projectsJson[projectIndex]['shownInAbout'] as bool;
+    projectsJson[projectIndex]['shownInAbout'] = !isShown;
+    Map<String, dynamic> aboutJson = remoteJson['about'];
+    aboutJson = {
+      ...aboutJson,
+      ...{'projects': projectsJson},
+    };
+    // Because They don't depend on each other, Run both updates concurrently
+    await Future.wait([
+      _updateProjectInPortfolio(projectsJson),
+      _updateProjectInAbout(aboutJson),
+    ]);
   }
 
   Future<String> updateProjectImg(UpdateProjectImgParams params) async {
