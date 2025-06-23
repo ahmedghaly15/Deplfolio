@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
+import 'package:flutter/material.dart' show VoidCallback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,6 +13,8 @@ class ProjectShownInAboutNotifier extends StateNotifier<bool> {
   ProjectShownInAboutNotifier(super.initialShown);
 
   void toggle() => state = !state;
+
+  void setValue(bool value) => state = value;
 }
 
 final toggleShowingProjectInAboutProvider = StateNotifierProvider.autoDispose
@@ -27,15 +30,16 @@ class ShowOrHideProjectFromAbout extends _$ShowOrHideProjectFromAbout {
   @override
   AsyncValue<void>? build() => null;
 
-  void execute(String projectTitle) async {
+  void execute(String projectId, {VoidCallback? onError}) async {
     state = const AsyncLoading();
     final result = await ref
         .read(portfolioRepoProvider)
-        .showOrHideProjectFromAbout(ref, projectTitle);
+        .showOrHideProjectFromAbout(ref, projectId);
     switch (result) {
       case SupabaseRequestSuccess():
         state = const AsyncData(null);
       case SupabaseRequestFailure(:final errorModel):
+        onError?.call();
         state = AsyncError(errorModel.message, StackTrace.current);
     }
   }
