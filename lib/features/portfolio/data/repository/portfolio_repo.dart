@@ -33,12 +33,11 @@ class PortfolioRepo {
 
   Future<SupabaseRequestResult<void>> showOrHideProjectFromAbout(
     Ref ref,
-    String projectTitle,
+    String projectId,
   ) {
     return supabaseExecuteAndHandleErrors<void>(
       ref,
-      () async =>
-          await _remoteDataSource.showOrHideProjectFromAbout(projectTitle),
+      () async => await _remoteDataSource.showOrHideProjectFromAbout(projectId),
     );
   }
 

@@ -7,11 +7,7 @@ import '../../data/repository/portfolio_repo.dart';
 final portfolioProjectsProvider = StateProvider.autoDispose<List<Project>>((
   ref,
 ) {
-  final link = ref.keepAlive();
-  // Dispose when the last listener is gone
-  ref.onCancel(() {
-    link.close(); // Allow disposal
-  });
+  ref.keepAlive();
   return [];
 });
 

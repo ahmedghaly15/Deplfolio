@@ -80,4 +80,8 @@ class AppStrings {
   static const String skillsHeaderUpdatedSuccessfully =
       'Skills header updated successfully.';
   static const String updateSkillSuccessfully = 'Skill updated successfully.';
+  static const String projectIsShownInAbout =
+      'Congrats! Project is shown in about now.';
+  static const String projectIsHiddenFromAbout =
+      'Project is now hidden from about.';
 }
