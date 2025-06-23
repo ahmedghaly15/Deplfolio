@@ -14,6 +14,7 @@ class PortfolioViewConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncPortfolio = ref.watch(fetchPortfolioProvider);
+    _fetchPortfolioProviderListener(ref);
     return asyncPortfolio.when(
       data:
           (projects) => AdaptiveRefreshIndicator(
@@ -33,5 +34,15 @@ class PortfolioViewConsumer extends ConsumerWidget {
             ),
           ),
     );
+  }
+
+  void _fetchPortfolioProviderListener(WidgetRef ref) {
+    ref.listen(fetchPortfolioProvider, (_, current) {
+      current.whenOrNull(
+        data:
+            (projects) =>
+                ref.read(portfolioProjectsProvider.notifier).state = projects,
+      );
+    });
   }
 }
