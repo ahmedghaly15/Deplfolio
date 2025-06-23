@@ -4,6 +4,10 @@ import '../../../../core/models/project.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/repository/portfolio_repo.dart';
 
+final portfolioProjectsProvider = StateProvider.autoDispose<List<Project>>(
+  (ref) => [],
+);
+
 final fetchPortfolioProvider = FutureProvider.autoDispose<List<Project>>((
   ref,
 ) async {
