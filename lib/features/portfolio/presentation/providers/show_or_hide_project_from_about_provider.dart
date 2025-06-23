@@ -4,11 +4,23 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/repository/portfolio_repo.dart';
+import 'fetch_portfolio_provider.dart' show portfolioProjectsProvider;
 
 part 'show_or_hide_project_from_about_provider.g.dart';
 
-final toggleShowOrHideProjectFromAboutProvider = StateProvider.autoDispose
-    .family<bool, bool>((ref, isShown) => isShown);
+class ProjectShownInAboutNotifier extends StateNotifier<bool> {
+  ProjectShownInAboutNotifier(super.initialShown);
+
+  void toggle() => state = !state;
+}
+
+final toggleShowingProjectInAboutProvider = StateNotifierProvider.autoDispose
+    .family<ProjectShownInAboutNotifier, bool, String>((ref, projectId) {
+      final project = ref
+          .watch(portfolioProjectsProvider)
+          .firstWhere((project) => project.id == projectId);
+      return ProjectShownInAboutNotifier(project.shownInAbout);
+    });
 
 @riverpod
 class ShowOrHideProjectFromAbout extends _$ShowOrHideProjectFromAbout {
