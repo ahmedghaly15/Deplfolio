@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../enums/experience_status.dart';
+import '../theming/color_manager.dart';
 import '../utils/assets.dart';
+import '../widgets/adaptive_circular_progress_indicator.dart';
 
 extension UnfocusKeyboard on BuildContext {
   void unfocusKeyboard() => FocusScope.of(this).unfocus();
@@ -109,9 +111,11 @@ extension RequestFocusOnFocusNode on BuildContext {
 extension ShowAlertDialog<T> on BuildContext {
   Future<T?> showAlertDialog({
     Widget? titleWidget,
+    Widget? child,
     String? titleText,
     String? descriptionText,
     List<Widget> actions = const [],
+    bool isLoading = false,
   }) async {
     return await showShadDialog<T?>(
       context: this,
@@ -129,6 +133,12 @@ extension ShowAlertDialog<T> on BuildContext {
             title: titleWidget ?? (titleText != null ? Text(titleText) : null),
             description: descriptionText != null ? Text(descriptionText) : null,
             actions: actions,
+            child:
+                isLoading
+                    ? const AdaptiveCircularProgressIndicator(
+                      color: ColorManager.primaryColor,
+                    )
+                    : child,
           ),
     );
   }
