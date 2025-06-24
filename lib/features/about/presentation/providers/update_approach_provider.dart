@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,7 +12,8 @@ import '../../data/repository/about_repo.dart' show aboutRepoProvider;
 part 'update_approach_provider.g.dart';
 
 @riverpod
-GlobalKey<ShadFormState> updateApproachFormKey(Ref ref) => GlobalKey<ShadFormState>();
+GlobalKey<ShadFormState> updateApproachFormKey(Ref ref) =>
+    GlobalKey<ShadFormState>();
 
 final approachTitleProvider = StateProvider.autoDispose<String>((ref) => '');
 

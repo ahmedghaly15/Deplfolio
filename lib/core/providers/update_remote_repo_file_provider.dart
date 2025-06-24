@@ -21,7 +21,9 @@ class UpdateRemoteRepoFile extends _$UpdateRemoteRepoFile {
     state = const AsyncLoading();
     final result = await ref
         .read(githubRepoProvider)
-        .updateRemoteRepoFile(params.copyWith(pickedFile: pickedFile));
+        .updateRemoteRepoFile(
+          params.copyWith(pickedFile: pickedFile, sha: params.sha),
+        );
     switch (result) {
       case ApiRequestSuccess():
         state = const AsyncData(null);
