@@ -1,4 +1,3 @@
-import 'package:deplfolio/core/providers/check_for_github_file_existence_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
@@ -6,7 +5,8 @@ import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/models/update_remote_repo_file_params.dart';
-import '../../../../../core/providers/update_remote_repo_file_provider.dart';
+import '../../providers/check_for_github_file_existence_provider.dart';
+import '../../providers/update_remote_repo_file_provider.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/const_strings.dart';
 

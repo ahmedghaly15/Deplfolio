@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../api/api_request_result.dart';
-import '../models/update_remote_repo_file_params.dart';
-import '../repositories/github_repo.dart';
-import 'pick_file_provider.dart';
+import '../../../../core/api/api_request_result.dart';
+import '../../../../core/models/update_remote_repo_file_params.dart';
+import '../../../../core/repositories/github_repo.dart';
+import '../../../../core/providers/pick_file_provider.dart';
 
 part 'update_remote_repo_file_provider.g.dart';
 

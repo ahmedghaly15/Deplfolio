@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/models/update_remote_repo_file_params.dart';
-import '../../../../../core/providers/update_remote_repo_file_provider.dart';
+import '../../../../code_editor/presentation/providers/update_remote_repo_file_provider.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/const_strings.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';

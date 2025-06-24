@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../api/api_request_result.dart';
-import '../repositories/github_repo.dart';
+import '../../../../core/api/api_request_result.dart';
+import '../../../../core/repositories/github_repo.dart';
 
 part 'check_for_github_file_existence_provider.g.dart';
 
