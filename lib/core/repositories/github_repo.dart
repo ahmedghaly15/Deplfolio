@@ -22,22 +22,12 @@ class GitHubRepo {
 
   GitHubRepo(this._apiService);
 
-  Future<String?> _checkForGithubFileExistence(String saferFilePathUrl) async {
-    final result =
-        await apiExecuteAndHandleErrors<CheckForGithubFileExistenceResponse>(
-          () => _apiService.checkForGithubFileExistence(saferFilePathUrl),
-        );
-
-    switch (result) {
-      case ApiRequestSuccess(data: final data):
-        return data.sha;
-      case ApiRequestFailure(errorModel: final errorModel):
-        if (errorModel.statusCode == 404 ||
-            errorModel.message.contains('Not Found')) {
-          return null; // File doesn't exist
-        }
-        throw errorModel.message;
-    }
+  Future<ApiRequestResult<CheckForGithubFileExistenceResponse>>
+  checkForGithubFileExistence(String saferFilePathUrl) {
+    return apiExecuteAndHandleErrors<CheckForGithubFileExistenceResponse>(
+      () async =>
+          await _apiService.checkForGithubFileExistence(saferFilePathUrl),
+    );
   }
 
   Future<ApiRequestResult<void>> updateRemoteRepoFile(
@@ -48,17 +38,16 @@ class GitHubRepo {
     final filePath = params.pickedFile?.files.single.path!;
     final fileBytes = File(filePath!).readAsBytesSync();
     final encodedContent = base64Encode(fileBytes);
-    return apiExecuteAndHandleErrors<void>(() async {
-      final sha = await _checkForGithubFileExistence(saferFilePathUrl);
-      await _apiService.updateRemoteFile(
+    return apiExecuteAndHandleErrors<void>(
+      () async => await _apiService.updateRemoteFile(
         saferFilePathUrl,
         UpdateRemoteRepoFileRequestBody(
           message: params.commitMessage,
           fileEncodedContent: encodedContent,
-          sha: sha,
+          sha: params.sha,
         ),
-      );
-    });
+      ),
+    );
   }
 
   Future<ApiRequestResult<void>> updateRemoteRepoImg(
@@ -69,17 +58,16 @@ class GitHubRepo {
     );
     final fileBytes = await params.pickedFile?.readAsBytes();
     final encodedContent = base64Encode(fileBytes!.toList());
-    return apiExecuteAndHandleErrors<void>(() async {
-      final sha = await _checkForGithubFileExistence(saferUrl);
-      await _apiService.updateRemoteFile(
+    return apiExecuteAndHandleErrors<void>(
+      () async => await _apiService.updateRemoteFile(
         saferUrl,
         UpdateRemoteRepoFileRequestBody(
           message:
               'Updated ${params.projectTitle} icon via Deplfolio: Deploy 🚀',
           fileEncodedContent: encodedContent,
-          sha: sha,
+          sha: params.sha,
         ),
-      );
-    });
+      ),
+    );
   }
 }
