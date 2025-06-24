@@ -1,21 +1,26 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart' show FutureProvider;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../api/api_request_result.dart';
 import '../repositories/github_repo.dart';
 
-final checkForGithubFileExistenceProvider = FutureProvider.autoDispose
-    .family<String?, String>((ref, saferFilePathUrl) async {
-      final result = await ref
-          .read(githubRepoProvider)
-          .checkForGithubFileExistence(saferFilePathUrl);
-      switch (result) {
-        case ApiRequestSuccess(data: final data):
-          return data.sha;
-        case ApiRequestFailure(errorModel: final errorModel):
-          if (errorModel.statusCode == 404 ||
-              errorModel.message.contains('Not Found')) {
-            return null; // File doesn't exist
-          }
-          throw errorModel.message;
-      }
-    });
+part 'check_for_github_file_existence_provider.g.dart';
+
+@riverpod
+class CheckForGithubFileExistence extends _$CheckForGithubFileExistence {
+  @override
+  AsyncValue<String?>? build() => null;
+
+  void execute(String remoteFilePath) async {
+    final saferFilePathUrl = Uri.encodeFull(remoteFilePath);
+    state = const AsyncLoading();
+    final result = await ref
+        .read(githubRepoProvider)
+        .checkForGithubFileExistence(saferFilePathUrl);
+    switch (result) {
+      case ApiRequestSuccess(data: final data):
+        state = AsyncData(data.sha);
+      case ApiRequestFailure(errorModel: final errorModel):
+        state = AsyncError(errorModel.message, StackTrace.current);
+    }
+  }
+}
