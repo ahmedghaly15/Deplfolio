@@ -108,9 +108,10 @@ extension RequestFocusOnFocusNode on BuildContext {
 
 extension ShowAlertDialog<T> on BuildContext {
   Future<T?> showAlertDialog({
-    required String titleText,
+    Widget? titleWidget,
+    String? titleText,
     String? descriptionText,
-    required List<Widget> actions,
+    List<Widget> actions = const [],
   }) async {
     return await showShadDialog<T?>(
       context: this,
@@ -125,7 +126,7 @@ extension ShowAlertDialog<T> on BuildContext {
             actionsMainAxisAlignment: MainAxisAlignment.end,
             actionsMainAxisSize: MainAxisSize.min,
             actionsGap: 16.w,
-            title: Text(titleText),
+            title: titleWidget ?? (titleText != null ? Text(titleText) : null),
             description: descriptionText != null ? Text(descriptionText) : null,
             actions: actions,
           ),
