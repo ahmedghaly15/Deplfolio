@@ -1,3 +1,4 @@
+import 'package:deplfolio/core/providers/check_for_github_file_existence_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
@@ -14,14 +15,40 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    _listener(ref, context);
+    _updateRemoteRepoFileProviderListener(ref, context);
+    _checkForGithubFileExistenceProviderListener(ref, context);
     return IconButton(
-      onPressed: () => _updateCodeFile(ref),
+      onPressed:
+          () => ref
+              .read(checkForGithubFileExistenceProvider.notifier)
+              .execute(ConstStrings.appAssetsRemoteRepoFilePath),
       icon: const Icon(LucideIcons.github300),
     );
   }
 
-  void _listener(WidgetRef ref, BuildContext context) {
+  void _checkForGithubFileExistenceProviderListener(
+    WidgetRef ref,
+    BuildContext context,
+  ) {
+    ref.listen(checkForGithubFileExistenceProvider, (_, current) {
+      current?.whenOrNull(
+        loading: () => context.showAlertDialog(isLoading: true),
+        data: (sha) {
+          context.pop;
+          _updateCodeFile(ref, sha);
+        },
+        error: (error, _) {
+          context.pop;
+          context.showToast(error.toString());
+        },
+      );
+    });
+  }
+
+  void _updateRemoteRepoFileProviderListener(
+    WidgetRef ref,
+    BuildContext context,
+  ) {
     ref.listen(updateRemoteRepoFileProvider, (_, current) {
       current?.whenOrNull(
         error: (error, _) => context.showToast(error.toString()),
@@ -30,14 +57,15 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
     });
   }
 
-  void _updateCodeFile(WidgetRef ref) {
+  void _updateCodeFile(WidgetRef ref, String? sha) {
     ref
         .read(updateRemoteRepoFileProvider.notifier)
         .updateRemoteRepoFile(
-          const UpdateRemoteRepoFileParams(
+          UpdateRemoteRepoFileParams(
             pickedFileAllowedExtensions: ['dart'],
             remoteFilePath: ConstStrings.appAssetsRemoteRepoFilePath,
             commitMessage: 'Updated AppAssets via Deplfolio: Deploy 🚀',
+            sha: sha,
           ),
         );
   }
