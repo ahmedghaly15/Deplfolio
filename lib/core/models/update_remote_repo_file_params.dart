@@ -10,5 +10,6 @@ abstract class UpdateRemoteRepoFileParams with _$UpdateRemoteRepoFileParams {
     required String remoteFilePath,
     FilePickerResult? pickedFile,
     String? commitMessage,
+    String? sha,
   }) = _UpdateRemoteRepoFileParams;
 }

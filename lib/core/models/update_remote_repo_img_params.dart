@@ -8,5 +8,6 @@ abstract class UpdateRemoteRepoImgParams with _$UpdateRemoteRepoImgParams {
   const factory UpdateRemoteRepoImgParams({
     required String projectTitle,
     XFile? pickedFile,
+    String? sha,
   }) = _UpdateRemoteRepoImgParams;
 }

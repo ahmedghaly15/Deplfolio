@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UpdateRemoteRepoImgParams {
 
- String get projectTitle; XFile? get pickedFile;
+ String get projectTitle; XFile? get pickedFile; String? get sha;
 /// Create a copy of UpdateRemoteRepoImgParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $UpdateRemoteRepoImgParamsCopyWith<UpdateRemoteRepoImgParams> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateRemoteRepoImgParams&&(identical(other.projectTitle, projectTitle) || other.projectTitle == projectTitle)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateRemoteRepoImgParams&&(identical(other.projectTitle, projectTitle) || other.projectTitle == projectTitle)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.sha, sha) || other.sha == sha));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,projectTitle,pickedFile);
+int get hashCode => Object.hash(runtimeType,projectTitle,pickedFile,sha);
 
 @override
 String toString() {
-  return 'UpdateRemoteRepoImgParams(projectTitle: $projectTitle, pickedFile: $pickedFile)';
+  return 'UpdateRemoteRepoImgParams(projectTitle: $projectTitle, pickedFile: $pickedFile, sha: $sha)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $UpdateRemoteRepoImgParamsCopyWith<$Res>  {
   factory $UpdateRemoteRepoImgParamsCopyWith(UpdateRemoteRepoImgParams value, $Res Function(UpdateRemoteRepoImgParams) _then) = _$UpdateRemoteRepoImgParamsCopyWithImpl;
 @useResult
 $Res call({
- String projectTitle, XFile? pickedFile
+ String projectTitle, XFile? pickedFile, String? sha
 });
 
 
@@ -63,11 +63,12 @@ class _$UpdateRemoteRepoImgParamsCopyWithImpl<$Res>
 
 /// Create a copy of UpdateRemoteRepoImgParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? projectTitle = null,Object? pickedFile = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? projectTitle = null,Object? pickedFile = freezed,Object? sha = freezed,}) {
   return _then(_self.copyWith(
 projectTitle: null == projectTitle ? _self.projectTitle : projectTitle // ignore: cast_nullable_to_non_nullable
 as String,pickedFile: freezed == pickedFile ? _self.pickedFile : pickedFile // ignore: cast_nullable_to_non_nullable
-as XFile?,
+as XFile?,sha: freezed == sha ? _self.sha : sha // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -78,11 +79,12 @@ as XFile?,
 
 
 class _UpdateRemoteRepoImgParams implements UpdateRemoteRepoImgParams {
-  const _UpdateRemoteRepoImgParams({required this.projectTitle, this.pickedFile});
+  const _UpdateRemoteRepoImgParams({required this.projectTitle, this.pickedFile, this.sha});
   
 
 @override final  String projectTitle;
 @override final  XFile? pickedFile;
+@override final  String? sha;
 
 /// Create a copy of UpdateRemoteRepoImgParams
 /// with the given fields replaced by the non-null parameter values.
@@ -94,16 +96,16 @@ _$UpdateRemoteRepoImgParamsCopyWith<_UpdateRemoteRepoImgParams> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateRemoteRepoImgParams&&(identical(other.projectTitle, projectTitle) || other.projectTitle == projectTitle)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateRemoteRepoImgParams&&(identical(other.projectTitle, projectTitle) || other.projectTitle == projectTitle)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.sha, sha) || other.sha == sha));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,projectTitle,pickedFile);
+int get hashCode => Object.hash(runtimeType,projectTitle,pickedFile,sha);
 
 @override
 String toString() {
-  return 'UpdateRemoteRepoImgParams(projectTitle: $projectTitle, pickedFile: $pickedFile)';
+  return 'UpdateRemoteRepoImgParams(projectTitle: $projectTitle, pickedFile: $pickedFile, sha: $sha)';
 }
 
 
@@ -114,7 +116,7 @@ abstract mixin class _$UpdateRemoteRepoImgParamsCopyWith<$Res> implements $Updat
   factory _$UpdateRemoteRepoImgParamsCopyWith(_UpdateRemoteRepoImgParams value, $Res Function(_UpdateRemoteRepoImgParams) _then) = __$UpdateRemoteRepoImgParamsCopyWithImpl;
 @override @useResult
 $Res call({
- String projectTitle, XFile? pickedFile
+ String projectTitle, XFile? pickedFile, String? sha
 });
 
 
@@ -131,11 +133,12 @@ class __$UpdateRemoteRepoImgParamsCopyWithImpl<$Res>
 
 /// Create a copy of UpdateRemoteRepoImgParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? projectTitle = null,Object? pickedFile = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? projectTitle = null,Object? pickedFile = freezed,Object? sha = freezed,}) {
   return _then(_UpdateRemoteRepoImgParams(
 projectTitle: null == projectTitle ? _self.projectTitle : projectTitle // ignore: cast_nullable_to_non_nullable
 as String,pickedFile: freezed == pickedFile ? _self.pickedFile : pickedFile // ignore: cast_nullable_to_non_nullable
-as XFile?,
+as XFile?,sha: freezed == sha ? _self.sha : sha // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
