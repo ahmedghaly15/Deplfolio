@@ -7,7 +7,7 @@ part of 'show_or_hide_project_from_about_provider.dart';
 // **************************************************************************
 
 String _$showOrHideProjectFromAboutHash() =>
-    r'5693649de05e5938f3e7d8fc299c7714add99c1a';
+    r'e38e5ae7d750b3c685735b5c34a6136803707465';
 
 /// See also [ShowOrHideProjectFromAbout].
 @ProviderFor(ShowOrHideProjectFromAbout)
