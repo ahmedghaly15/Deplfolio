@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UpdateRemoteRepoFileParams {
 
- List<String> get pickedFileAllowedExtensions; String get remoteFilePath; FilePickerResult? get pickedFile; String? get commitMessage; String? get sha;
+ String get remoteFilePath; FilePickerResult? get pickedFile; String? get commitMessage; String? get sha;
 /// Create a copy of UpdateRemoteRepoFileParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $UpdateRemoteRepoFileParamsCopyWith<UpdateRemoteRepoFileParams> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateRemoteRepoFileParams&&const DeepCollectionEquality().equals(other.pickedFileAllowedExtensions, pickedFileAllowedExtensions)&&(identical(other.remoteFilePath, remoteFilePath) || other.remoteFilePath == remoteFilePath)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.commitMessage, commitMessage) || other.commitMessage == commitMessage)&&(identical(other.sha, sha) || other.sha == sha));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateRemoteRepoFileParams&&(identical(other.remoteFilePath, remoteFilePath) || other.remoteFilePath == remoteFilePath)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.commitMessage, commitMessage) || other.commitMessage == commitMessage)&&(identical(other.sha, sha) || other.sha == sha));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(pickedFileAllowedExtensions),remoteFilePath,pickedFile,commitMessage,sha);
+int get hashCode => Object.hash(runtimeType,remoteFilePath,pickedFile,commitMessage,sha);
 
 @override
 String toString() {
-  return 'UpdateRemoteRepoFileParams(pickedFileAllowedExtensions: $pickedFileAllowedExtensions, remoteFilePath: $remoteFilePath, pickedFile: $pickedFile, commitMessage: $commitMessage, sha: $sha)';
+  return 'UpdateRemoteRepoFileParams(remoteFilePath: $remoteFilePath, pickedFile: $pickedFile, commitMessage: $commitMessage, sha: $sha)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $UpdateRemoteRepoFileParamsCopyWith<$Res>  {
   factory $UpdateRemoteRepoFileParamsCopyWith(UpdateRemoteRepoFileParams value, $Res Function(UpdateRemoteRepoFileParams) _then) = _$UpdateRemoteRepoFileParamsCopyWithImpl;
 @useResult
 $Res call({
- List<String> pickedFileAllowedExtensions, String remoteFilePath, FilePickerResult? pickedFile, String? commitMessage, String? sha
+ String remoteFilePath, FilePickerResult? pickedFile, String? commitMessage, String? sha
 });
 
 
@@ -63,10 +63,9 @@ class _$UpdateRemoteRepoFileParamsCopyWithImpl<$Res>
 
 /// Create a copy of UpdateRemoteRepoFileParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? pickedFileAllowedExtensions = null,Object? remoteFilePath = null,Object? pickedFile = freezed,Object? commitMessage = freezed,Object? sha = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? remoteFilePath = null,Object? pickedFile = freezed,Object? commitMessage = freezed,Object? sha = freezed,}) {
   return _then(_self.copyWith(
-pickedFileAllowedExtensions: null == pickedFileAllowedExtensions ? _self.pickedFileAllowedExtensions : pickedFileAllowedExtensions // ignore: cast_nullable_to_non_nullable
-as List<String>,remoteFilePath: null == remoteFilePath ? _self.remoteFilePath : remoteFilePath // ignore: cast_nullable_to_non_nullable
+remoteFilePath: null == remoteFilePath ? _self.remoteFilePath : remoteFilePath // ignore: cast_nullable_to_non_nullable
 as String,pickedFile: freezed == pickedFile ? _self.pickedFile : pickedFile // ignore: cast_nullable_to_non_nullable
 as FilePickerResult?,commitMessage: freezed == commitMessage ? _self.commitMessage : commitMessage // ignore: cast_nullable_to_non_nullable
 as String?,sha: freezed == sha ? _self.sha : sha // ignore: cast_nullable_to_non_nullable
@@ -81,15 +80,8 @@ as String?,
 
 
 class _UpdateRemoteRepoFileParams implements UpdateRemoteRepoFileParams {
-  const _UpdateRemoteRepoFileParams({required final  List<String> pickedFileAllowedExtensions, required this.remoteFilePath, this.pickedFile, this.commitMessage, this.sha}): _pickedFileAllowedExtensions = pickedFileAllowedExtensions;
+  const _UpdateRemoteRepoFileParams({required this.remoteFilePath, this.pickedFile, this.commitMessage, this.sha});
   
-
- final  List<String> _pickedFileAllowedExtensions;
-@override List<String> get pickedFileAllowedExtensions {
-  if (_pickedFileAllowedExtensions is EqualUnmodifiableListView) return _pickedFileAllowedExtensions;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_pickedFileAllowedExtensions);
-}
 
 @override final  String remoteFilePath;
 @override final  FilePickerResult? pickedFile;
@@ -106,16 +98,16 @@ _$UpdateRemoteRepoFileParamsCopyWith<_UpdateRemoteRepoFileParams> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateRemoteRepoFileParams&&const DeepCollectionEquality().equals(other._pickedFileAllowedExtensions, _pickedFileAllowedExtensions)&&(identical(other.remoteFilePath, remoteFilePath) || other.remoteFilePath == remoteFilePath)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.commitMessage, commitMessage) || other.commitMessage == commitMessage)&&(identical(other.sha, sha) || other.sha == sha));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateRemoteRepoFileParams&&(identical(other.remoteFilePath, remoteFilePath) || other.remoteFilePath == remoteFilePath)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.commitMessage, commitMessage) || other.commitMessage == commitMessage)&&(identical(other.sha, sha) || other.sha == sha));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_pickedFileAllowedExtensions),remoteFilePath,pickedFile,commitMessage,sha);
+int get hashCode => Object.hash(runtimeType,remoteFilePath,pickedFile,commitMessage,sha);
 
 @override
 String toString() {
-  return 'UpdateRemoteRepoFileParams(pickedFileAllowedExtensions: $pickedFileAllowedExtensions, remoteFilePath: $remoteFilePath, pickedFile: $pickedFile, commitMessage: $commitMessage, sha: $sha)';
+  return 'UpdateRemoteRepoFileParams(remoteFilePath: $remoteFilePath, pickedFile: $pickedFile, commitMessage: $commitMessage, sha: $sha)';
 }
 
 
@@ -126,7 +118,7 @@ abstract mixin class _$UpdateRemoteRepoFileParamsCopyWith<$Res> implements $Upda
   factory _$UpdateRemoteRepoFileParamsCopyWith(_UpdateRemoteRepoFileParams value, $Res Function(_UpdateRemoteRepoFileParams) _then) = __$UpdateRemoteRepoFileParamsCopyWithImpl;
 @override @useResult
 $Res call({
- List<String> pickedFileAllowedExtensions, String remoteFilePath, FilePickerResult? pickedFile, String? commitMessage, String? sha
+ String remoteFilePath, FilePickerResult? pickedFile, String? commitMessage, String? sha
 });
 
 
@@ -143,10 +135,9 @@ class __$UpdateRemoteRepoFileParamsCopyWithImpl<$Res>
 
 /// Create a copy of UpdateRemoteRepoFileParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? pickedFileAllowedExtensions = null,Object? remoteFilePath = null,Object? pickedFile = freezed,Object? commitMessage = freezed,Object? sha = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? remoteFilePath = null,Object? pickedFile = freezed,Object? commitMessage = freezed,Object? sha = freezed,}) {
   return _then(_UpdateRemoteRepoFileParams(
-pickedFileAllowedExtensions: null == pickedFileAllowedExtensions ? _self._pickedFileAllowedExtensions : pickedFileAllowedExtensions // ignore: cast_nullable_to_non_nullable
-as List<String>,remoteFilePath: null == remoteFilePath ? _self.remoteFilePath : remoteFilePath // ignore: cast_nullable_to_non_nullable
+remoteFilePath: null == remoteFilePath ? _self.remoteFilePath : remoteFilePath // ignore: cast_nullable_to_non_nullable
 as String,pickedFile: freezed == pickedFile ? _self.pickedFile : pickedFile // ignore: cast_nullable_to_non_nullable
 as FilePickerResult?,commitMessage: freezed == commitMessage ? _self.commitMessage : commitMessage // ignore: cast_nullable_to_non_nullable
 as String?,sha: freezed == sha ? _self.sha : sha // ignore: cast_nullable_to_non_nullable
