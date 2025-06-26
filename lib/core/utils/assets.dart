@@ -29,5 +29,9 @@ class Assets {
   /// Assets for imagesJobIcon
   /// assets/images/job-icon.png
   static const String imagesJobIcon = "assets/images/job-icon.png";
+
+  /// Assets for lottieShyLottie
+  /// assets/lottie/shy-lottie.json
+  static const String lottieShyLottie = "assets/lottie/shy-lottie.json";
 }
 
