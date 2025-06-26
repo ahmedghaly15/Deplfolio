@@ -135,8 +135,10 @@ extension ShowAlertDialog<T> on BuildContext {
             actions: actions,
             child:
                 isLoading
-                    ? const AdaptiveCircularProgressIndicator(
-                      color: ColorManager.primaryColor,
+                    ? const FittedBox(
+                      child: AdaptiveCircularProgressIndicator(
+                        color: ColorManager.primaryColor,
+                      ),
                     )
                     : child,
           ),

@@ -14,9 +14,7 @@ class SaveCodeFileButtonConsumer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     _listener(ref, context);
     return IconButton(
-      onPressed: () {
-        ref.read(saveCodeFileProvider.notifier).execute();
-      },
+      onPressed: () => ref.read(saveCodeFileProvider.notifier).execute(),
       icon: const Icon(LucideIcons.save400),
     );
   }
