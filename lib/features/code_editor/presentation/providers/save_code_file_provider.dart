@@ -1,8 +1,7 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
-import 'dart:io' show File;
-
-import 'package:file_picker/file_picker.dart' show FilePickerResult;
+import 'dart:typed_data' show Uint8List;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:file_saver/file_saver.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
@@ -14,7 +13,7 @@ part 'save_code_file_provider.g.dart';
 @riverpod
 class SaveCodeFile extends _$SaveCodeFile {
   @override
-  AsyncValue<void>? build() => null;
+  AsyncValue<String>? build() => null;
 
   void execute() async {
     final pickedFile = ref.read(pickFileProvider);
@@ -26,17 +25,20 @@ class SaveCodeFile extends _$SaveCodeFile {
     } else {
       state = const AsyncLoading();
       try {
-        await _save(content, pickedFile);
-        state = const AsyncData(null);
+        await _save(content);
+        state = AsyncData(content);
       } catch (e) {
         state = AsyncError(e.toString(), StackTrace.current);
       }
     }
   }
 
-  Future<void> _save(String content, FilePickerResult? pickedFile) async {
-    final pickedFilePath = pickedFile?.files.single.path;
-    final file = File(pickedFilePath!);
-    await file.writeAsString(content);
+  Future<void> _save(String content) async {
+    final bytes = Uint8List.fromList(content.codeUnits);
+    await FileSaver.instance.saveFile(
+      name: 'assets',
+      bytes: bytes,
+      ext: 'dart',
+    );
   }
 }

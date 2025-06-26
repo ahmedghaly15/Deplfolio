@@ -1,0 +1,1 @@
+enum RemoteRepoFileType { cv, codeFile }
