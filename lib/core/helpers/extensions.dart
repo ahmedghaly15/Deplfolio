@@ -48,6 +48,8 @@ extension AppNavigator on BuildContext {
   }
 
   void pop() => Navigator.pop(this);
+
+  void popTop() => Navigator.of(this, rootNavigator: true).pop();
 }
 
 extension ShadThemeAccess on BuildContext {
@@ -116,11 +118,14 @@ extension ShowAlertDialog<T> on BuildContext {
     String? descriptionText,
     List<Widget> actions = const [],
     bool isLoading = false,
+    BoxConstraints? constraints,
   }) async {
     return await showShadDialog<T?>(
       context: this,
+      barrierDismissible: !isLoading,
       builder:
           (_) => ShadDialog.alert(
+            constraints: constraints,
             scrollPadding: EdgeInsets.symmetric(horizontal: 24.w),
             radius: BorderRadius.circular(16.r),
             removeBorderRadiusWhenTiny: false,
@@ -135,8 +140,10 @@ extension ShowAlertDialog<T> on BuildContext {
             actions: actions,
             child:
                 isLoading
-                    ? const FittedBox(
-                      child: AdaptiveCircularProgressIndicator(
+                    ? SizedBox(
+                      height: 16.h,
+                      child: const AdaptiveCircularProgressIndicator(
+                        dimension: 16,
                         color: ColorManager.primaryColor,
                       ),
                     )
