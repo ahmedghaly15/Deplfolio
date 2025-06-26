@@ -18,47 +18,50 @@ class FlutterErrorDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        spacing: 16.h,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Flexible(
-            child: Lottie.asset(Assets.lottieShyLottie, fit: BoxFit.cover),
-          ),
-          ElasticIn(
-            child: Text(
-              AppStrings.defaultError,
-              style: context.shadTextTheme.h4,
-              textAlign: TextAlign.center,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          spacing: 16.h,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Lottie.asset(Assets.lottieShyLottie, fit: BoxFit.cover),
             ),
-          ),
-          ElasticIn(
-            child: Text(
-              AppStrings.dontWorry,
-              style: context.shadTextTheme.p,
-              textAlign: TextAlign.center,
+            ElasticIn(
+              child: Text(
+                AppStrings.defaultError,
+                style: context.shadTextTheme.h4,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-          ElasticIn(
-            child: PrimaryButton(
-              onPressed: () => context.pushReplacementNamed(Routes.layout),
-              leading: const Icon(LucideIcons.house),
-              text: AppStrings.goToHome,
+            ElasticIn(
+              child: Text(
+                AppStrings.dontWorry,
+                style: context.shadTextTheme.p,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-          ElasticIn(
-            child: PrimaryButton(
-              onPressed:
-                  () => context.showDialog(
-                    titleText: AppStrings.errorDetails,
-                    child: Text(details.toString()),
-                  ),
-              leading: const Icon(LucideIcons.bug),
-              text: AppStrings.showErrorDetails,
+            ElasticIn(
+              child: PrimaryButton(
+                onPressed: () => context.pushReplacementNamed(Routes.layout),
+                leading: const Icon(LucideIcons.house),
+                text: AppStrings.goToHome,
+              ),
             ),
-          ),
-        ],
+            ElasticIn(
+              child: PrimaryButton(
+                onPressed:
+                    () => context.showDialog(
+                      titleText: AppStrings.errorDetails,
+                      child: Text(details.toString()),
+                    ),
+                leading: const Icon(LucideIcons.bug),
+                text: AppStrings.showErrorDetails,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

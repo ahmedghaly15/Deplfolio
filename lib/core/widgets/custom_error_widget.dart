@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
+import 'package:lottie/lottie.dart';
 
-import '../theming/color_manager.dart';
 import '../utils/app_strings.dart';
+import '../utils/assets.dart';
 import 'primary_button.dart';
 
 class CustomErrorWidget extends StatelessWidget {
-  const CustomErrorWidget({super.key, required this.error, this.onPressed});
+  const CustomErrorWidget({super.key, required this.error, this.onRetry});
 
   final String error;
-  final VoidCallback? onPressed;
+  final VoidCallback? onRetry;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +23,15 @@ class CustomErrorWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: 32.h,
         children: [
-          Icon(Icons.error, size: 64.h, color: ColorManager.primaryColor),
+          Flexible(
+            child: Lottie.asset(Assets.lottieShyLottie, fit: BoxFit.cover),
+          ),
           Text(
             error,
             style: context.shadTextTheme.p,
             textAlign: TextAlign.center,
           ),
-          if (onPressed != null)
-            PrimaryButton(onPressed: onPressed, text: AppStrings.retry),
+          PrimaryButton(onPressed: onRetry, text: AppStrings.retry),
         ],
       ),
     );
