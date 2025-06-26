@@ -9,8 +9,7 @@ class AppStrings {
   static const String password = 'Password';
   static const String enterYourPassword = 'Please enter your password';
   static const String signIn = 'Sign In';
-  static const String defaultError =
-      'Something went wrong!. Please try again later.';
+  static const String defaultError = 'Oops! Something went wrong';
   static const String noInternetConnection =
       'No internet connection. Please check your internet connection and try again.';
   static const String introduction = 'Introduction';
@@ -18,7 +17,7 @@ class AppStrings {
   static const String myDescription = 'My description';
   static const String seeMyWorkUrl = 'See my work URL';
   static const String headerBigText = 'Header big text';
-  static const String tryAgain = 'Try Again';
+  static const String retry = 'Retry';
   static const String headerBigText1 = 'Header big text 1';
   static const String headerBigText2 = 'Header big text 2';
   static const String headerBigText3 = 'Header big text 3';
@@ -84,4 +83,9 @@ class AppStrings {
       'Congrats! Project is shown in about now.';
   static const String projectIsHiddenFromAbout =
       'Project is now hidden from about.';
+  static const String dontWorry =
+      'Don\'t worry, these things happen. Let\'s get you back on track!';
+  static const String showErrorDetails = 'Show Error Details';
+  static const String errorDetails = 'Error Details';
+  static const String goToHome = 'Go to Home';
 }

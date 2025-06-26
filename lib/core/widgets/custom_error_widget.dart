@@ -29,7 +29,7 @@ class CustomErrorWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           if (onPressed != null)
-            PrimaryButton(onPressed: onPressed, text: AppStrings.tryAgain),
+            PrimaryButton(onPressed: onPressed, text: AppStrings.retry),
         ],
       ),
     );
