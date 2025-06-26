@@ -4,11 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class PickFileNotifier extends StateNotifier<FilePickerResult?> {
   PickFileNotifier() : super(null);
 
-  Future<FilePickerResult?> pickFile(List<String> allowedExtensions) async {
-    final pickedFile = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: allowedExtensions,
-    );
+  Future<FilePickerResult?> pickFile() async {
+    final pickedFile = await FilePicker.platform.pickFiles(type: FileType.any);
     state = pickedFile;
     return pickedFile;
   }
