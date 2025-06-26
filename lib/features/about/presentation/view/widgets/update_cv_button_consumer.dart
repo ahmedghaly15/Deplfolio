@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../../../../core/enums/remote_repo_file_type.dart';
 import '../../../../../core/models/update_remote_repo_file_params.dart';
 import '../../../../code_editor/presentation/providers/update_remote_repo_file_provider.dart';
 import '../../../../../core/utils/app_strings.dart';
@@ -15,15 +16,18 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncUploadCvToRepo = ref.watch(updateRemoteRepoFileProvider);
+    final asyncUploadCvToRepo = ref.watch(
+      updateRemoteRepoFileProvider(RemoteRepoFileType.cv),
+    );
     _listener(ref, context);
     return PrimaryButton(
       onPressed:
           () => ref
-              .read(updateRemoteRepoFileProvider.notifier)
+              .read(
+                updateRemoteRepoFileProvider(RemoteRepoFileType.cv).notifier,
+              )
               .updateRemoteRepoFile(
                 const UpdateRemoteRepoFileParams(
-                  pickedFileAllowedExtensions: ['pdf'],
                   remoteFilePath: ConstStrings.remoteCVPath,
                 ),
               ),
@@ -35,7 +39,10 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
   }
 
   void _listener(WidgetRef ref, BuildContext context) {
-    ref.listen(updateRemoteRepoFileProvider, (_, current) {
+    ref.listen(updateRemoteRepoFileProvider(RemoteRepoFileType.cv), (
+      _,
+      current,
+    ) {
       current?.whenOrNull(
         error: (error, _) => context.showToast(error.toString()),
         data: (_) => context.showToast(AppStrings.cvUpdatedSuccessfully),
