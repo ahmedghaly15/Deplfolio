@@ -1,3 +1,4 @@
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class SkillsViewConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncSkills = ref.watch(fetchSkillsProvider);
+    _fetchSkillsProviderListener(ref, context);
     return asyncSkills.when(
       data:
           (skills) => AdaptiveRefreshIndicator(
@@ -23,7 +25,7 @@ class SkillsViewConsumer extends ConsumerWidget {
       error:
           (error, __) => CustomErrorWidget(
             error: error.toString(),
-            onPressed: () => ref.refresh(fetchSkillsProvider.future),
+            onRetry: () => ref.invalidate(fetchSkillsProvider),
           ),
       loading:
           () => const Center(
@@ -33,5 +35,13 @@ class SkillsViewConsumer extends ConsumerWidget {
             ),
           ),
     );
+  }
+
+  void _fetchSkillsProviderListener(WidgetRef ref, BuildContext context) {
+    ref.listen(fetchSkillsProvider, (_, current) {
+      current.whenOrNull(
+        error: (error, _) => context.showToast(error.toString()),
+      );
+    });
   }
 }

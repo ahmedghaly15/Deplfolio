@@ -1,3 +1,4 @@
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,7 +15,7 @@ class PortfolioViewConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncPortfolio = ref.watch(fetchPortfolioProvider);
-    _fetchPortfolioProviderListener(ref);
+    _fetchPortfolioProviderListener(ref, context);
     return asyncPortfolio.when(
       data:
           (projects) => AdaptiveRefreshIndicator(
@@ -23,7 +24,7 @@ class PortfolioViewConsumer extends ConsumerWidget {
           ),
       error:
           (error, _) => CustomErrorWidget(
-            onPressed: () => ref.refresh(fetchPortfolioProvider.future),
+            onRetry: () => ref.invalidate(fetchPortfolioProvider),
             error: error.toString(),
           ),
       loading:
@@ -36,12 +37,13 @@ class PortfolioViewConsumer extends ConsumerWidget {
     );
   }
 
-  void _fetchPortfolioProviderListener(WidgetRef ref) {
+  void _fetchPortfolioProviderListener(WidgetRef ref, BuildContext context) {
     ref.listen(fetchPortfolioProvider, (_, current) {
       current.whenOrNull(
         data:
             (projects) =>
                 ref.read(portfolioProjectsProvider.notifier).state = projects,
+        error: (error, _) => context.showToast(error.toString()),
       );
     });
   }

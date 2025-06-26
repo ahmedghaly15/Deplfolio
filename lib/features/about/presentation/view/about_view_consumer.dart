@@ -1,3 +1,4 @@
+import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +15,7 @@ class AboutViewConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncAbout = ref.watch(fetchAboutProvider);
+    _fetchAboutProviderListener(ref, context);
     return asyncAbout.when(
       data:
           (about) => AdaptiveRefreshIndicator(
@@ -23,7 +25,7 @@ class AboutViewConsumer extends ConsumerWidget {
       error:
           (error, _) => CustomErrorWidget(
             error: error.toString(),
-            onPressed: () => ref.refresh(fetchAboutProvider.future),
+            onRetry: () => ref.invalidate(fetchAboutProvider),
           ),
       loading:
           () => const Center(
@@ -33,5 +35,13 @@ class AboutViewConsumer extends ConsumerWidget {
             ),
           ),
     );
+  }
+
+  void _fetchAboutProviderListener(WidgetRef ref, BuildContext context) {
+    ref.listen(fetchAboutProvider, (_, current) {
+      current.whenOrNull(
+        error: (error, _) => context.showToast(error.toString()),
+      );
+    });
   }
 }
