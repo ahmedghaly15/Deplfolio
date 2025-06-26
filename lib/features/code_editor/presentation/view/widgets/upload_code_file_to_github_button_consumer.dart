@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
+import '../../../../../core/enums/remote_repo_file_type.dart';
 import '../../../../../core/models/update_remote_repo_file_params.dart';
 import '../../providers/check_for_github_file_existence_provider.dart';
 import '../../providers/update_remote_repo_file_provider.dart';
@@ -32,13 +34,14 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
   ) {
     ref.listen(checkForGithubFileExistenceProvider, (_, current) {
       current?.whenOrNull(
-        loading: () => context.showAlertDialog(isLoading: true),
-        data: (sha) {
-          context.pop;
-          _updateCodeFile(ref, sha);
-        },
+        loading:
+            () => context.showAlertDialog(
+              isLoading: true,
+              constraints: BoxConstraints(maxWidth: 80.w, maxHeight: 200.h),
+            ),
+        data: (sha) => _updateCodeFile(ref, sha),
         error: (error, _) {
-          context.pop;
+          context.popTop();
           context.showToast(error.toString());
         },
       );
@@ -49,20 +52,30 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
     WidgetRef ref,
     BuildContext context,
   ) {
-    ref.listen(updateRemoteRepoFileProvider, (_, current) {
+    ref.listen(updateRemoteRepoFileProvider(RemoteRepoFileType.codeFile), (
+      _,
+      current,
+    ) {
       current?.whenOrNull(
-        error: (error, _) => context.showToast(error.toString()),
-        data: (_) => context.showToast(AppStrings.codeUpdatedSuccessfully),
+        error: (error, _) {
+          context.popTop();
+          context.showToast(error.toString());
+        },
+        data: (_) {
+          context.popTop();
+          context.showToast(AppStrings.codeUpdatedSuccessfully);
+        },
       );
     });
   }
 
   void _updateCodeFile(WidgetRef ref, String? sha) {
     ref
-        .read(updateRemoteRepoFileProvider.notifier)
+        .read(
+          updateRemoteRepoFileProvider(RemoteRepoFileType.codeFile).notifier,
+        )
         .updateRemoteRepoFile(
           UpdateRemoteRepoFileParams(
-            pickedFileAllowedExtensions: ['dart'],
             remoteFilePath: ConstStrings.appAssetsRemoteRepoFilePath,
             commitMessage: 'Updated AppAssets via Deplfolio: Deploy 🚀',
             sha: sha,
