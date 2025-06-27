@@ -30,6 +30,9 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Accept Android SDK licenses
+        run: yes | sudo /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+
       - name: Install dependencies
         run: flutter pub get
 
