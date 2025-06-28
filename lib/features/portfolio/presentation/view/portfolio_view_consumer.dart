@@ -21,7 +21,7 @@ class PortfolioViewConsumer extends ConsumerWidget {
       skipLoadingOnRefresh: true,
       data:
           (projects) => AdaptiveRefreshIndicator(
-            onRefresh: () => ref.refresh(fetchPortfolioProvider.future),
+            onRefresh: () async => await ref.refresh(fetchPortfolioProvider),
             child: PortfolioView(projects: projects),
           ),
       error:

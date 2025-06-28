@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
@@ -21,11 +23,13 @@ class AboutRepo {
     final aboutDao = await ref.read(aboutDaoProvider.future);
     final cachedAbout = await aboutDao.fetchAbout();
     if (cachedAbout != null) {
+      log('FETCHED CACHED ABOUT FROM LOCAL DB');
       return SupabaseRequestResult.success(cachedAbout);
     } else {
       return supabaseExecuteAndHandleErrors(ref, () async {
         final about = await _remoteDataSource.fetchAbout();
         await aboutDao.insertAbout(about);
+        log('FETCHED ABOUT FROM REMOTE SOURCE AND SAVED TO LOCAL DB');
         return about;
       });
     }

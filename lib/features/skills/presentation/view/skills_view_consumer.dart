@@ -21,7 +21,7 @@ class SkillsViewConsumer extends ConsumerWidget {
       skipLoadingOnRefresh: true,
       data:
           (skills) => AdaptiveRefreshIndicator(
-            onRefresh: () => ref.refresh(fetchSkillsProvider.future),
+            onRefresh: () async => await ref.refresh(fetchSkillsProvider),
             child: SkillsView(skills: skills),
           ),
       error:
