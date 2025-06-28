@@ -4,8 +4,11 @@ import 'package:sqflite/sqflite.dart' as sqflite;
 import 'package:flutter_riverpod/flutter_riverpod.dart' show FutureProvider;
 
 import '../../features/about/data/data_source.dart/local_data_source/about_dao.dart';
-import '../../features/about/data/data_source.dart/local_data_source/dto_converters.dart';
+import '../../features/about/data/data_source.dart/local_data_source/about_type_converters.dart';
 import '../../features/about/data/models/about.dart' show About;
+import '../../features/skills/data/data_source/local_data_source/skills_dao.dart';
+import '../../features/skills/data/data_source/local_data_source/skills_type_converters.dart';
+import '../../features/skills/data/models/fetch_skills.dart' show FetchSkills;
 
 part 'app_database.g.dart';
 
@@ -16,13 +19,16 @@ final appDatabaseProvider = FutureProvider<AppDatabase>((ref) async {
   return database;
 });
 
-@Database(version: 1, entities: [About])
+@Database(version: 1, entities: [About, FetchSkills])
 @TypeConverters([
   AboutHeaderTextModelConverter,
   WorkExperienceModelListConverter,
   ApproachModelListConverter,
   ProjectListConverter,
+  SkillsListTypeConverter,
+  SkillHeaderTextModelConverter,
 ])
 abstract class AppDatabase extends FloorDatabase {
   AboutDao get aboutDao;
+  SkillsDao get skillsDao;
 }

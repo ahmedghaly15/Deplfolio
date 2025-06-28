@@ -74,6 +74,8 @@ class _$AppDatabase extends AppDatabase {
 
   AboutDao? _aboutDaoInstance;
 
+  SkillsDao? _skillsDaoInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -97,6 +99,8 @@ class _$AppDatabase extends AppDatabase {
       onCreate: (database, version) async {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `headerSmallText` TEXT NOT NULL, `description` TEXT NOT NULL, `seeMyWorkLink` TEXT NOT NULL, `headerBigText` TEXT NOT NULL, `projects` TEXT NOT NULL, `workExperience` TEXT NOT NULL, `approaches` TEXT NOT NULL)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `FetchSkills` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `headerSmallText` TEXT NOT NULL, `headerBigText` TEXT NOT NULL, `skills` TEXT NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -107,6 +111,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   AboutDao get aboutDao {
     return _aboutDaoInstance ??= _$AboutDao(database, changeListener);
+  }
+
+  @override
+  SkillsDao get skillsDao {
+    return _skillsDaoInstance ??= _$SkillsDao(database, changeListener);
   }
 }
 
@@ -168,8 +177,56 @@ class _$AboutDao extends AboutDao {
   }
 }
 
+class _$SkillsDao extends SkillsDao {
+  _$SkillsDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database),
+        _fetchSkillsInsertionAdapter = InsertionAdapter(
+            database,
+            'FetchSkills',
+            (FetchSkills item) => <String, Object?>{
+                  'id': item.id,
+                  'headerSmallText': item.headerSmallText,
+                  'headerBigText':
+                      _skillHeaderTextModelConverter.encode(item.headerBigText),
+                  'skills': _skillsListTypeConverter.encode(item.skills)
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<FetchSkills> _fetchSkillsInsertionAdapter;
+
+  @override
+  Future<FetchSkills?> fetchSkills() async {
+    return _queryAdapter.query('SELECT * FROM Skills',
+        mapper: (Map<String, Object?> row) => FetchSkills(
+            id: row['id'] as int?,
+            headerSmallText: row['headerSmallText'] as String,
+            headerBigText: _skillHeaderTextModelConverter
+                .decode(row['headerBigText'] as String),
+            skills: _skillsListTypeConverter.decode(row['skills'] as String)));
+  }
+
+  @override
+  Future<void> deleteAllSkills() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Skills');
+  }
+
+  @override
+  Future<void> insertSkills(FetchSkills skills) async {
+    await _fetchSkillsInsertionAdapter.insert(skills, OnConflictStrategy.abort);
+  }
+}
+
 // ignore_for_file: unused_element
 final _aboutHeaderTextModelConverter = AboutHeaderTextModelConverter();
 final _workExperienceModelListConverter = WorkExperienceModelListConverter();
 final _approachModelListConverter = ApproachModelListConverter();
 final _projectListConverter = ProjectListConverter();
+final _skillsListTypeConverter = SkillsListTypeConverter();
+final _skillHeaderTextModelConverter = SkillHeaderTextModelConverter();
