@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import '../../features/portfolio/data/data_source/local_data_source/project_entity.dart';
 import '../enums/experience_status.dart';
+import '../models/project.dart';
 import '../theming/color_manager.dart';
 import '../utils/assets.dart';
 import '../widgets/adaptive_circular_progress_indicator.dart';
@@ -150,5 +152,26 @@ extension ShowAlertDialog<T> on BuildContext {
                     : child,
           ),
     );
+  }
+}
+
+extension ProjectEntityMapper on ProjectEntity {
+  Project toProjectModel(ProjectEntity entity) {
+    return Project(
+      id: entity.id,
+      imgPath: entity.imgPath,
+      title: entity.title,
+      description: entity.description,
+      shownInAbout: entity.shownInAbout,
+      downloadLink: entity.downloadLink,
+      promoLink: entity.promoLink,
+      gitHubLink: entity.gitHubLink,
+    );
+  }
+}
+
+extension ProjectEntityListMapping on List<ProjectEntity> {
+  List<Project> toProjectModelList() {
+    return map((entity) => entity.toProjectModel(entity)).toList();
   }
 }
