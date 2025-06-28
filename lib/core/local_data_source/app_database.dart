@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:floor/floor.dart';
+import 'package:sqflite/sqflite.dart' as sqflite;
 import 'package:flutter_riverpod/flutter_riverpod.dart' show FutureProvider;
 
 import '../../features/about/data/data_source.dart/local_data_source/about_dao.dart';
@@ -7,9 +9,7 @@ import '../../features/about/data/models/about.dart' show About;
 
 part 'app_database.g.dart';
 
-final appDatabaseProvider = FutureProvider.autoDispose<AppDatabase>((
-  ref,
-) async {
+final appDatabaseProvider = FutureProvider<AppDatabase>((ref) async {
   final database =
       await $FloorAppDatabase.databaseBuilder('app_database.db').build();
   ref.onDispose(database.close);

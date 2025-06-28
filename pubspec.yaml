@@ -56,6 +56,7 @@ dependencies:
   # For saving files
   file_saver: ^0.2.14
   # For local database
+  sqflite: ^2.4.2
   floor: ^1.5.0
 
 dev_dependencies:
