@@ -8,4 +8,5 @@ global_options:
   json_serializable:
     runs_before:
       - retrofit_generator
+      - floor_generator
   

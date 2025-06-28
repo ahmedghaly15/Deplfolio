@@ -13,7 +13,7 @@ dependencies:
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   # A code generator for immutable classes
-  freezed_annotation: ^3.0.0
+  freezed_annotation: ^2.4.4
   # A code generator for JSON serialization
   json_annotation: ^4.9.0
   # Flutter integration for Supabase
@@ -55,6 +55,8 @@ dependencies:
   lottie: ^3.3.1
   # For saving files
   file_saver: ^0.2.14
+  # For local database
+  floor: ^1.5.0
 
 dev_dependencies:
   flutter_test:
@@ -63,17 +65,19 @@ dev_dependencies:
   # A build system for Dart code generation and modular compilation.
   build_runner: ^2.4.14
   # code generator for riverpod
-  riverpod_generator: ^2.6.5
+  riverpod_generator: ^2.6.0
   # Custom Lint rules are a powerful way to improve the maintainability of a project
-  custom_lint: ^0.7.5
+  custom_lint: ^0.7.0
   # A developer tool for users of Riverpod, designed to help stop common issues and simplify repetitive tasks.
-  riverpod_lint: ^2.6.5
+  riverpod_lint: ^2.6.1
   # A code generator for immutable classes
-  freezed: ^3.0.6
-  # A code generator for JSON serialization
-  json_serializable: ^6.9.5
+  freezed: ^2.5.7
+  # Automatically generate code for converting to and from JSON by annotating Dart classes.
+  json_serializable: ^6.9.0
   # Code generator for Retrofit
   retrofit_generator: ^9.2.0
+  # Automatically generates TypeAdapters to store any class.
+  floor_generator: ^1.5.0
 
 flutter:
   uses-material-design: true
