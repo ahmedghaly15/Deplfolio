@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import '../../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
@@ -40,6 +41,7 @@ class ConfirmDeleteApproachConsumerButton extends ConsumerWidget {
     ref.listen(deleteApproachProvider, (_, current) {
       current?.whenOrNull(
         data: (_) {
+          LocalDataRefresher.refreshAbout(ref);
           context.pop();
           context.showToast(AppStrings.approachDeletedSuccessfully);
         },

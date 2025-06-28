@@ -2,6 +2,7 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
@@ -33,7 +34,10 @@ class EditApproachConsumerButton extends ConsumerWidget {
   void _updateApproachProviderListener(WidgetRef ref, BuildContext context) {
     ref.listen(updateApproachProvider, (_, current) {
       current?.whenOrNull(
-        data: (_) => context.showToast(AppStrings.aboutDataUpdateSuccess),
+        data: (_) {
+          LocalDataRefresher.refreshAbout(ref);
+          context.showToast(AppStrings.aboutDataUpdateSuccess);
+        },
         error: (error, _) => context.showToast(error.toString()),
       );
     });
