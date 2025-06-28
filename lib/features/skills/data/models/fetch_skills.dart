@@ -1,14 +1,22 @@
+import 'package:floor/floor.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../data_source/local_data_source/skills_type_converters.dart';
 
 part 'fetch_skills.g.dart';
 
+@entity
+@TypeConverters([SkillsListTypeConverter, SkillHeaderTextModelConverter])
 @JsonSerializable(explicitToJson: true)
 class FetchSkills {
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
   final String headerSmallText;
   final SkillHeaderTextModel headerBigText;
   final List<SkillModel> skills;
 
   FetchSkills({
+    this.id,
     required this.headerSmallText,
     required this.headerBigText,
     required this.skills,

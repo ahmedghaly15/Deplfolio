@@ -7,6 +7,7 @@ part of 'fetch_skills.dart';
 // **************************************************************************
 
 FetchSkills _$FetchSkillsFromJson(Map<String, dynamic> json) => FetchSkills(
+      id: (json['id'] as num?)?.toInt(),
       headerSmallText: json['headerSmallText'] as String,
       headerBigText: SkillHeaderTextModel.fromJson(
           json['headerBigText'] as Map<String, dynamic>),
@@ -17,6 +18,7 @@ FetchSkills _$FetchSkillsFromJson(Map<String, dynamic> json) => FetchSkills(
 
 Map<String, dynamic> _$FetchSkillsToJson(FetchSkills instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'headerSmallText': instance.headerSmallText,
       'headerBigText': instance.headerBigText.toJson(),
       'skills': instance.skills.map((e) => e.toJson()).toList(),
