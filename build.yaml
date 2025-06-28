@@ -1,12 +1,16 @@
 global_options:
-  riverpod_generator:
+  floor_generator:
     runs_before:
-      - freezed
+      - riverpod_generator
   freezed:
     runs_before:
+      - floor_generator
+      - riverpod_generator
+      - retrofit_generator
       - json_serializable
   json_serializable:
     runs_before:
-      - retrofit_generator
       - floor_generator
+      - retrofit_generator
+
   

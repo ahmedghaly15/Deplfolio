@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 
 import '../../../../core/enums/experience_status.dart';
 import '../../../../core/models/project.dart';
-import '../data_source.dart/local_data_source/dto_converters.dart';
+import '../data_source.dart/local_data_source/about_type_converters.dart';
 
 part 'about.g.dart';
 part 'about.freezed.dart';
