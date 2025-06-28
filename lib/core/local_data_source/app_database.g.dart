@@ -76,6 +76,8 @@ class _$AppDatabase extends AppDatabase {
 
   SkillsDao? _skillsDaoInstance;
 
+  ProjectDao? _projectDaoInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -101,6 +103,8 @@ class _$AppDatabase extends AppDatabase {
             'CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `headerSmallText` TEXT NOT NULL, `description` TEXT NOT NULL, `seeMyWorkLink` TEXT NOT NULL, `headerBigText` TEXT NOT NULL, `projects` TEXT NOT NULL, `workExperience` TEXT NOT NULL, `approaches` TEXT NOT NULL)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `FetchSkills` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `headerSmallText` TEXT NOT NULL, `headerBigText` TEXT NOT NULL, `skills` TEXT NOT NULL)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `ProjectEntity` (`id` TEXT NOT NULL, `imgPath` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `shownInAbout` INTEGER NOT NULL, `downloadLink` TEXT, `promoLink` TEXT, `gitHubLink` TEXT, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -116,6 +120,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   SkillsDao get skillsDao {
     return _skillsDaoInstance ??= _$SkillsDao(database, changeListener);
+  }
+
+  @override
+  ProjectDao get projectDao {
+    return _projectDaoInstance ??= _$ProjectDao(database, changeListener);
   }
 }
 
@@ -223,6 +232,65 @@ class _$SkillsDao extends SkillsDao {
   }
 }
 
+class _$ProjectDao extends ProjectDao {
+  _$ProjectDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database),
+        _projectEntityInsertionAdapter = InsertionAdapter(
+            database,
+            'ProjectEntity',
+            (ProjectEntity item) => <String, Object?>{
+                  'id': item.id,
+                  'imgPath': item.imgPath,
+                  'title': item.title,
+                  'description': item.description,
+                  'shownInAbout': item.shownInAbout ? 1 : 0,
+                  'downloadLink': item.downloadLink,
+                  'promoLink': item.promoLink,
+                  'gitHubLink': item.gitHubLink
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<ProjectEntity> _projectEntityInsertionAdapter;
+
+  @override
+  Future<List<ProjectEntity>?> fetchProjects() async {
+    return _queryAdapter.queryList('SELECT * FROM Project',
+        mapper: (Map<String, Object?> row) => ProjectEntity(
+            id: row['id'] as String,
+            imgPath: row['imgPath'] as String,
+            title: row['title'] as String,
+            description: row['description'] as String,
+            shownInAbout: (row['shownInAbout'] as int) != 0,
+            downloadLink: row['downloadLink'] as String?,
+            promoLink: row['promoLink'] as String?,
+            gitHubLink: row['gitHubLink'] as String?));
+  }
+
+  @override
+  Future<void> deleteProjects() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Project');
+  }
+
+  @override
+  Future<void> insertProject(ProjectEntity project) async {
+    await _projectEntityInsertionAdapter.insert(
+        project, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> insertProjects(List<ProjectEntity> projects) async {
+    await _projectEntityInsertionAdapter.insertList(
+        projects, OnConflictStrategy.abort);
+  }
+}
+
 // ignore_for_file: unused_element
 final _aboutHeaderTextModelConverter = AboutHeaderTextModelConverter();
 final _workExperienceModelListConverter = WorkExperienceModelListConverter();
@@ -230,3 +298,4 @@ final _approachModelListConverter = ApproachModelListConverter();
 final _projectListConverter = ProjectListConverter();
 final _skillsListTypeConverter = SkillsListTypeConverter();
 final _skillHeaderTextModelConverter = SkillHeaderTextModelConverter();
+final _projectConverter = ProjectConverter();
