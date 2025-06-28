@@ -17,6 +17,8 @@ class SkillsViewConsumer extends ConsumerWidget {
     final asyncSkills = ref.watch(fetchSkillsProvider);
     _fetchSkillsProviderListener(ref, context);
     return asyncSkills.when(
+      skipError: true,
+      skipLoadingOnRefresh: true,
       data:
           (skills) => AdaptiveRefreshIndicator(
             onRefresh: () => ref.refresh(fetchSkillsProvider.future),

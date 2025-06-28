@@ -17,6 +17,8 @@ class AboutViewConsumer extends ConsumerWidget {
     final asyncAbout = ref.watch(fetchAboutProvider);
     _fetchAboutProviderListener(ref, context);
     return asyncAbout.when(
+      skipError: true,
+      skipLoadingOnRefresh: true,
       data:
           (about) => AdaptiveRefreshIndicator(
             onRefresh: () => ref.refresh(fetchAboutProvider.future),

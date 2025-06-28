@@ -17,6 +17,8 @@ class PortfolioViewConsumer extends ConsumerWidget {
     final asyncPortfolio = ref.watch(fetchPortfolioProvider);
     _fetchPortfolioProviderListener(ref, context);
     return asyncPortfolio.when(
+      skipError: true,
+      skipLoadingOnRefresh: true,
       data:
           (projects) => AdaptiveRefreshIndicator(
             onRefresh: () => ref.refresh(fetchPortfolioProvider.future),
