@@ -33,6 +33,11 @@ jobs:
       - name: Accept Android SDK licenses
         run: yes | sudo /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses
 
+      - name: Decode and setup keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/upload-keystore.jks
+          echo "${{ secrets.KEY_PROPERTIES }}" > android/key.properties
+
       - name: Install dependencies
         run: flutter pub get
 

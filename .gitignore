@@ -50,3 +50,7 @@ linux
 web
 .vscode
 .env
+
+keystore.jks.base64
+upload-keystore.jks
+key.properties
