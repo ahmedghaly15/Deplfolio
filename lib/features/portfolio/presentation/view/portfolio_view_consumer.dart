@@ -2,6 +2,7 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../core/theming/color_manager.dart';
 import '../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../core/widgets/adaptive_refresh_indicator.dart';
@@ -21,7 +22,9 @@ class PortfolioViewConsumer extends ConsumerWidget {
       skipLoadingOnRefresh: true,
       data:
           (projects) => AdaptiveRefreshIndicator(
-            onRefresh: () async => await ref.refresh(fetchPortfolioProvider),
+            onRefresh:
+                () async =>
+                    await LocalDataRefresher.refreshPortfolioProvider(ref),
             child: PortfolioView(projects: projects),
           ),
       error:

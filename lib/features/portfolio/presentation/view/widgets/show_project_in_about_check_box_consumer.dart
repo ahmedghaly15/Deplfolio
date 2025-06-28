@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show ShadCheckbox;
 
+import '../../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../../core/models/project.dart' show Project;
 import '../../../../../core/utils/app_strings.dart';
 import '../../providers/show_or_hide_project_from_about_provider.dart';
@@ -29,13 +30,19 @@ class ShowProjectInAboutCheckboxConsumer extends ConsumerWidget {
   ) {
     ref.listen(showOrHideProjectFromAboutProvider, (_, current) {
       current?.whenOrNull(
-        data: (_) => _onShowOrHideSuccess(ref, context),
+        data: (_) async {
+          _showToast(ref, context);
+          await Future.wait([
+            LocalDataRefresher.refreshAboutProvider(ref),
+            LocalDataRefresher.refreshPortfolioProvider(ref),
+          ]);
+        },
         error: (error, _) => context.showToast(error.toString()),
       );
     });
   }
 
-  void _onShowOrHideSuccess(WidgetRef ref, BuildContext context) {
+  void _showToast(WidgetRef ref, BuildContext context) {
     final shownInAbout = ref.read(
       toggleShowingProjectInAboutProvider(project.id),
     );
