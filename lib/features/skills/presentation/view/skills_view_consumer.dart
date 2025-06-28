@@ -2,6 +2,7 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../core/theming/color_manager.dart';
 import '../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../core/widgets/adaptive_refresh_indicator.dart';
@@ -21,7 +22,7 @@ class SkillsViewConsumer extends ConsumerWidget {
       skipLoadingOnRefresh: true,
       data:
           (skills) => AdaptiveRefreshIndicator(
-            onRefresh: () async => await ref.refresh(fetchSkillsProvider),
+            onRefresh: () async => await LocalDataRefresher.refreshSkills(ref),
             child: SkillsView(skills: skills),
           ),
       error:

@@ -2,6 +2,7 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
@@ -30,13 +31,14 @@ class DeleteSkillConfirmConsumerButton extends ConsumerWidget {
   void _deleteSkillProviderListener(WidgetRef ref, BuildContext context) {
     ref.listen(deleteSkillProvider, (_, current) {
       current?.whenOrNull(
-        data: (_) => _onSuccess(context),
+        data: (_) => _onSuccess(ref, context),
         error: (error, _) => context.showToast(error.toString()),
       );
     });
   }
 
-  void _onSuccess(BuildContext context) {
+  void _onSuccess(WidgetRef ref, BuildContext context) {
+    LocalDataRefresher.refreshSkills(ref);
     context.pop();
     context.showToast(AppStrings.skillDeletedSuccessfully);
   }
