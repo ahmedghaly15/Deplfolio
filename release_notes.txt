@@ -1,2 +1,2 @@
 New release notes:
-    - Handled local database migration for about feature
+    - Handled local database migration for portfolio feature
