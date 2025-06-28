@@ -12,15 +12,14 @@ IntroductionSection _$IntroductionSectionFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       seeMyWorkLink: json['seeMyWorkLink'] as String,
       headerBigText: AboutHeaderTextModel.fromJson(
-        json['headerBigText'] as Map<String, dynamic>,
-      ),
+          json['headerBigText'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$IntroductionSectionToJson(
-  IntroductionSection instance,
-) => <String, dynamic>{
-  'headerSmallText': instance.headerSmallText,
-  'description': instance.description,
-  'seeMyWorkLink': instance.seeMyWorkLink,
-  'headerBigText': instance.headerBigText.toJson(),
-};
+        IntroductionSection instance) =>
+    <String, dynamic>{
+      'headerSmallText': instance.headerSmallText,
+      'description': instance.description,
+      'seeMyWorkLink': instance.seeMyWorkLink,
+      'headerBigText': instance.headerBigText.toJson(),
+    };

@@ -12,15 +12,13 @@ String _$uploadImgHash() => r'da60e64b4ea5c8ab5a5ced73d696f33fea504f00';
 @ProviderFor(UploadImg)
 final uploadImgProvider =
     AutoDisposeNotifierProvider<UploadImg, AsyncValue<String>>.internal(
-      UploadImg.new,
-      name: r'uploadImgProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$uploadImgHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  UploadImg.new,
+  name: r'uploadImgProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$uploadImgHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$UploadImg = AutoDisposeNotifier<AsyncValue<String>>;
 // ignore_for_file: type=lint

@@ -12,15 +12,14 @@ String _$deleteApproachHash() => r'8403932d20f5a742b990b1892ee36906b3c51f34';
 @ProviderFor(DeleteApproach)
 final deleteApproachProvider =
     AutoDisposeNotifierProvider<DeleteApproach, AsyncValue<void>?>.internal(
-      DeleteApproach.new,
-      name: r'deleteApproachProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$deleteApproachHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  DeleteApproach.new,
+  name: r'deleteApproachProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$deleteApproachHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$DeleteApproach = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint

@@ -7,15 +7,13 @@ part of 'fetch_skills.dart';
 // **************************************************************************
 
 FetchSkills _$FetchSkillsFromJson(Map<String, dynamic> json) => FetchSkills(
-  headerSmallText: json['headerSmallText'] as String,
-  headerBigText: SkillHeaderTextModel.fromJson(
-    json['headerBigText'] as Map<String, dynamic>,
-  ),
-  skills:
-      (json['skills'] as List<dynamic>)
+      headerSmallText: json['headerSmallText'] as String,
+      headerBigText: SkillHeaderTextModel.fromJson(
+          json['headerBigText'] as Map<String, dynamic>),
+      skills: (json['skills'] as List<dynamic>)
           .map((e) => SkillModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-);
+    );
 
 Map<String, dynamic> _$FetchSkillsToJson(FetchSkills instance) =>
     <String, dynamic>{
@@ -25,10 +23,10 @@ Map<String, dynamic> _$FetchSkillsToJson(FetchSkills instance) =>
     };
 
 SkillModel _$SkillModelFromJson(Map<String, dynamic> json) => SkillModel(
-  id: json['id'] as String,
-  name: json['name'] as String,
-  percent: (json['percentage'] as num).toDouble(),
-);
+      id: json['id'] as String,
+      name: json['name'] as String,
+      percent: (json['percentage'] as num).toDouble(),
+    );
 
 Map<String, dynamic> _$SkillModelToJson(SkillModel instance) =>
     <String, dynamic>{
@@ -38,17 +36,17 @@ Map<String, dynamic> _$SkillModelToJson(SkillModel instance) =>
     };
 
 SkillHeaderTextModel _$SkillHeaderTextModelFromJson(
-  Map<String, dynamic> json,
-) => SkillHeaderTextModel(
-  text1: json['text1'] as String,
-  colorfulString: json['colorfulString'] as String,
-  text3: json['text3'] as String,
-);
+        Map<String, dynamic> json) =>
+    SkillHeaderTextModel(
+      text1: json['text1'] as String,
+      colorfulString: json['colorfulString'] as String,
+      text3: json['text3'] as String,
+    );
 
 Map<String, dynamic> _$SkillHeaderTextModelToJson(
-  SkillHeaderTextModel instance,
-) => <String, dynamic>{
-  'text1': instance.text1,
-  'colorfulString': instance.colorfulString,
-  'text3': instance.text3,
-};
+        SkillHeaderTextModel instance) =>
+    <String, dynamic>{
+      'text1': instance.text1,
+      'colorfulString': instance.colorfulString,
+      'text3': instance.text3,
+    };

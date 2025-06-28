@@ -12,15 +12,14 @@ String _$uploadImgToGithubHash() => r'131f00eeb4161f7cdd509f4ab7d975da35c46660';
 @ProviderFor(UploadImgToGithub)
 final uploadImgToGithubProvider =
     AutoDisposeNotifierProvider<UploadImgToGithub, AsyncValue<void>?>.internal(
-      UploadImgToGithub.new,
-      name: r'uploadImgToGithubProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$uploadImgToGithubHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  UploadImgToGithub.new,
+  name: r'uploadImgToGithubProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$uploadImgToGithubHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$UploadImgToGithub = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint

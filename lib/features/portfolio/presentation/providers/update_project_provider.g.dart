@@ -13,35 +13,33 @@ String _$updateProjectFormKeyHash() =>
 @ProviderFor(updateProjectFormKey)
 final updateProjectFormKeyProvider =
     AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
-      updateProjectFormKey,
-      name: r'updateProjectFormKeyProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateProjectFormKeyHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  updateProjectFormKey,
+  name: r'updateProjectFormKeyProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateProjectFormKeyHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef UpdateProjectFormKeyRef =
-    AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
+typedef UpdateProjectFormKeyRef
+    = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$updateProjectHash() => r'f1d02fd35612fb01f38fde7fec8f73a6fdebaa9a';
 
 /// See also [UpdateProject].
 @ProviderFor(UpdateProject)
 final updateProjectProvider =
     AutoDisposeNotifierProvider<UpdateProject, AsyncValue<void>?>.internal(
-      UpdateProject.new,
-      name: r'updateProjectProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateProjectHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  UpdateProject.new,
+  name: r'updateProjectProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateProjectHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$UpdateProject = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint

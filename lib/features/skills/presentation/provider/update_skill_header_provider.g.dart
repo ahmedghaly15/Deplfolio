@@ -13,35 +13,33 @@ String _$updateSkillHeaderFormKeyHash() =>
 @ProviderFor(updateSkillHeaderFormKey)
 final updateSkillHeaderFormKeyProvider =
     AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
-      updateSkillHeaderFormKey,
-      name: r'updateSkillHeaderFormKeyProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateSkillHeaderFormKeyHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  updateSkillHeaderFormKey,
+  name: r'updateSkillHeaderFormKeyProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateSkillHeaderFormKeyHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef UpdateSkillHeaderFormKeyRef =
-    AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
+typedef UpdateSkillHeaderFormKeyRef
+    = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$updateSkillHeaderHash() => r'ebf7489f3a28f0cb323db960a5f133833cffb281';
 
 /// See also [UpdateSkillHeader].
 @ProviderFor(UpdateSkillHeader)
 final updateSkillHeaderProvider =
     AutoDisposeNotifierProvider<UpdateSkillHeader, AsyncValue<void>?>.internal(
-      UpdateSkillHeader.new,
-      name: r'updateSkillHeaderProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateSkillHeaderHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  UpdateSkillHeader.new,
+  name: r'updateSkillHeaderProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateSkillHeaderHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$UpdateSkillHeader = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint

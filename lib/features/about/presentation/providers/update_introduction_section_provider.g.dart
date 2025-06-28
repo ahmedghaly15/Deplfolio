@@ -12,15 +12,12 @@ String _$updateIntroductionSectionHash() =>
 /// See also [UpdateIntroductionSection].
 @ProviderFor(UpdateIntroductionSection)
 final updateIntroductionSectionProvider = AutoDisposeNotifierProvider<
-  UpdateIntroductionSection,
-  AsyncValue<void>?
->.internal(
+    UpdateIntroductionSection, AsyncValue<void>?>.internal(
   UpdateIntroductionSection.new,
   name: r'updateIntroductionSectionProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$updateIntroductionSectionHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateIntroductionSectionHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

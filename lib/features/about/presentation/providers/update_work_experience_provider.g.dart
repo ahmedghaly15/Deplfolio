@@ -13,35 +13,31 @@ String _$editWorkExperienceFormKeyHash() =>
 @ProviderFor(editWorkExperienceFormKey)
 final editWorkExperienceFormKeyProvider =
     AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
-      editWorkExperienceFormKey,
-      name: r'editWorkExperienceFormKeyProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$editWorkExperienceFormKeyHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  editWorkExperienceFormKey,
+  name: r'editWorkExperienceFormKeyProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$editWorkExperienceFormKeyHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef EditWorkExperienceFormKeyRef =
-    AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
+typedef EditWorkExperienceFormKeyRef
+    = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$updateWorkExperienceHash() =>
     r'6f05b0125d91b08a8b4d7c6b1acdda6708157b19';
 
 /// See also [UpdateWorkExperience].
 @ProviderFor(UpdateWorkExperience)
 final updateWorkExperienceProvider = AutoDisposeNotifierProvider<
-  UpdateWorkExperience,
-  AsyncValue<void>?
->.internal(
+    UpdateWorkExperience, AsyncValue<void>?>.internal(
   UpdateWorkExperience.new,
   name: r'updateWorkExperienceProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$updateWorkExperienceHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateWorkExperienceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

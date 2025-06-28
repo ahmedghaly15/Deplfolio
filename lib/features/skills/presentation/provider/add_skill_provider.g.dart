@@ -12,15 +12,14 @@ String _$addSkillFormKeyHash() => r'057178e5c2c5a9066da4b3a9b3412d7d0b50c8c5';
 @ProviderFor(addSkillFormKey)
 final addSkillFormKeyProvider =
     AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
-      addSkillFormKey,
-      name: r'addSkillFormKeyProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$addSkillFormKeyHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  addSkillFormKey,
+  name: r'addSkillFormKeyProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$addSkillFormKeyHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
@@ -31,13 +30,13 @@ String _$addSkillHash() => r'19bc547a81676e9ad1025389efda8710e6bc44a8';
 @ProviderFor(AddSkill)
 final addSkillProvider =
     AutoDisposeNotifierProvider<AddSkill, AsyncValue<void>?>.internal(
-      AddSkill.new,
-      name: r'addSkillProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product') ? null : _$addSkillHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  AddSkill.new,
+  name: r'addSkillProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$addSkillHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$AddSkill = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint

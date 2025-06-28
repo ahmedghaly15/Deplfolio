@@ -12,15 +12,12 @@ String _$readPickedCodeFileHash() =>
 /// See also [ReadPickedCodeFile].
 @ProviderFor(ReadPickedCodeFile)
 final readPickedCodeFileProvider = AutoDisposeNotifierProvider<
-  ReadPickedCodeFile,
-  AsyncValue<String?>?
->.internal(
+    ReadPickedCodeFile, AsyncValue<String?>?>.internal(
   ReadPickedCodeFile.new,
   name: r'readPickedCodeFileProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$readPickedCodeFileHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$readPickedCodeFileHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

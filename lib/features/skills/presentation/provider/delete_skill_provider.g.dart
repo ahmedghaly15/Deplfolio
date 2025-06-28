@@ -12,15 +12,13 @@ String _$deleteSkillHash() => r'bf5dd8461a5e82f09f7af1d967f31dd8aae18ff9';
 @ProviderFor(DeleteSkill)
 final deleteSkillProvider =
     AutoDisposeNotifierProvider<DeleteSkill, AsyncValue<void>?>.internal(
-      DeleteSkill.new,
-      name: r'deleteSkillProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$deleteSkillHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  DeleteSkill.new,
+  name: r'deleteSkillProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$deleteSkillHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$DeleteSkill = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint

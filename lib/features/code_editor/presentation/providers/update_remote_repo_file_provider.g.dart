@@ -34,7 +34,9 @@ abstract class _$UpdateRemoteRepoFile
     extends BuildlessAutoDisposeNotifier<AsyncValue<void>?> {
   late final RemoteRepoFileType fileType;
 
-  AsyncValue<void>? build(RemoteRepoFileType fileType);
+  AsyncValue<void>? build(
+    RemoteRepoFileType fileType,
+  );
 }
 
 /// See also [UpdateRemoteRepoFile].
@@ -47,15 +49,21 @@ class UpdateRemoteRepoFileFamily extends Family<AsyncValue<void>?> {
   const UpdateRemoteRepoFileFamily();
 
   /// See also [UpdateRemoteRepoFile].
-  UpdateRemoteRepoFileProvider call(RemoteRepoFileType fileType) {
-    return UpdateRemoteRepoFileProvider(fileType);
+  UpdateRemoteRepoFileProvider call(
+    RemoteRepoFileType fileType,
+  ) {
+    return UpdateRemoteRepoFileProvider(
+      fileType,
+    );
   }
 
   @override
   UpdateRemoteRepoFileProvider getProviderOverride(
     covariant UpdateRemoteRepoFileProvider provider,
   ) {
-    return call(provider.fileType);
+    return call(
+      provider.fileType,
+    );
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -74,27 +82,24 @@ class UpdateRemoteRepoFileFamily extends Family<AsyncValue<void>?> {
 }
 
 /// See also [UpdateRemoteRepoFile].
-class UpdateRemoteRepoFileProvider
-    extends
-        AutoDisposeNotifierProviderImpl<
-          UpdateRemoteRepoFile,
-          AsyncValue<void>?
-        > {
+class UpdateRemoteRepoFileProvider extends AutoDisposeNotifierProviderImpl<
+    UpdateRemoteRepoFile, AsyncValue<void>?> {
   /// See also [UpdateRemoteRepoFile].
-  UpdateRemoteRepoFileProvider(RemoteRepoFileType fileType)
-    : this._internal(
-        () => UpdateRemoteRepoFile()..fileType = fileType,
-        from: updateRemoteRepoFileProvider,
-        name: r'updateRemoteRepoFileProvider',
-        debugGetCreateSourceHash:
-            const bool.fromEnvironment('dart.vm.product')
-                ? null
-                : _$updateRemoteRepoFileHash,
-        dependencies: UpdateRemoteRepoFileFamily._dependencies,
-        allTransitiveDependencies:
-            UpdateRemoteRepoFileFamily._allTransitiveDependencies,
-        fileType: fileType,
-      );
+  UpdateRemoteRepoFileProvider(
+    RemoteRepoFileType fileType,
+  ) : this._internal(
+          () => UpdateRemoteRepoFile()..fileType = fileType,
+          from: updateRemoteRepoFileProvider,
+          name: r'updateRemoteRepoFileProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$updateRemoteRepoFileHash,
+          dependencies: UpdateRemoteRepoFileFamily._dependencies,
+          allTransitiveDependencies:
+              UpdateRemoteRepoFileFamily._allTransitiveDependencies,
+          fileType: fileType,
+        );
 
   UpdateRemoteRepoFileProvider._internal(
     super._createNotifier, {
@@ -109,8 +114,12 @@ class UpdateRemoteRepoFileProvider
   final RemoteRepoFileType fileType;
 
   @override
-  AsyncValue<void>? runNotifierBuild(covariant UpdateRemoteRepoFile notifier) {
-    return notifier.build(fileType);
+  AsyncValue<void>? runNotifierBuild(
+    covariant UpdateRemoteRepoFile notifier,
+  ) {
+    return notifier.build(
+      fileType,
+    );
   }
 
   @override
@@ -131,7 +140,7 @@ class UpdateRemoteRepoFileProvider
 
   @override
   AutoDisposeNotifierProviderElement<UpdateRemoteRepoFile, AsyncValue<void>?>
-  createElement() {
+      createElement() {
     return _UpdateRemoteRepoFileProviderElement(this);
   }
 
@@ -158,18 +167,13 @@ mixin UpdateRemoteRepoFileRef
 }
 
 class _UpdateRemoteRepoFileProviderElement
-    extends
-        AutoDisposeNotifierProviderElement<
-          UpdateRemoteRepoFile,
-          AsyncValue<void>?
-        >
-    with UpdateRemoteRepoFileRef {
+    extends AutoDisposeNotifierProviderElement<UpdateRemoteRepoFile,
+        AsyncValue<void>?> with UpdateRemoteRepoFileRef {
   _UpdateRemoteRepoFileProviderElement(super.provider);
 
   @override
   RemoteRepoFileType get fileType =>
       (origin as UpdateRemoteRepoFileProvider).fileType;
 }
-
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

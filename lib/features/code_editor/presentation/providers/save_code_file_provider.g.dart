@@ -12,15 +12,13 @@ String _$saveCodeFileHash() => r'8d274993805557e69986e0a9323b894fcf66be9f';
 @ProviderFor(SaveCodeFile)
 final saveCodeFileProvider =
     AutoDisposeNotifierProvider<SaveCodeFile, AsyncValue<String>?>.internal(
-      SaveCodeFile.new,
-      name: r'saveCodeFileProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$saveCodeFileHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  SaveCodeFile.new,
+  name: r'saveCodeFileProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$saveCodeFileHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$SaveCodeFile = AutoDisposeNotifier<AsyncValue<String>?>;
 // ignore_for_file: type=lint

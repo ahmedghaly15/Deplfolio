@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,142 +9,210 @@ part of 'update_remote_repo_file_params.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
 /// @nodoc
 mixin _$UpdateRemoteRepoFileParams {
+  String get remoteFilePath => throw _privateConstructorUsedError;
+  FilePickerResult? get pickedFile => throw _privateConstructorUsedError;
+  String? get commitMessage => throw _privateConstructorUsedError;
+  String? get sha => throw _privateConstructorUsedError;
 
- String get remoteFilePath; FilePickerResult? get pickedFile; String? get commitMessage; String? get sha;
-/// Create a copy of UpdateRemoteRepoFileParams
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$UpdateRemoteRepoFileParamsCopyWith<UpdateRemoteRepoFileParams> get copyWith => _$UpdateRemoteRepoFileParamsCopyWithImpl<UpdateRemoteRepoFileParams>(this as UpdateRemoteRepoFileParams, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateRemoteRepoFileParams&&(identical(other.remoteFilePath, remoteFilePath) || other.remoteFilePath == remoteFilePath)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.commitMessage, commitMessage) || other.commitMessage == commitMessage)&&(identical(other.sha, sha) || other.sha == sha));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,remoteFilePath,pickedFile,commitMessage,sha);
-
-@override
-String toString() {
-  return 'UpdateRemoteRepoFileParams(remoteFilePath: $remoteFilePath, pickedFile: $pickedFile, commitMessage: $commitMessage, sha: $sha)';
-}
-
-
+  /// Create a copy of UpdateRemoteRepoFileParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UpdateRemoteRepoFileParamsCopyWith<UpdateRemoteRepoFileParams>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $UpdateRemoteRepoFileParamsCopyWith<$Res>  {
-  factory $UpdateRemoteRepoFileParamsCopyWith(UpdateRemoteRepoFileParams value, $Res Function(UpdateRemoteRepoFileParams) _then) = _$UpdateRemoteRepoFileParamsCopyWithImpl;
-@useResult
-$Res call({
- String remoteFilePath, FilePickerResult? pickedFile, String? commitMessage, String? sha
-});
-
-
-
-
+abstract class $UpdateRemoteRepoFileParamsCopyWith<$Res> {
+  factory $UpdateRemoteRepoFileParamsCopyWith(UpdateRemoteRepoFileParams value,
+          $Res Function(UpdateRemoteRepoFileParams) then) =
+      _$UpdateRemoteRepoFileParamsCopyWithImpl<$Res,
+          UpdateRemoteRepoFileParams>;
+  @useResult
+  $Res call(
+      {String remoteFilePath,
+      FilePickerResult? pickedFile,
+      String? commitMessage,
+      String? sha});
 }
+
 /// @nodoc
-class _$UpdateRemoteRepoFileParamsCopyWithImpl<$Res>
+class _$UpdateRemoteRepoFileParamsCopyWithImpl<$Res,
+        $Val extends UpdateRemoteRepoFileParams>
     implements $UpdateRemoteRepoFileParamsCopyWith<$Res> {
-  _$UpdateRemoteRepoFileParamsCopyWithImpl(this._self, this._then);
+  _$UpdateRemoteRepoFileParamsCopyWithImpl(this._value, this._then);
 
-  final UpdateRemoteRepoFileParams _self;
-  final $Res Function(UpdateRemoteRepoFileParams) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of UpdateRemoteRepoFileParams
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? remoteFilePath = null,Object? pickedFile = freezed,Object? commitMessage = freezed,Object? sha = freezed,}) {
-  return _then(_self.copyWith(
-remoteFilePath: null == remoteFilePath ? _self.remoteFilePath : remoteFilePath // ignore: cast_nullable_to_non_nullable
-as String,pickedFile: freezed == pickedFile ? _self.pickedFile : pickedFile // ignore: cast_nullable_to_non_nullable
-as FilePickerResult?,commitMessage: freezed == commitMessage ? _self.commitMessage : commitMessage // ignore: cast_nullable_to_non_nullable
-as String?,sha: freezed == sha ? _self.sha : sha // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-}
-
-
-/// @nodoc
-
-
-class _UpdateRemoteRepoFileParams implements UpdateRemoteRepoFileParams {
-  const _UpdateRemoteRepoFileParams({required this.remoteFilePath, this.pickedFile, this.commitMessage, this.sha});
-  
-
-@override final  String remoteFilePath;
-@override final  FilePickerResult? pickedFile;
-@override final  String? commitMessage;
-@override final  String? sha;
-
-/// Create a copy of UpdateRemoteRepoFileParams
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$UpdateRemoteRepoFileParamsCopyWith<_UpdateRemoteRepoFileParams> get copyWith => __$UpdateRemoteRepoFileParamsCopyWithImpl<_UpdateRemoteRepoFileParams>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateRemoteRepoFileParams&&(identical(other.remoteFilePath, remoteFilePath) || other.remoteFilePath == remoteFilePath)&&(identical(other.pickedFile, pickedFile) || other.pickedFile == pickedFile)&&(identical(other.commitMessage, commitMessage) || other.commitMessage == commitMessage)&&(identical(other.sha, sha) || other.sha == sha));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,remoteFilePath,pickedFile,commitMessage,sha);
-
-@override
-String toString() {
-  return 'UpdateRemoteRepoFileParams(remoteFilePath: $remoteFilePath, pickedFile: $pickedFile, commitMessage: $commitMessage, sha: $sha)';
-}
-
-
+  /// Create a copy of UpdateRemoteRepoFileParams
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? remoteFilePath = null,
+    Object? pickedFile = freezed,
+    Object? commitMessage = freezed,
+    Object? sha = freezed,
+  }) {
+    return _then(_value.copyWith(
+      remoteFilePath: null == remoteFilePath
+          ? _value.remoteFilePath
+          : remoteFilePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      pickedFile: freezed == pickedFile
+          ? _value.pickedFile
+          : pickedFile // ignore: cast_nullable_to_non_nullable
+              as FilePickerResult?,
+      commitMessage: freezed == commitMessage
+          ? _value.commitMessage
+          : commitMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sha: freezed == sha
+          ? _value.sha
+          : sha // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract mixin class _$UpdateRemoteRepoFileParamsCopyWith<$Res> implements $UpdateRemoteRepoFileParamsCopyWith<$Res> {
-  factory _$UpdateRemoteRepoFileParamsCopyWith(_UpdateRemoteRepoFileParams value, $Res Function(_UpdateRemoteRepoFileParams) _then) = __$UpdateRemoteRepoFileParamsCopyWithImpl;
-@override @useResult
-$Res call({
- String remoteFilePath, FilePickerResult? pickedFile, String? commitMessage, String? sha
-});
-
-
-
-
+abstract class _$$UpdateRemoteRepoFileParamsImplCopyWith<$Res>
+    implements $UpdateRemoteRepoFileParamsCopyWith<$Res> {
+  factory _$$UpdateRemoteRepoFileParamsImplCopyWith(
+          _$UpdateRemoteRepoFileParamsImpl value,
+          $Res Function(_$UpdateRemoteRepoFileParamsImpl) then) =
+      __$$UpdateRemoteRepoFileParamsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String remoteFilePath,
+      FilePickerResult? pickedFile,
+      String? commitMessage,
+      String? sha});
 }
+
 /// @nodoc
-class __$UpdateRemoteRepoFileParamsCopyWithImpl<$Res>
-    implements _$UpdateRemoteRepoFileParamsCopyWith<$Res> {
-  __$UpdateRemoteRepoFileParamsCopyWithImpl(this._self, this._then);
+class __$$UpdateRemoteRepoFileParamsImplCopyWithImpl<$Res>
+    extends _$UpdateRemoteRepoFileParamsCopyWithImpl<$Res,
+        _$UpdateRemoteRepoFileParamsImpl>
+    implements _$$UpdateRemoteRepoFileParamsImplCopyWith<$Res> {
+  __$$UpdateRemoteRepoFileParamsImplCopyWithImpl(
+      _$UpdateRemoteRepoFileParamsImpl _value,
+      $Res Function(_$UpdateRemoteRepoFileParamsImpl) _then)
+      : super(_value, _then);
 
-  final _UpdateRemoteRepoFileParams _self;
-  final $Res Function(_UpdateRemoteRepoFileParams) _then;
-
-/// Create a copy of UpdateRemoteRepoFileParams
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? remoteFilePath = null,Object? pickedFile = freezed,Object? commitMessage = freezed,Object? sha = freezed,}) {
-  return _then(_UpdateRemoteRepoFileParams(
-remoteFilePath: null == remoteFilePath ? _self.remoteFilePath : remoteFilePath // ignore: cast_nullable_to_non_nullable
-as String,pickedFile: freezed == pickedFile ? _self.pickedFile : pickedFile // ignore: cast_nullable_to_non_nullable
-as FilePickerResult?,commitMessage: freezed == commitMessage ? _self.commitMessage : commitMessage // ignore: cast_nullable_to_non_nullable
-as String?,sha: freezed == sha ? _self.sha : sha // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
+  /// Create a copy of UpdateRemoteRepoFileParams
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? remoteFilePath = null,
+    Object? pickedFile = freezed,
+    Object? commitMessage = freezed,
+    Object? sha = freezed,
+  }) {
+    return _then(_$UpdateRemoteRepoFileParamsImpl(
+      remoteFilePath: null == remoteFilePath
+          ? _value.remoteFilePath
+          : remoteFilePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      pickedFile: freezed == pickedFile
+          ? _value.pickedFile
+          : pickedFile // ignore: cast_nullable_to_non_nullable
+              as FilePickerResult?,
+      commitMessage: freezed == commitMessage
+          ? _value.commitMessage
+          : commitMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sha: freezed == sha
+          ? _value.sha
+          : sha // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
+/// @nodoc
 
+class _$UpdateRemoteRepoFileParamsImpl implements _UpdateRemoteRepoFileParams {
+  const _$UpdateRemoteRepoFileParamsImpl(
+      {required this.remoteFilePath,
+      this.pickedFile,
+      this.commitMessage,
+      this.sha});
+
+  @override
+  final String remoteFilePath;
+  @override
+  final FilePickerResult? pickedFile;
+  @override
+  final String? commitMessage;
+  @override
+  final String? sha;
+
+  @override
+  String toString() {
+    return 'UpdateRemoteRepoFileParams(remoteFilePath: $remoteFilePath, pickedFile: $pickedFile, commitMessage: $commitMessage, sha: $sha)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateRemoteRepoFileParamsImpl &&
+            (identical(other.remoteFilePath, remoteFilePath) ||
+                other.remoteFilePath == remoteFilePath) &&
+            (identical(other.pickedFile, pickedFile) ||
+                other.pickedFile == pickedFile) &&
+            (identical(other.commitMessage, commitMessage) ||
+                other.commitMessage == commitMessage) &&
+            (identical(other.sha, sha) || other.sha == sha));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, remoteFilePath, pickedFile, commitMessage, sha);
+
+  /// Create a copy of UpdateRemoteRepoFileParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateRemoteRepoFileParamsImplCopyWith<_$UpdateRemoteRepoFileParamsImpl>
+      get copyWith => __$$UpdateRemoteRepoFileParamsImplCopyWithImpl<
+          _$UpdateRemoteRepoFileParamsImpl>(this, _$identity);
 }
 
-// dart format on
+abstract class _UpdateRemoteRepoFileParams
+    implements UpdateRemoteRepoFileParams {
+  const factory _UpdateRemoteRepoFileParams(
+      {required final String remoteFilePath,
+      final FilePickerResult? pickedFile,
+      final String? commitMessage,
+      final String? sha}) = _$UpdateRemoteRepoFileParamsImpl;
+
+  @override
+  String get remoteFilePath;
+  @override
+  FilePickerResult? get pickedFile;
+  @override
+  String? get commitMessage;
+  @override
+  String? get sha;
+
+  /// Create a copy of UpdateRemoteRepoFileParams
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateRemoteRepoFileParamsImplCopyWith<_$UpdateRemoteRepoFileParamsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

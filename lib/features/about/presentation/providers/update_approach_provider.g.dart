@@ -13,35 +13,33 @@ String _$updateApproachFormKeyHash() =>
 @ProviderFor(updateApproachFormKey)
 final updateApproachFormKeyProvider =
     AutoDisposeProvider<GlobalKey<ShadFormState>>.internal(
-      updateApproachFormKey,
-      name: r'updateApproachFormKeyProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateApproachFormKeyHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  updateApproachFormKey,
+  name: r'updateApproachFormKeyProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateApproachFormKeyHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef UpdateApproachFormKeyRef =
-    AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
+typedef UpdateApproachFormKeyRef
+    = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
 String _$updateApproachHash() => r'ea9874521559cae89153539b5faef2aece7a0fc4';
 
 /// See also [UpdateApproach].
 @ProviderFor(UpdateApproach)
 final updateApproachProvider =
     AutoDisposeNotifierProvider<UpdateApproach, AsyncValue<void>?>.internal(
-      UpdateApproach.new,
-      name: r'updateApproachProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateApproachHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  UpdateApproach.new,
+  name: r'updateApproachProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateApproachHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$UpdateApproach = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint

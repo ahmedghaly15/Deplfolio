@@ -12,15 +12,14 @@ String _$updateProjectImgHash() => r'da89951b30358fd38153669613ac29a9cf4e6cbd';
 @ProviderFor(UpdateProjectImg)
 final updateProjectImgProvider =
     AutoDisposeNotifierProvider<UpdateProjectImg, AsyncValue<String>>.internal(
-      UpdateProjectImg.new,
-      name: r'updateProjectImgProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateProjectImgHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  UpdateProjectImg.new,
+  name: r'updateProjectImgProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateProjectImgHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$UpdateProjectImg = AutoDisposeNotifier<AsyncValue<String>>;
 // ignore_for_file: type=lint

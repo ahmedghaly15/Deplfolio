@@ -12,15 +12,12 @@ String _$showOrHideProjectFromAboutHash() =>
 /// See also [ShowOrHideProjectFromAbout].
 @ProviderFor(ShowOrHideProjectFromAbout)
 final showOrHideProjectFromAboutProvider = AutoDisposeNotifierProvider<
-  ShowOrHideProjectFromAbout,
-  AsyncValue<void>?
->.internal(
+    ShowOrHideProjectFromAbout, AsyncValue<void>?>.internal(
   ShowOrHideProjectFromAbout.new,
   name: r'showOrHideProjectFromAboutProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$showOrHideProjectFromAboutHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$showOrHideProjectFromAboutHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
