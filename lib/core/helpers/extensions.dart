@@ -170,8 +170,37 @@ extension ProjectEntityMapper on ProjectEntity {
   }
 }
 
-extension ProjectEntityListMapping on List<ProjectEntity> {
-  List<Project> toProjectModelList() {
-    return map((entity) => entity.toProjectModel(entity)).toList();
+extension ProjectEntityListMapping on List<ProjectEntity>? {
+  List<Project>? toProjectModelList() {
+    if (this == null) {
+      return null;
+    } else if (this!.isEmpty) {
+      return [];
+    }
+    return this!.map((entity) => entity.toProjectModel(entity)).toList();
+  }
+}
+
+extension ProjectModelMapper on Project {
+  ProjectEntity toProjectEntity() {
+    return ProjectEntity(
+      id: id,
+      imgPath: imgPath,
+      title: title,
+      description: description,
+      shownInAbout: shownInAbout,
+      downloadLink: downloadLink,
+      promoLink: promoLink,
+      gitHubLink: gitHubLink,
+    );
+  }
+}
+
+extension ProjectModelListMapping on List<Project> {
+  List<ProjectEntity> toProjectEntityList() {
+    if (isEmpty) {
+      return [];
+    }
+    return map((model) => model.toProjectEntity()).toList();
   }
 }
