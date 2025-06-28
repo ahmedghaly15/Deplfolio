@@ -1,1 +1,2 @@
-Testing deployment using github action
+New release notes:
+    - Handled local database migration for about feature
