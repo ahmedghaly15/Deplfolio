@@ -45,7 +45,9 @@ class UpdateIntroductionSectionConsumerButton extends ConsumerWidget {
     ref.listen(updateIntroductionSectionProvider, (_, current) {
       current?.whenOrNull(
         error: (error, _) => context.showToast(error.toString()),
-        data: (_) => context.showToast(AppStrings.aboutDataUpdateSuccess),
+        data: (_) {
+          context.showToast(AppStrings.aboutDataUpdateSuccess);
+        },
       );
     });
   }

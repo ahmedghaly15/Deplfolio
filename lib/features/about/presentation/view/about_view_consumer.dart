@@ -1,15 +1,13 @@
-import 'dart:developer';
-
 import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../core/theming/color_manager.dart';
 import '../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../core/widgets/adaptive_refresh_indicator.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
-import '../../data/data_source.dart/local_data_source/about_dao.dart'
-    show aboutDaoProvider;
+
 import '../providers/fetch_about_provider.dart';
 import 'widgets/about_view.dart';
 
@@ -25,7 +23,7 @@ class AboutViewConsumer extends ConsumerWidget {
       skipLoadingOnRefresh: true,
       data:
           (about) => AdaptiveRefreshIndicator(
-            onRefresh: () async => await _refreshAbout(ref),
+            onRefresh: () async => await LocalDataRefresher.refreshAbout(ref),
             child: AboutView(about: about!),
           ),
       error:
@@ -41,13 +39,6 @@ class AboutViewConsumer extends ConsumerWidget {
             ),
           ),
     );
-  }
-
-  Future<void> _refreshAbout(WidgetRef ref) async {
-    final aboutDao = await ref.read(aboutDaoProvider.future);
-    await aboutDao.deleteAll();
-    log('DELETED ALL ABOUT FROM LOCAL DB');
-    ref.invalidate(fetchAboutProvider);
   }
 
   void _fetchAboutProviderListener(WidgetRef ref, BuildContext context) {
