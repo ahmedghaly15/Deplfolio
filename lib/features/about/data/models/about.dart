@@ -1,13 +1,24 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:floor/floor.dart';
 
 import '../../../../core/enums/experience_status.dart';
 import '../../../../core/models/project.dart';
+import '../data_source.dart/local_data_source/dto_converters.dart';
 
 part 'about.g.dart';
 part 'about.freezed.dart';
 
+@entity
+@TypeConverters([
+  AboutHeaderTextModelConverter,
+  WorkExperienceModelListConverter,
+  ApproachModelListConverter,
+  ProjectListConverter,
+])
 @JsonSerializable(explicitToJson: true)
 class About {
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
   final String headerSmallText, description, seeMyWorkLink;
   final AboutHeaderTextModel headerBigText;
   final List<Project> projects;
@@ -15,6 +26,7 @@ class About {
   final List<ApproachModel> approaches;
 
   About({
+    this.id,
     required this.headerSmallText,
     required this.headerBigText,
     required this.description,
