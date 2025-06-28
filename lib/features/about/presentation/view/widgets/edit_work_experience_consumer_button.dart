@@ -42,7 +42,7 @@ class EditWorkExperienceConsumerButton extends ConsumerWidget {
     ref.listen(updateWorkExperienceProvider, (_, current) {
       current?.whenOrNull(
         data: (_) {
-          LocalDataRefresher.refreshAbout(ref);
+          LocalDataRefresher.refreshAboutProvider(ref);
           context.showToast(AppStrings.workExperienceUpdatedSuccessfully);
         },
         error: (error, _) => context.showToast(error.toString()),

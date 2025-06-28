@@ -23,7 +23,8 @@ class AboutViewConsumer extends ConsumerWidget {
       skipLoadingOnRefresh: true,
       data:
           (about) => AdaptiveRefreshIndicator(
-            onRefresh: () async => await LocalDataRefresher.refreshAbout(ref),
+            onRefresh:
+                () async => await LocalDataRefresher.refreshAboutProvider(ref),
             child: AboutView(about: about!),
           ),
       error:

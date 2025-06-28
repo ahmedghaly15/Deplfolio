@@ -36,7 +36,7 @@ class AddNewSkillConsumerButton extends ConsumerWidget {
   }
 
   void _onSuccess(WidgetRef ref, BuildContext context) {
-    LocalDataRefresher.refreshSkills(ref);
+    LocalDataRefresher.refreshSkillsProvider(ref);
     context.pop();
     context.showToast(AppStrings.newSkillAddedSuccessfully);
   }

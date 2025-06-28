@@ -33,6 +33,7 @@ class PortfolioRepo {
       return supabaseExecuteAndHandleErrors<List<Project>>(ref, () async {
         final remoteProjects = await _remoteDataSource.fetchPortfolio();
         await projectDao.insertProjects(remoteProjects.toProjectEntityList());
+        log('FETCHED PORTFOLIO FROM REMOTE SOURCE AND SAVED TO LOCAL DB');
         return remoteProjects;
       });
     }

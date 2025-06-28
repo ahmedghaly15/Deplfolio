@@ -43,7 +43,7 @@ class UpdateSkillHeaderConsumerButton extends ConsumerWidget {
       current?.whenOrNull(
         error: (error, _) => context.showToast(error.toString()),
         data: (_) {
-          LocalDataRefresher.refreshSkills(ref);
+          LocalDataRefresher.refreshSkillsProvider(ref);
           context.showToast(AppStrings.skillsHeaderUpdatedSuccessfully);
         },
       );

@@ -35,7 +35,7 @@ class EditApproachConsumerButton extends ConsumerWidget {
     ref.listen(updateApproachProvider, (_, current) {
       current?.whenOrNull(
         data: (_) {
-          LocalDataRefresher.refreshAbout(ref);
+          LocalDataRefresher.refreshAboutProvider(ref);
           context.showToast(AppStrings.aboutDataUpdateSuccess);
         },
         error: (error, _) => context.showToast(error.toString()),

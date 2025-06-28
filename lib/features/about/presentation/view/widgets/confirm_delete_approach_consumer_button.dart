@@ -41,7 +41,7 @@ class ConfirmDeleteApproachConsumerButton extends ConsumerWidget {
     ref.listen(deleteApproachProvider, (_, current) {
       current?.whenOrNull(
         data: (_) {
-          LocalDataRefresher.refreshAbout(ref);
+          LocalDataRefresher.refreshAboutProvider(ref);
           context.pop();
           context.showToast(AppStrings.approachDeletedSuccessfully);
         },
