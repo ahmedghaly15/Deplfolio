@@ -6,7 +6,7 @@ part of 'update_project_img.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$updateProjectImgHash() => r'da89951b30358fd38153669613ac29a9cf4e6cbd';
+String _$updateProjectImgHash() => r'c79db7182c164cee5993d64ddf970eb88fef766d';
 
 /// See also [UpdateProjectImg].
 @ProviderFor(UpdateProjectImg)

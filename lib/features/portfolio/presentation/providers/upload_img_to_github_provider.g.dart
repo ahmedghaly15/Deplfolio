@@ -6,7 +6,7 @@ part of 'upload_img_to_github_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uploadImgToGithubHash() => r'131f00eeb4161f7cdd509f4ab7d975da35c46660';
+String _$uploadImgToGithubHash() => r'7484e97b4bb5ed7a4ce85ca6d973b6e1c8dbc60e';
 
 /// See also [UploadImgToGithub].
 @ProviderFor(UploadImgToGithub)
