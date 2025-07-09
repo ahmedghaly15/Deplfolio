@@ -40,10 +40,10 @@ class AddNewProjectImgUrlFieldConsumer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final autovalidateMode = ref.watch(autovalidateModeProvider);
     return CustomDataInput(
+      initialValue: ref.watch(addNewProjectImgUrlProvider),
       autovalidateMode: autovalidateMode,
       labelText: AppStrings.imageUrl,
       textCapitalization: TextCapitalization.none,
-      controller: ref.read(addProjectImgUrlControllerProvider),
       validator: (value) => InputValidator.validatingEmptyField(value),
     );
   }

@@ -24,26 +24,6 @@ final addProjectFormKeyProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddProjectFormKeyRef = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
-String _$addProjectImgUrlControllerHash() =>
-    r'42da3af1d46025ca8f653dddcd9a39107291569b';
-
-/// See also [addProjectImgUrlController].
-@ProviderFor(addProjectImgUrlController)
-final addProjectImgUrlControllerProvider =
-    AutoDisposeProvider<Raw<TextEditingController>>.internal(
-  addProjectImgUrlController,
-  name: r'addProjectImgUrlControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$addProjectImgUrlControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AddProjectImgUrlControllerRef
-    = AutoDisposeProviderRef<Raw<TextEditingController>>;
 String _$addProjectTitleControllerHash() =>
     r'89b0b26cad425456a7de9279a0aea0cd928bbb41';
 
@@ -144,7 +124,7 @@ final addProjectGithubUrlPathControllerProvider =
 // ignore: unused_element
 typedef AddProjectGithubUrlPathControllerRef
     = AutoDisposeProviderRef<Raw<TextEditingController>>;
-String _$addNewProjectHash() => r'6b144be44a8a0cdd31dc10f18779bc63a1a5d051';
+String _$addNewProjectHash() => r'4579973f1a12d506c3fe4c04305cfe4693b688ee';
 
 /// See also [AddNewProject].
 @ProviderFor(AddNewProject)
