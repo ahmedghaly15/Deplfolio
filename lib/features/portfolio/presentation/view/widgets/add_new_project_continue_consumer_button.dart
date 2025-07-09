@@ -7,6 +7,8 @@ import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
 import '../../providers/add_new_project_page_view_providers.dart';
 import '../../providers/add_new_project_provider.dart';
+import '../../providers/fetch_portfolio_provider.dart'
+    show fetchPortfolioProvider;
 import '../../providers/upload_img_provider.dart';
 
 class AddNewProjectContinueConsumerButton extends ConsumerWidget {
@@ -49,6 +51,7 @@ class AddNewProjectContinueConsumerButton extends ConsumerWidget {
       current?.whenOrNull(
         error: (error, _) => context.showToast(error.toString()),
         data: (_) {
+          ref.invalidate(fetchPortfolioProvider);
           context.popTop();
           context.showToast(AppStrings.projectAddedSuccessfully);
         },
