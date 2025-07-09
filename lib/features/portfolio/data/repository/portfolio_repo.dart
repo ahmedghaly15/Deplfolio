@@ -75,4 +75,11 @@ class PortfolioRepo {
       () async => await _remoteDataSource.uploadImgToSupabase(pickedImgFile),
     );
   }
+
+  Future<SupabaseRequestResult<void>> addProject(Ref ref, Project project) {
+    return supabaseExecuteAndHandleErrors<void>(
+      ref,
+      () async => await _remoteDataSource.addProject(project),
+    );
+  }
 }

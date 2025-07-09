@@ -111,4 +111,11 @@ class PortfolioRemoteDataSource {
         .from(ConstStrings.dataStorage)
         .uploadBinary('images/$imgPath', fileBytes);
   }
+
+  Future<void> addProject(Project project) async {
+    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final projectsJson = remoteJson['portfolio'] as List<dynamic>;
+    projectsJson.add(project.toJson());
+    await _updateProjectInPortfolio(projectsJson);
+  }
 }
