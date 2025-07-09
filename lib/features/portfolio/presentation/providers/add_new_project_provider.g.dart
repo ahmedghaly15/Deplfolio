@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'add_project_provider.dart';
+part of 'add_new_project_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -24,6 +24,26 @@ final addProjectFormKeyProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddProjectFormKeyRef = AutoDisposeProviderRef<GlobalKey<ShadFormState>>;
+String _$addProjectImgUrlControllerHash() =>
+    r'42da3af1d46025ca8f653dddcd9a39107291569b';
+
+/// See also [addProjectImgUrlController].
+@ProviderFor(addProjectImgUrlController)
+final addProjectImgUrlControllerProvider =
+    AutoDisposeProvider<Raw<TextEditingController>>.internal(
+  addProjectImgUrlController,
+  name: r'addProjectImgUrlControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$addProjectImgUrlControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AddProjectImgUrlControllerRef
+    = AutoDisposeProviderRef<Raw<TextEditingController>>;
 String _$addProjectTitleControllerHash() =>
     r'89b0b26cad425456a7de9279a0aea0cd928bbb41';
 
@@ -124,20 +144,21 @@ final addProjectGithubUrlPathControllerProvider =
 // ignore: unused_element
 typedef AddProjectGithubUrlPathControllerRef
     = AutoDisposeProviderRef<Raw<TextEditingController>>;
-String _$addProjectHash() => r'506bef24f347f84db739281bb66d94c7eb0e957d';
+String _$addNewProjectHash() => r'6b144be44a8a0cdd31dc10f18779bc63a1a5d051';
 
-/// See also [AddProject].
-@ProviderFor(AddProject)
-final addProjectProvider =
-    AutoDisposeNotifierProvider<AddProject, AsyncValue<void>?>.internal(
-  AddProject.new,
-  name: r'addProjectProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$addProjectHash,
+/// See also [AddNewProject].
+@ProviderFor(AddNewProject)
+final addNewProjectProvider =
+    AutoDisposeNotifierProvider<AddNewProject, AsyncValue<void>?>.internal(
+  AddNewProject.new,
+  name: r'addNewProjectProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$addNewProjectHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AddProject = AutoDisposeNotifier<AsyncValue<void>?>;
+typedef _$AddNewProject = AutoDisposeNotifier<AsyncValue<void>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

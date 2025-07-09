@@ -5,19 +5,23 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show ShadFormState;
 
 import '../../../../core/models/project.dart';
+import '../../../../core/providers/autovalidate_mode_notifier.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../../../core/utils/functions/generate_random_id.dart';
 import '../../data/repository/portfolio_repo.dart';
 
-part 'add_project_provider.g.dart';
+part 'add_new_project_provider.g.dart';
 
 @riverpod
 GlobalKey<ShadFormState> addProjectFormKey(Ref ref) =>
     GlobalKey<ShadFormState>();
 
-final addProjectImgPathProvider = StateProvider.autoDispose<String>(
-  (ref) => '',
-);
+@riverpod
+Raw<TextEditingController> addProjectImgUrlController(Ref ref) {
+  final controller = TextEditingController();
+  ref.onDispose(controller.dispose);
+  return controller;
+}
 
 @riverpod
 Raw<TextEditingController> addProjectTitleController(Ref ref) {
@@ -55,30 +59,39 @@ Raw<TextEditingController> addProjectGithubUrlPathController(Ref ref) {
 }
 
 @riverpod
-class AddProject extends _$AddProject {
+class AddNewProject extends _$AddNewProject {
   @override
   AsyncValue<void>? build() => null;
 
-  void execute() async {
+  void _addProject() async {
     final project = Project(
       id: generateRandomId(),
       title: ref.read(addProjectTitleControllerProvider).text,
       description: ref.read(addProjectDescriptionControllerProvider).text,
-      imgPath: ref.read(addProjectImgPathProvider),
+      imgPath: ref.read(addProjectImgUrlControllerProvider).text,
       downloadLink: ref.read(addProjectDownloadUrlPathControllerProvider).text,
       promoLink: ref.read(addProjectPromoUrlPathControllerProvider).text,
       gitHubLink: ref.read(addProjectGithubUrlPathControllerProvider).text,
       shownInAbout: false,
     );
-    state = const AsyncLoading();
+    state = const AsyncValue.loading();
     final result = await ref
         .read(portfolioRepoProvider)
         .addProject(ref, project);
     switch (result) {
       case SupabaseRequestSuccess():
-        state = const AsyncData(null);
+        state = const AsyncValue.data(null);
       case SupabaseRequestFailure(:final errorModel):
-        state = AsyncError(errorModel.message, StackTrace.current);
+        state = AsyncValue.error(errorModel.message, StackTrace.current);
+    }
+  }
+
+  void validateAndAddProject() {
+    final formKey = ref.read(addProjectFormKeyProvider);
+    if (formKey.currentState!.validate()) {
+      _addProject();
+    } else {
+      ref.read(autovalidateModeProvider.notifier).enable();
     }
   }
 }
