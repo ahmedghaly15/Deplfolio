@@ -88,4 +88,8 @@ class AppStrings {
   static const String showErrorDetails = 'Show Error Details';
   static const String errorDetails = 'Error Details';
   static const String goToHome = 'Go to Home';
+  static const String addNewProject = 'Add New Project';
+  static const String pickProjectImg = 'Pick Project Image';
+  static const String continueWord = 'Continue';
+  static const String projectAddedSuccessfully = 'Project added successfully.';
 }
