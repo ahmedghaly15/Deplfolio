@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import '../../../../../core/utils/app_strings.dart';
+import '../../../../portfolio/presentation/view/widgets/add_new_project_page_view_consumer.dart';
 import '../../../../skills/data/models/update_or_add_skill_form_params.dart';
 import '../../../../skills/presentation/provider/add_skill_provider.dart';
 import '../../../../skills/presentation/view/widgets/add_new_skill_consumer_button.dart';
@@ -35,7 +36,12 @@ class FABConsumer extends ConsumerWidget {
                     ),
                     actions: [const AddNewSkillConsumerButton()],
                   )
-                  : () {},
+                  : () => context.showDialog(
+                    titleText: AppStrings.addNewProject,
+                    child: const ProviderScope(
+                      child: AddNewProjectPageViewConsumer(),
+                    ),
+                  ),
           child: const Icon(LucideIcons.badgePlus400, color: Colors.white),
         )
         : const SizedBox.shrink();
