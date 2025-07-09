@@ -24,7 +24,11 @@ class CustomErrorWidget extends StatelessWidget {
         spacing: 32.h,
         children: [
           Flexible(
-            child: Lottie.asset(Assets.lottieShyLottie, fit: BoxFit.cover),
+            child: Lottie.asset(
+              Assets.lottieShyLottie,
+              fit: BoxFit.cover,
+              repeat: false,
+            ),
           ),
           Text(
             error,

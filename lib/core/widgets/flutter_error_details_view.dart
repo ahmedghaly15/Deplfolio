@@ -26,7 +26,11 @@ class FlutterErrorDetailsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(
-              child: Lottie.asset(Assets.lottieShyLottie, fit: BoxFit.cover),
+              child: Lottie.asset(
+                Assets.lottieShyLottie,
+                fit: BoxFit.cover,
+                repeat: false,
+              ),
             ),
             ElasticIn(
               child: Text(
