@@ -14,10 +14,12 @@ class UpdateProjectImg extends _$UpdateProjectImg {
   AsyncValue<String> build() => const AsyncValue.data('');
 
   Future<void> execute(String projectTitle) async {
+    final pickedImg = ref.read(imagePickerNotifierProvider);
+    if (pickedImg == null) return;
     state = const AsyncValue.loading();
     final params = UpdateProjectImgParams(
       projectTitle: projectTitle,
-      pickedImgFile: ref.read(imagePickerNotifierProvider)!,
+      pickedImgFile: pickedImg,
     );
     final result = await ref
         .read(portfolioRepoProvider)

@@ -14,13 +14,15 @@ class UploadImgToGithub extends _$UploadImgToGithub {
   AsyncValue<void>? build() => null;
 
   Future<void> execute(String projectTitle) async {
+    final pickedImg = ref.read(imagePickerNotifierProvider);
+    if (pickedImg == null) return;
     state = const AsyncValue.loading();
     final result = await ref
         .read(githubRepoProvider)
         .updateRemoteRepoImg(
           UpdateRemoteRepoImgParams(
             projectTitle: projectTitle,
-            pickedFile: ref.read(imagePickerNotifierProvider)!,
+            pickedFile: pickedImg,
           ),
         );
     switch (result) {

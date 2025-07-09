@@ -13,10 +13,12 @@ class UploadImg extends _$UploadImg {
   AsyncValue<String> build() => const AsyncValue.data('');
 
   void execute() async {
+    final pickedImg = ref.read(imagePickerNotifierProvider);
+    if (pickedImg == null) return;
     state = const AsyncValue.loading();
     final result = await ref
         .read(portfolioRepoProvider)
-        .uploadImgToSupabase(ref, ref.read(imagePickerNotifierProvider)!);
+        .uploadImgToSupabase(ref, pickedImg);
     switch (result) {
       case SupabaseRequestSuccess(data: final imgUrl):
         state = AsyncValue.data(imgUrl);
