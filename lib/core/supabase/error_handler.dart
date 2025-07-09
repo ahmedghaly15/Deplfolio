@@ -12,17 +12,15 @@ class ErrorHandler {
   ErrorHandler._();
 
   static SupabaseError handleError(dynamic error) {
-    if (error is AuthException) {
-      // note that AuthException is can be handled same as StorageException
-      return _handleAuthErrorFromCode(error.code);
-    } else if (error is String) {
-      return SupabaseError(message: error);
-    } else if (error is PlatformException) {
-      return _handlePlatformErrorFromCode(error.code);
-    } else if (error is StorageException) {
-      return SupabaseError(message: error.message, code: error.statusCode);
-    } else {
-      return const SupabaseError(message: AppStrings.defaultError);
+    switch (error.runtimeType) {
+      case AuthException _:
+        return _handleAuthErrorFromCode(error.code);
+      case PlatformException _:
+        return _handlePlatformErrorFromCode(error.code);
+      case StorageException _:
+        return SupabaseError(message: error.message, code: error.statusCode);
+      default:
+        return const SupabaseError(message: AppStrings.defaultError);
     }
   }
 
