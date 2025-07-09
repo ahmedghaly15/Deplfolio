@@ -12,17 +12,22 @@ import 'riverpod_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // To fix texts being hidden bug in release mode
-  await ScreenUtil.ensureScreenSize();
-  await checkIfUserIsLoggedIn();
-  await dotenv.load();
+
+  await Future.wait([
+    ScreenUtil.ensureScreenSize(),
+    checkIfUserIsLoggedIn(),
+    dotenv.load(),
+  ]);
+
   await Supabase.initialize(
     url: dotenv.env[ConstStrings.supabaseUrlKey]!,
     anonKey: dotenv.env[ConstStrings.supabaseAnonKey]!,
   );
+
   ErrorWidget.builder =
       (FlutterErrorDetails details) =>
           FlutterErrorDetailsView(details: details);
+
   runApp(
     ProviderScope(observers: [RiverpodObserver()], child: const DeplfolioApp()),
   );
