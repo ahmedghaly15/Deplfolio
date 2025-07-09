@@ -1,2 +1,5 @@
 New release notes:
-    - Handled local database migration for portfolio feature
+    - Finished Add-New-Project feature Business logic
+    - Finished Add-New-Project feature UI logic
+    - Finished Add-New-Project feature UI 
+    - Finished Add-New-Project feature Integration of UI logic into UI
