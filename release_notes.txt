@@ -1,5 +1,5 @@
 New release notes:
-    - Finished Add-New-Project feature Business logic
-    - Finished Add-New-Project feature UI logic
-    - Finished Add-New-Project feature UI 
-    - Finished Add-New-Project feature Integration of UI logic into UI
+- Updated Add-New-Project feature Business logic
+- Updated Add-New-Project feature UI logic
+- Updated Add-New-Project feature UI 
+- Updated Add-New-Project feature Integration of UI logic into UI
