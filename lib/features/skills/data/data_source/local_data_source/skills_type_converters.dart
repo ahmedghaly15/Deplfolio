@@ -7,30 +7,21 @@ import '../../models/fetch_skills.dart';
 class SkillHeaderTextModelConverter
     extends TypeConverter<SkillHeaderTextModel, String> {
   @override
-  SkillHeaderTextModel decode(String sqlValue) {
-    final json = jsonDecode(sqlValue) as Map<String, dynamic>;
-    return SkillHeaderTextModel.fromJson(json);
-  }
+  SkillHeaderTextModel decode(String sqlValue) =>
+      SkillHeaderTextModel.fromJson(jsonDecode(sqlValue));
 
   @override
-  String encode(SkillHeaderTextModel value) {
-    final json = value.toJson();
-    return jsonEncode(json);
-  }
+  String encode(SkillHeaderTextModel value) => jsonEncode(value.toJson());
 }
 
 class SkillsListTypeConverter extends TypeConverter<List<SkillModel>, String> {
   @override
-  List<SkillModel> decode(String sqlValue) {
-    final jsonList = jsonDecode(sqlValue) as List<dynamic>;
-    return jsonList
-        .map((json) => SkillModel.fromJson(json as Map<String, dynamic>))
-        .toList();
-  }
+  List<SkillModel> decode(String sqlValue) =>
+      (jsonDecode(sqlValue) as List)
+          .map((e) => SkillModel.fromJson(e))
+          .toList();
 
   @override
-  String encode(List<SkillModel> value) {
-    final jsonList = value.map((skill) => skill.toJson()).toList();
-    return jsonEncode(jsonList);
-  }
+  String encode(List<SkillModel> value) =>
+      jsonEncode(value.map((e) => e.toJson()).toList());
 }
