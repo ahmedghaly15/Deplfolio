@@ -38,6 +38,7 @@ class FABConsumer extends ConsumerWidget {
                     actions: [const AddNewSkillConsumerButton()],
                   )
                   : () => context.showDialog(
+                    barrierDismissible: false,
                     scrollPadding: EdgeInsets.symmetric(
                       horizontal: 32.w,
                       vertical: 32.h,

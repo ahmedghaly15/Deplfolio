@@ -99,8 +99,13 @@ class PortfolioRemoteDataSource {
   }) async {
     final storageFilePath = pickedImgFile.path;
     final fileBytes = await pickedImgFile.readAsBytes();
-    await _uploadToBucket(storageFilePath, fileBytes);
-    return _createPublicImgUrl(imgPath ?? storageFilePath);
+    await _uploadToBucket(
+      imgPath?.toLowerCase().trim() ?? storageFilePath,
+      fileBytes,
+    );
+    return _createPublicImgUrl(
+      imgPath?.toLowerCase().trim() ?? storageFilePath,
+    );
   }
 
   String _createPublicImgUrl(String imgPath) {

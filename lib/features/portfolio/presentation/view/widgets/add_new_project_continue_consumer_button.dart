@@ -1,5 +1,4 @@
 import 'package:deplfolio/core/helpers/extensions.dart';
-import 'package:deplfolio/features/portfolio/presentation/providers/image_picker_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart' show XFile;
@@ -12,6 +11,7 @@ import '../../providers/add_new_project_page_view_providers.dart';
 import '../../providers/add_new_project_provider.dart';
 import '../../providers/fetch_portfolio_provider.dart'
     show fetchPortfolioProvider;
+import '../../providers/image_picker_providers.dart';
 import '../../providers/upload_img_provider.dart';
 
 class AddNewProjectContinueConsumerButton extends ConsumerWidget {
@@ -101,10 +101,7 @@ class AddNewProjectContinueConsumerButton extends ConsumerWidget {
   Future<void> _uploadImgAndMoveNext(WidgetRef ref) async {
     await ref
         .read(uploadImgProvider.notifier)
-        .execute(
-          path: '${ref.read(addNewProjectTitleProvider).trim()}_icon.png',
-        );
-    ref.read(onChangeAddNewProjectPageViewProvider.notifier).moveNext();
+        .execute(path: '${ref.read(addNewProjectTitleProvider)}_icon.png');
   }
 
   void _addNewProjectListener(WidgetRef ref, BuildContext context) {

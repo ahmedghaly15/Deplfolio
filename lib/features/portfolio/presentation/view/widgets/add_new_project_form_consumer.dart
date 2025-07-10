@@ -43,7 +43,6 @@ class AddNewProjectGithubUrlFieldConsumer extends ConsumerWidget {
       labelText: AppStrings.githubUrl,
       textCapitalization: TextCapitalization.words,
       controller: ref.read(addProjectGithubUrlPathControllerProvider),
-      validator: (value) => InputValidator.validatingEmptyField(value),
     );
   }
 }
@@ -59,7 +58,6 @@ class AddNewProjectPromoUrlFieldConsumer extends ConsumerWidget {
       labelText: AppStrings.promoUrl,
       textCapitalization: TextCapitalization.words,
       controller: ref.read(addProjectPromoUrlPathControllerProvider),
-      validator: (value) => InputValidator.validatingEmptyField(value),
     );
   }
 }
@@ -75,7 +73,6 @@ class AddNewProjectDownloadUrlFieldConsumer extends ConsumerWidget {
       labelText: AppStrings.downloadUrl,
       textCapitalization: TextCapitalization.words,
       controller: ref.read(addProjectDownloadUrlPathControllerProvider),
-      validator: (value) => InputValidator.validatingEmptyField(value),
     );
   }
 }
