@@ -182,7 +182,7 @@ class _$AboutDao extends AboutDao {
 
   @override
   Future<void> insertAbout(About about) async {
-    await _aboutInsertionAdapter.insert(about, OnConflictStrategy.abort);
+    await _aboutInsertionAdapter.insert(about, OnConflictStrategy.replace);
   }
 }
 
@@ -228,7 +228,8 @@ class _$SkillsDao extends SkillsDao {
 
   @override
   Future<void> insertSkills(FetchSkills skills) async {
-    await _fetchSkillsInsertionAdapter.insert(skills, OnConflictStrategy.abort);
+    await _fetchSkillsInsertionAdapter.insert(
+        skills, OnConflictStrategy.replace);
   }
 }
 
@@ -281,13 +282,13 @@ class _$ProjectDao extends ProjectDao {
   @override
   Future<void> insertProject(ProjectEntity project) async {
     await _projectEntityInsertionAdapter.insert(
-        project, OnConflictStrategy.abort);
+        project, OnConflictStrategy.replace);
   }
 
   @override
   Future<void> insertProjects(List<ProjectEntity> projects) async {
     await _projectEntityInsertionAdapter.insertList(
-        projects, OnConflictStrategy.abort);
+        projects, OnConflictStrategy.replace);
   }
 }
 
@@ -298,4 +299,4 @@ final _approachModelListConverter = ApproachModelListConverter();
 final _projectListConverter = ProjectListConverter();
 final _skillsListTypeConverter = SkillsListTypeConverter();
 final _skillHeaderTextModelConverter = SkillHeaderTextModelConverter();
-final _projectConverter = ProjectConverter();
+final _projectEntityListConverter = ProjectEntityListConverter();

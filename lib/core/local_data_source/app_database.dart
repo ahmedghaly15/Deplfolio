@@ -30,7 +30,7 @@ final appDatabaseProvider = FutureProvider<AppDatabase>((ref) async {
   ProjectListConverter,
   SkillsListTypeConverter,
   SkillHeaderTextModelConverter,
-  ProjectConverter,
+  ProjectEntityListConverter,
 ])
 abstract class AppDatabase extends FloorDatabase {
   AboutDao get aboutDao;

@@ -25,10 +25,10 @@ class PortfolioRepo {
   Future<SupabaseRequestResult<List<Project>>> fetchPortfolio(Ref ref) async {
     final projectDao = await ref.read(projectDaoProvider.future);
     final cachedProjectsEntity = await projectDao.fetchProjects();
-    final cachedProjects = cachedProjectsEntity?.toProjectModelList();
-    if (cachedProjects != null) {
+    if (cachedProjectsEntity != null && cachedProjectsEntity.isNotEmpty) {
       log('FETCHED CACHED PROJECTS FROM LOCAL DB');
-      return SupabaseRequestResult.success(cachedProjects);
+      final cachedProjects = cachedProjectsEntity.toProjectModelList();
+      return SupabaseRequestResult.success(cachedProjects!);
     } else {
       return supabaseExecuteAndHandleErrors<List<Project>>(ref, () async {
         final remoteProjects = await _remoteDataSource.fetchPortfolio();
