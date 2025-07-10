@@ -68,11 +68,15 @@ class PortfolioRepo {
 
   Future<SupabaseRequestResult<String>> uploadImgToSupabase(
     Ref ref,
-    XFile pickedImgFile,
-  ) {
+    XFile pickedImgFile, {
+    String? imgPath,
+  }) {
     return supabaseExecuteAndHandleErrors<String>(
       ref,
-      () async => await _remoteDataSource.uploadImgToSupabase(pickedImgFile),
+      () async => await _remoteDataSource.uploadImgToSupabase(
+        pickedImgFile,
+        imgPath: imgPath,
+      ),
     );
   }
 

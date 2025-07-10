@@ -6,7 +6,7 @@ part of 'upload_img_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uploadImgHash() => r'da5624c455d2af1608a2e551f6bf05e280109988';
+String _$uploadImgHash() => r'13ae1d4abda4bc94bb4ae76ff368c54aeaa090ef';
 
 /// See also [UploadImg].
 @ProviderFor(UploadImg)
