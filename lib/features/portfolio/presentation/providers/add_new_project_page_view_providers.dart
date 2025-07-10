@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../view/widgets/add_new_project_form_consumer.dart';
-import '../view/widgets/add_new_project_pick_img_consumer.dart';
+import '../view/widgets/new_project_picked_img_consumer.dart';
 
 part 'add_new_project_page_view_providers.g.dart';
 
@@ -15,7 +15,11 @@ Raw<PageController> addNewProjectPageController(Ref ref) {
 }
 
 final addNewProjectPageViewItems = Provider.autoDispose<List<Widget>>(
-  (ref) => const [AddNewProjectPickImgConsumer(), AddNewProjectFormConsumer()],
+  (ref) => const [
+    AddNewProjectTitleFormConsumer(),
+    NewProjectPickedImgConsumer(),
+    AddNewProjectFormConsumer(),
+  ],
 );
 
 final isLastAddNewProjectPageProvider = StateProvider.autoDispose<bool>((ref) {
@@ -29,10 +33,7 @@ class OnChangeAddNewProjectPageView extends StateNotifier<int> {
 
   final Ref _ref;
 
-  void onChange(int index) => state = index;
-
   Future<void> moveNext() async {
-    if (_ref.read(isLastAddNewProjectPageProvider)) return;
     await _ref
         .read(addNewProjectPageControllerProvider)
         .nextPage(

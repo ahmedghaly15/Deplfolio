@@ -8,7 +8,7 @@ final imagePickerProvider = Provider.autoDispose<ImagePicker>(
 
 final imagePickerNotifierProvider =
     StateNotifierProvider.autoDispose<ImagePickerNotifier, XFile?>(
-      (ref) => ImagePickerNotifier(ref.watch(imagePickerProvider)),
+      (ref) => ImagePickerNotifier(ref.read(imagePickerProvider)),
     );
 
 class ImagePickerNotifier extends StateNotifier<XFile?> {

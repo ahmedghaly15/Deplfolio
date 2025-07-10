@@ -16,16 +16,9 @@ part 'add_new_project_provider.g.dart';
 GlobalKey<ShadFormState> addProjectFormKey(Ref ref) =>
     GlobalKey<ShadFormState>();
 
-final addNewProjectImgUrlProvider = StateProvider.autoDispose<String>(
-  (ref) => '',
-);
+final addNewProjectImgUrlProvider = StateProvider<String>((ref) => '');
 
-@riverpod
-Raw<TextEditingController> addProjectTitleController(Ref ref) {
-  final controller = TextEditingController();
-  ref.onDispose(controller.dispose);
-  return controller;
-}
+final addNewProjectTitleProvider = StateProvider<String>((ref) => '');
 
 @riverpod
 Raw<TextEditingController> addProjectDescriptionController(Ref ref) {
@@ -63,7 +56,7 @@ class AddNewProject extends _$AddNewProject {
   void _addProject() async {
     final project = Project(
       id: generateRandomId(),
-      title: ref.read(addProjectTitleControllerProvider).text,
+      title: ref.read(addNewProjectTitleProvider),
       description: ref.read(addProjectDescriptionControllerProvider).text,
       imgPath: ref.read(addNewProjectImgUrlProvider),
       downloadLink: ref.read(addProjectDownloadUrlPathControllerProvider).text,
