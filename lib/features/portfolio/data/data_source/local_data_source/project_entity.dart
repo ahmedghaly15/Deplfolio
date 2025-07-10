@@ -1,10 +1,9 @@
 import 'package:floor/floor.dart';
 
-import '../../../../about/data/data_source.dart/local_data_source/about_type_converters.dart'
-    show ProjectListConverter;
+import 'project_type_converter.dart';
 
 @Entity(tableName: 'Portfolio')
-@TypeConverters([ProjectListConverter])
+@TypeConverters([ProjectEntityListConverter])
 class ProjectEntity {
   @primaryKey
   final String id;

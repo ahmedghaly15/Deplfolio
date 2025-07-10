@@ -84,7 +84,7 @@ class PortfolioRemoteDataSource {
     final existingPath = '${(params.projectTitle).toLowerCase()}_icon.png';
     final fileBytes = await params.pickedImgFile.readAsBytes();
     await _updateToBucket(existingPath, fileBytes);
-    return await _createSignedUrl(existingPath);
+    return _createPublicImgUrl(existingPath);
   }
 
   Future<String> _updateToBucket(String imgPath, Uint8List fileBytes) async {
@@ -97,13 +97,13 @@ class PortfolioRemoteDataSource {
     final storageFilePath = pickedImgFile.path;
     final fileBytes = await pickedImgFile.readAsBytes();
     await _uploadToBucket(storageFilePath, fileBytes);
-    return await _createSignedUrl(storageFilePath);
+    return _createPublicImgUrl(storageFilePath);
   }
 
-  Future<String> _createSignedUrl(String imgPath) async {
-    return await _supabaseClient.storage
+  String _createPublicImgUrl(String imgPath) {
+    return _supabaseClient.storage
         .from(ConstStrings.dataStorage)
-        .createSignedUrl('images/$imgPath', 60 * 60 * 360 * 60);
+        .getPublicUrl('images/$imgPath');
   }
 
   Future<String> _uploadToBucket(String imgPath, Uint8List fileBytes) async {
