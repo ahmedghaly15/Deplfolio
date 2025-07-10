@@ -20,31 +20,14 @@ class AddNewProjectFormConsumer extends ConsumerWidget {
       child: Column(
         spacing: 16.h,
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          AddNewProjectImgUrlFieldConsumer(),
-          AddNewProjectTitleFieldConsumer(),
           AddNewProjectDescriptionFieldConsumer(),
           AddNewProjectDownloadUrlFieldConsumer(),
           AddNewProjectPromoUrlFieldConsumer(),
           AddNewProjectGithubUrlFieldConsumer(),
         ],
       ),
-    );
-  }
-}
-
-class AddNewProjectImgUrlFieldConsumer extends ConsumerWidget {
-  const AddNewProjectImgUrlFieldConsumer({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final autovalidateMode = ref.watch(autovalidateModeProvider);
-    return CustomDataInput(
-      initialValue: ref.watch(addNewProjectImgUrlProvider),
-      autovalidateMode: autovalidateMode,
-      labelText: AppStrings.imageUrl,
-      textCapitalization: TextCapitalization.none,
-      validator: (value) => InputValidator.validatingEmptyField(value),
     );
   }
 }
@@ -113,19 +96,35 @@ class AddNewProjectDescriptionFieldConsumer extends ConsumerWidget {
   }
 }
 
-class AddNewProjectTitleFieldConsumer extends ConsumerWidget {
-  const AddNewProjectTitleFieldConsumer({super.key});
+class _AddNewProjectTitleFieldConsumer extends ConsumerWidget {
+  const _AddNewProjectTitleFieldConsumer();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final autovalidateMode = ref.watch(autovalidateModeProvider);
-
     return CustomDataInput(
       autovalidateMode: autovalidateMode,
       labelText: AppStrings.title,
       textCapitalization: TextCapitalization.words,
-      controller: ref.read(addProjectTitleControllerProvider),
       validator: (value) => InputValidator.validatingEmptyField(value),
+      onChanged:
+          (value) =>
+              ref.read(addNewProjectTitleProvider.notifier).state = value,
+    );
+  }
+}
+
+class AddNewProjectTitleFormConsumer extends ConsumerWidget {
+  const AddNewProjectTitleFormConsumer({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final formKey = ref.watch(addProjectFormKeyProvider);
+    return Center(
+      child: ShadForm(
+        key: formKey,
+        child: const _AddNewProjectTitleFieldConsumer(),
+      ),
     );
   }
 }
