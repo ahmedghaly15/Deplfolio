@@ -10,7 +10,7 @@ class AddNewProjectSmoothIndicatorsConsumer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pageController = ref.read(addNewProjectPageControllerProvider);
+    final pageController = ref.watch(addNewProjectPageControllerProvider);
     final pageViewsLength = ref.read(addNewProjectPageViewItems).length;
     final size = MediaQuery.sizeOf(context);
     return SmoothPageIndicator(
