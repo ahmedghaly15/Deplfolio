@@ -102,9 +102,9 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `About` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `headerSmallText` TEXT NOT NULL, `description` TEXT NOT NULL, `seeMyWorkLink` TEXT NOT NULL, `headerBigText` TEXT NOT NULL, `projects` TEXT NOT NULL, `workExperience` TEXT NOT NULL, `approaches` TEXT NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `FetchSkills` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `headerSmallText` TEXT NOT NULL, `headerBigText` TEXT NOT NULL, `skills` TEXT NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Skills` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `headerSmallText` TEXT NOT NULL, `headerBigText` TEXT NOT NULL, `skills` TEXT NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `ProjectEntity` (`id` TEXT NOT NULL, `imgPath` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `shownInAbout` INTEGER NOT NULL, `downloadLink` TEXT, `promoLink` TEXT, `gitHubLink` TEXT, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `Portfolio` (`id` TEXT NOT NULL, `imgPath` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `shownInAbout` INTEGER NOT NULL, `downloadLink` TEXT, `promoLink` TEXT, `gitHubLink` TEXT, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -193,7 +193,7 @@ class _$SkillsDao extends SkillsDao {
   )   : _queryAdapter = QueryAdapter(database),
         _fetchSkillsInsertionAdapter = InsertionAdapter(
             database,
-            'FetchSkills',
+            'Skills',
             (FetchSkills item) => <String, Object?>{
                   'id': item.id,
                   'headerSmallText': item.headerSmallText,
@@ -239,7 +239,7 @@ class _$ProjectDao extends ProjectDao {
   )   : _queryAdapter = QueryAdapter(database),
         _projectEntityInsertionAdapter = InsertionAdapter(
             database,
-            'ProjectEntity',
+            'Portfolio',
             (ProjectEntity item) => <String, Object?>{
                   'id': item.id,
                   'imgPath': item.imgPath,
@@ -261,7 +261,7 @@ class _$ProjectDao extends ProjectDao {
 
   @override
   Future<List<ProjectEntity>?> fetchProjects() async {
-    return _queryAdapter.queryList('SELECT * FROM Project',
+    return _queryAdapter.queryList('SELECT * FROM Portfolio',
         mapper: (Map<String, Object?> row) => ProjectEntity(
             id: row['id'] as String,
             imgPath: row['imgPath'] as String,
@@ -275,7 +275,7 @@ class _$ProjectDao extends ProjectDao {
 
   @override
   Future<void> deleteProjects() async {
-    await _queryAdapter.queryNoReturn('DELETE FROM Project');
+    await _queryAdapter.queryNoReturn('DELETE FROM Portfolio');
   }
 
   @override

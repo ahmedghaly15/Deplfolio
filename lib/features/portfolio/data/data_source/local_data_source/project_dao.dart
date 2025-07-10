@@ -12,7 +12,7 @@ final projectDaoProvider = FutureProvider.autoDispose<ProjectDao>((ref) async {
 
 @dao
 abstract class ProjectDao {
-  @Query('SELECT * FROM Project')
+  @Query('SELECT * FROM Portfolio')
   Future<List<ProjectEntity>?> fetchProjects();
 
   @insert
@@ -21,6 +21,6 @@ abstract class ProjectDao {
   @insert
   Future<void> insertProjects(List<ProjectEntity> projects);
 
-  @Query('DELETE FROM Project')
+  @Query('DELETE FROM Portfolio')
   Future<void> deleteProjects();
 }
