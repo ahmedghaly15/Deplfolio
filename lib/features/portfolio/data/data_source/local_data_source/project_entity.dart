@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 import '../../../../about/data/data_source.dart/local_data_source/about_type_converters.dart'
     show ProjectListConverter;
 
-@entity
+@Entity(tableName: 'Portfolio')
 @TypeConverters([ProjectListConverter])
 class ProjectEntity {
   @primaryKey

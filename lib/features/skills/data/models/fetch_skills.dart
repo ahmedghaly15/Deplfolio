@@ -5,7 +5,7 @@ import '../data_source/local_data_source/skills_type_converters.dart';
 
 part 'fetch_skills.g.dart';
 
-@entity
+@Entity(tableName: 'Skills')
 @TypeConverters([SkillsListTypeConverter, SkillHeaderTextModelConverter])
 @JsonSerializable(explicitToJson: true)
 class FetchSkills {
