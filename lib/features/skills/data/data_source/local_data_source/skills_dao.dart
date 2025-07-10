@@ -14,7 +14,7 @@ abstract class SkillsDao {
   @Query('SELECT * FROM Skills')
   Future<FetchSkills?> fetchSkills();
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertSkills(FetchSkills skills);
 
   @Query('DELETE FROM Skills')

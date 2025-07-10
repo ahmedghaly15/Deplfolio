@@ -14,7 +14,7 @@ abstract class AboutDao {
   @Query('SELECT * FROM About')
   Future<About?> fetchAbout();
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertAbout(About about);
 
   @Query('DELETE FROM About')

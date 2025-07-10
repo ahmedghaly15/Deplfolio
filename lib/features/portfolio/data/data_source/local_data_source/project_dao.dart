@@ -15,10 +15,10 @@ abstract class ProjectDao {
   @Query('SELECT * FROM Portfolio')
   Future<List<ProjectEntity>?> fetchProjects();
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertProject(ProjectEntity project);
 
-  @insert
+  @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertProjects(List<ProjectEntity> projects);
 
   @Query('DELETE FROM Portfolio')
