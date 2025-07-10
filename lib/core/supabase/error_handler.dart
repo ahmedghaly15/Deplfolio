@@ -12,7 +12,7 @@ class ErrorHandler {
   ErrorHandler._();
 
   static SupabaseError handleError(dynamic error) {
-    switch (error.runtimeType) {
+    switch (error) {
       case AuthException _:
         return _handleAuthErrorFromCode(error.code);
       case PlatformException _:

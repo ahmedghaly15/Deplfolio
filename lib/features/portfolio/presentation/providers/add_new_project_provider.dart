@@ -20,7 +20,7 @@ final addNewProjectImgUrlProvider = StateProvider<String>((ref) => '');
 
 final addNewProjectTitleProvider = StateProvider<String>((ref) => '');
 
-@riverpod
+@Riverpod(keepAlive: true)
 Raw<TextEditingController> addProjectDescriptionController(Ref ref) {
   final controller = TextEditingController();
   ref.onDispose(controller.dispose);

@@ -41,8 +41,6 @@ class AddNewProjectPageViewConsumer extends ConsumerWidget {
     switch (pageIndex) {
       case 0:
         return size.height * 0.2;
-      case 1:
-        return size.height * 0.3;
       default:
         return size.height * 0.5;
     }
