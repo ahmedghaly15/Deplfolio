@@ -93,11 +93,14 @@ class PortfolioRemoteDataSource {
         .updateBinary('images/$imgPath', fileBytes);
   }
 
-  Future<String> uploadImgToSupabase(XFile pickedImgFile) async {
+  Future<String> uploadImgToSupabase(
+    XFile pickedImgFile, {
+    String? imgPath,
+  }) async {
     final storageFilePath = pickedImgFile.path;
     final fileBytes = await pickedImgFile.readAsBytes();
     await _uploadToBucket(storageFilePath, fileBytes);
-    return _createPublicImgUrl(storageFilePath);
+    return _createPublicImgUrl(imgPath ?? storageFilePath);
   }
 
   String _createPublicImgUrl(String imgPath) {

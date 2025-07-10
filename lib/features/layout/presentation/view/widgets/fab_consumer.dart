@@ -1,6 +1,7 @@
 import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import '../../../../../core/utils/app_strings.dart';
@@ -37,6 +38,10 @@ class FABConsumer extends ConsumerWidget {
                     actions: [const AddNewSkillConsumerButton()],
                   )
                   : () => context.showDialog(
+                    scrollPadding: EdgeInsets.symmetric(
+                      horizontal: 32.w,
+                      vertical: 32.h,
+                    ),
                     titleText: AppStrings.addNewProject,
                     child: const ProviderScope(
                       child: AddNewProjectPageViewConsumer(),

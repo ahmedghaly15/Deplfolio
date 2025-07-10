@@ -92,4 +92,5 @@ class AppStrings {
   static const String pickProjectImg = 'Pick Project Image';
   static const String continueWord = 'Continue';
   static const String projectAddedSuccessfully = 'Project added successfully.';
+  static const String pickImg = 'Pick an Image';
 }
