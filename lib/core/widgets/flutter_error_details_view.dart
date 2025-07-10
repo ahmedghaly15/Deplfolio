@@ -3,12 +3,9 @@ import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
-import '../router/routes.dart';
 import '../utils/app_strings.dart';
 import '../utils/assets.dart';
-import 'primary_button.dart';
 
 class FlutterErrorDetailsView extends StatelessWidget {
   const FlutterErrorDetailsView({super.key, required this.details});
@@ -46,24 +43,24 @@ class FlutterErrorDetailsView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            ElasticIn(
-              child: PrimaryButton(
-                onPressed: () => context.pushReplacementNamed(Routes.layout),
-                leading: const Icon(LucideIcons.house),
-                text: AppStrings.goToHome,
-              ),
-            ),
-            ElasticIn(
-              child: PrimaryButton(
-                onPressed:
-                    () => context.showDialog(
-                      titleText: AppStrings.errorDetails,
-                      child: Text(details.toString()),
-                    ),
-                leading: const Icon(LucideIcons.bug),
-                text: AppStrings.showErrorDetails,
-              ),
-            ),
+            // ElasticIn(
+            //   child: PrimaryButton(
+            //     onPressed: () => context.pushReplacementNamed(Routes.layout),
+            //     leading: const Icon(LucideIcons.house),
+            //     text: AppStrings.goToHome,
+            //   ),
+            // ),
+            // ElasticIn(
+            //   child: PrimaryButton(
+            //     onPressed:
+            //         () => context.showDialog(
+            //           titleText: AppStrings.errorDetails,
+            //           child: Text(details.toString()),
+            //         ),
+            //     leading: const Icon(LucideIcons.bug),
+            //     text: AppStrings.showErrorDetails,
+            //   ),
+            // ),
           ],
         ),
       ),
