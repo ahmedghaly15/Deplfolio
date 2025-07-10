@@ -69,9 +69,11 @@ extension ShowDialog<T> on BuildContext {
     EdgeInsets? scrollPadding,
     double gap = 24.0,
     double radius = 16.0,
+    bool barrierDismissible = true,
   }) async {
     return showShadDialog<T?>(
       context: this,
+      barrierDismissible: barrierDismissible,
       builder:
           (_) => ShadDialog(
             gap: gap.h,
