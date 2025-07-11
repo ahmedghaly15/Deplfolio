@@ -81,6 +81,8 @@ dev_dependencies:
   retrofit_generator: ^9.2.0
   # Automatically generates TypeAdapters to store any class.
   floor_generator: ^1.5.0
+  # Generates a native splash screen for Flutter
+  flutter_native_splash: ^2.4.6
 
 flutter:
   uses-material-design: true
