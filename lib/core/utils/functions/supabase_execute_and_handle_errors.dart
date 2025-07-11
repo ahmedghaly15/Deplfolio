@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../network/internet_checker.dart';
-import '../../supabase/error_handler.dart';
+import '../../supabase/supabase_error_handler.dart';
 import '../../supabase/supabase_request_result.dart';
 import '../app_strings.dart';
 
@@ -19,11 +19,13 @@ Future<SupabaseRequestResult<T>> supabaseExecuteAndHandleErrors<T>(
       debugPrint(
         '>>>>>>>>> CATCHED IN executeAndHandleErrors: $error <<<<<<<<<<',
       );
-      return SupabaseRequestResult.failure(ErrorHandler.handleError(error));
+      return SupabaseRequestResult.failure(
+        SupabaseErrorHandler.handleError(error),
+      );
     }
   } else {
     return SupabaseRequestResult.failure(
-      ErrorHandler.handleError(AppStrings.noInternetConnection),
+      SupabaseErrorHandler.handleError(AppStrings.noInternetConnection),
     );
   }
 }

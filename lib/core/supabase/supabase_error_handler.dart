@@ -2,14 +2,14 @@ import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../utils/app_strings.dart';
-import 'platform_error_code.dart';
-import 'platform_error_message.dart';
+import 'supabase_platform_error_code.dart';
+import 'supabase_platform_error_message.dart';
 import 'supabase_error_code.dart';
 import 'supabase_error_message.dart';
 import 'supabase_error.dart';
 
-class ErrorHandler {
-  ErrorHandler._();
+class SupabaseErrorHandler {
+  SupabaseErrorHandler._();
 
   static SupabaseError handleError(dynamic error) {
     switch (error) {
@@ -26,9 +26,9 @@ class ErrorHandler {
 
   static SupabaseError _handlePlatformErrorFromCode(String? code) {
     switch (code) {
-      case PlatformErrorCode.signInFailed:
+      case SupabasePlatformErrorCode.signInFailed:
         return SupabaseError(
-          message: PlatformErrorMessage.signInFailed,
+          message: SupabasePlatformErrorMessage.signInFailed,
           code: code,
         );
 
