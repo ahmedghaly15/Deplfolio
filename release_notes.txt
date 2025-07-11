@@ -1,5 +1,3 @@
 New release notes:
-- Added internet access permission 
-- Built app icon for Android & IOS
-- Changed app name for Android & IOS
-- Built native splash for Android & IOS
+
+- Updated native splash for Android & IOS
