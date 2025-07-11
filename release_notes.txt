@@ -1,5 +1,5 @@
 New release notes:
-- Updated Add-New-Project feature Business logic
-- Updated Add-New-Project feature UI logic
-- Updated Add-New-Project feature UI 
-- Updated Add-New-Project feature Integration of UI logic into UI
+- Added internet access permission 
+- Built app icon for Android & IOS
+- Changed app name for Android & IOS
+- Built native splash for Android & IOS
