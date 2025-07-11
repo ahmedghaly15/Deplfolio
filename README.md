@@ -1,6 +1,13 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/32a0391c-4e86-4196-aae7-547ed35e9541" alt="App Icon" width="160" height="160"/>
+  <img 
+    src="https://github.com/user-attachments/assets/32a0391c-4e86-4196-aae7-547ed35e9541" 
+    alt="App Icon" 
+    width="160" 
+    height="160" 
+    style="border-radius: 50%;" 
+  />
 </p>
+p>
 
 # Deplfolio
 
