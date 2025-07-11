@@ -85,6 +85,8 @@ dev_dependencies:
   flutter_native_splash: ^2.4.6
   # Changes the name of the app
   rename_app: ^1.6.5
+  # Updates the app icon
+  icons_launcher: ^3.0.1
 
 flutter:
   uses-material-design: true
