@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/api/api_request_result.dart';

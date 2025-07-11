@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
+
 import 'package:flutter/material.dart' show GlobalKey;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
