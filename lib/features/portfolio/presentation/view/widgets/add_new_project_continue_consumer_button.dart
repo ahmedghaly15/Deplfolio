@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart' show XFile;
 
+import '../../../../../core/local_data_source/local_data_refresher.dart';
 import '../../../../../core/providers/autovalidate_mode_notifier.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/adaptive_circular_progress_indicator.dart';
 import '../../../../../core/widgets/primary_button.dart';
 import '../../providers/add_new_project_page_view_providers.dart';
 import '../../providers/add_new_project_provider.dart';
-import '../../providers/fetch_portfolio_provider.dart'
-    show fetchPortfolioProvider;
 import '../../providers/image_picker_providers.dart';
 import '../../providers/upload_img_provider.dart';
 
@@ -108,8 +107,8 @@ class AddNewProjectContinueConsumerButton extends ConsumerWidget {
     ref.listen(addNewProjectProvider, (_, current) {
       current?.whenOrNull(
         error: (error, _) => context.showToast(error.toString()),
-        data: (_) {
-          ref.invalidate(fetchPortfolioProvider);
+        data: (_) async {
+          await LocalDataRefresher.refreshPortfolioProvider(ref);
           context.popTop();
           context.showToast(AppStrings.projectAddedSuccessfully);
         },
