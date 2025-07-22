@@ -48,10 +48,14 @@ class ShowProjectInAboutCheckboxConsumer extends ConsumerWidget {
     );
     switch (shownInAbout) {
       case true:
-        context.showToast(AppStrings.projectIsShownInAbout);
+        context.showToast(
+          'Congrats! ${project.title} ${AppStrings.projectIsShownInAbout}',
+        );
         break;
       case false:
-        context.showToast(AppStrings.projectIsHiddenFromAbout);
+        context.showToast(
+          '${project.title} ${AppStrings.projectIsHiddenFromAbout}',
+        );
         break;
     }
   }
