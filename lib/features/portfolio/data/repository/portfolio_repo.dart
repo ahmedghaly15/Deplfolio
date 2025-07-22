@@ -86,4 +86,11 @@ class PortfolioRepo {
       () async => await _remoteDataSource.addProject(project),
     );
   }
+
+  Future<SupabaseRequestResult<void>> deleteProject(Ref ref, String projectId) {
+    return supabaseExecuteAndHandleErrors<void>(
+      ref,
+      () async => await _remoteDataSource.deleteProject(projectId),
+    );
+  }
 }

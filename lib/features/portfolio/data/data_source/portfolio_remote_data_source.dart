@@ -55,10 +55,10 @@ class PortfolioRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
-  Future<void> _updateProjectInPortfolio(List<dynamic> projectsJson) async {
+  Future<void> _updateProjectInPortfolio(List<dynamic> projects) async {
     await _supabaseClient
         .from(ConstStrings.dataTable)
-        .update({'portfolio': projectsJson})
+        .update({'portfolio': projects})
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
@@ -125,5 +125,21 @@ class PortfolioRemoteDataSource {
     final projectsJson = remoteJson['portfolio'] as List<dynamic>;
     projectsJson.add(project.toJson());
     await _updateProjectInPortfolio(projectsJson);
+  }
+
+  Future<void> deleteProject(String projectId) async {
+    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final projects = remoteJson['portfolio'] as List<dynamic>;
+    projects.removeWhere((p) => p['id'] == projectId);
+    Map<String, dynamic> aboutJson = remoteJson['about'];
+    aboutJson = {
+      ...aboutJson,
+      ...{'projects': projects},
+    };
+    // Because They don't depend on each other, Run both updates concurrently
+    await Future.wait([
+      _updateProjectInPortfolio(projects),
+      _updateProjectInAbout(aboutJson),
+    ]);
   }
 }
