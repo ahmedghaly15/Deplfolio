@@ -7,7 +7,10 @@ import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import '../../../../../core/models/project.dart';
 import '../../../../../core/router/routes.dart';
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/widgets/cancel_button.dart';
 import '../../../../../core/widgets/custom_cached_network_img.dart';
+import 'delete_project_consumer_button.dart';
 import 'edit_project_consumer_button.dart';
 import 'edit_project_dialog_content.dart';
 
@@ -19,6 +22,15 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      onLongPress:
+          () => context.showAlertDialog(
+            titleText: AppStrings.deleteProject,
+            descriptionText: '${AppStrings.sureToDelete} ${project.title}?',
+            actions: [
+              const CancelButton(),
+              DeleteProjectConsumerButton(project: project),
+            ],
+          ),
       onPressed:
           () => context.showDialog(
             gap: 0,
