@@ -41,10 +41,11 @@ class DeleteProjectConsumerButton extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) async {
-    context.showToast('${project.title} ${AppStrings.deletedSuccessfully}');
     await Future.wait([
       LocalDataRefresher.refreshAboutProvider(ref),
       LocalDataRefresher.refreshPortfolioProvider(ref),
     ]);
+    context.showToast('${project.title} ${AppStrings.deletedSuccessfully}');
+    context.popTop();
   }
 }
