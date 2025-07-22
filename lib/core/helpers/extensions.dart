@@ -65,7 +65,7 @@ extension ShowDialog<T> on BuildContext {
     Widget? description,
     Widget? child,
     String? titleText,
-    List<Widget>? actions,
+    List<Widget> actions = const [],
     EdgeInsets? scrollPadding,
     double gap = 24.0,
     double radius = 16.0,
@@ -83,7 +83,7 @@ extension ShowDialog<T> on BuildContext {
             removeBorderRadiusWhenTiny: false,
             title: title ?? (titleText != null ? Text(titleText) : null),
             description: description,
-            actions: actions ?? [const SizedBox.shrink()],
+            actions: actions,
             child: child,
           ),
     );

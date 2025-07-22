@@ -91,4 +91,7 @@ class AppStrings {
   static const String continueWord = 'Continue';
   static const String projectAddedSuccessfully = 'Project added successfully.';
   static const String pickImg = 'Pick an Image';
+  static const String deleteProject = 'Delete Project';
+  static const String sureToDelete = 'Are you sure you want to delete';
+  static const String deletedSuccessfully = 'deleted successfully.';
 }
