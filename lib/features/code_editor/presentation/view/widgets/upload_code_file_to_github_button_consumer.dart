@@ -5,7 +5,6 @@ import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 
 import 'package:deplfolio/core/helpers/extensions.dart';
 
-import '../../../../../core/enums/remote_repo_file_type.dart';
 import '../../../../../core/models/update_remote_repo_file_params.dart';
 import '../../providers/check_for_github_file_existence_provider.dart';
 import '../../providers/update_remote_repo_file_provider.dart';
@@ -52,10 +51,7 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
     WidgetRef ref,
     BuildContext context,
   ) {
-    ref.listen(updateRemoteRepoFileProvider(RemoteRepoFileType.codeFile), (
-      _,
-      current,
-    ) {
+    ref.listen(updateRemoteRepoFileProvider, (_, current) {
       current?.whenOrNull(
         error: (error, _) {
           context.popTop();
@@ -71,9 +67,7 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
 
   void _updateCodeFile(WidgetRef ref, String? sha) {
     ref
-        .read(
-          updateRemoteRepoFileProvider(RemoteRepoFileType.codeFile).notifier,
-        )
+        .read(updateRemoteRepoFileProvider.notifier)
         .updateRemoteRepoFile(
           UpdateRemoteRepoFileParams(
             remoteFilePath: ConstStrings.appAssetsRemoteRepoFilePath,
