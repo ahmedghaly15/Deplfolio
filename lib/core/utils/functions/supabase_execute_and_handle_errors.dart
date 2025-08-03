@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'dart:developer' show log;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../network/internet_checker.dart';
@@ -16,9 +17,7 @@ Future<SupabaseRequestResult<T>> supabaseExecuteAndHandleErrors<T>(
       final response = await function();
       return SupabaseRequestResult<T>.success(response);
     } catch (error) {
-      debugPrint(
-        '>>>>>>>>> CATCHED IN executeAndHandleErrors: $error <<<<<<<<<<',
-      );
+      log('>>>>>>>>> CATCHED IN executeAndHandleErrors: $error <<<<<<<<<<');
       return SupabaseRequestResult.failure(
         SupabaseErrorHandler.handleError(error),
       );
