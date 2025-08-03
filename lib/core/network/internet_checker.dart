@@ -6,15 +6,20 @@ final _internetConnectionProvider = Provider.autoDispose<InternetConnection>(
 );
 
 final internetCheckerProvider = Provider.autoDispose<InternetChecker>((ref) {
-  final connectionChecker = ref.watch(_internetConnectionProvider);
-  return InternetChecker(connectionChecker);
+  final connectionChecker = ref.read(_internetConnectionProvider);
+  return InternetCheckerImpl(connectionChecker);
 });
 
-class InternetChecker {
+abstract class InternetChecker {
+  Future<bool> get isConnected;
+}
+
+class InternetCheckerImpl implements InternetChecker {
   final InternetConnection _connectionChecker;
 
-  InternetChecker(this._connectionChecker);
+  InternetCheckerImpl(this._connectionChecker);
 
+  @override
   Future<bool> get isConnected async =>
       await _connectionChecker.hasInternetAccess;
 }
