@@ -3,8 +3,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/api/api_request_result.dart';
 import '../../../../core/models/update_remote_repo_file_params.dart';
-import '../../../../core/repositories/github_repo.dart';
 import '../../../../core/providers/pick_file_provider.dart';
+import '../../../../core/use_cases/update_remote_repo_file_use_case.dart';
 
 part 'update_remote_repo_file_provider.g.dart';
 
@@ -17,9 +17,9 @@ class UpdateRemoteRepoFile extends _$UpdateRemoteRepoFile {
     final pickedFile = await ref.read(pickFileProvider.notifier).pickFile();
     if (pickedFile == null) return;
     state = const AsyncLoading();
-    final result = await ref
-        .read(githubRepoProvider)
-        .updateRemoteRepoFile(params.copyWith(pickedFile: pickedFile));
+    final result = await ref.read(updateRemoteRepoFileUseCaseProvider)(
+      params.copyWith(pickedFile: pickedFile),
+    );
     switch (result) {
       case ApiRequestSuccess():
         state = const AsyncData(null);
