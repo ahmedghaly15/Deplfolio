@@ -7,14 +7,22 @@ import '../models/login_request_params.dart';
 
 final loginRepoProvider = Provider.autoDispose<LoginRepo>((ref) {
   final loginRemoteDataSource = ref.watch(loginRemoteDataSourceProvider);
-  return LoginRepo(loginRemoteDataSource);
+  return LoginRepoImpl(loginRemoteDataSource);
 });
 
-class LoginRepo {
+abstract class LoginRepo {
+  Future<SupabaseRequestResult<String>> loginViaEmailAndPass(
+    Ref ref,
+    LoginRequestParams params,
+  );
+}
+
+class LoginRepoImpl implements LoginRepo {
   final LoginRemoteDataSource _loginRemoteDataSource;
 
-  LoginRepo(this._loginRemoteDataSource);
+  LoginRepoImpl(this._loginRemoteDataSource);
 
+  @override
   Future<SupabaseRequestResult<String>> loginViaEmailAndPass(
     Ref ref,
     LoginRequestParams params,

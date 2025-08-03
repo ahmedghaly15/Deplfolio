@@ -7,14 +7,19 @@ import '../models/login_request_params.dart';
 final loginRemoteDataSourceProvider =
     Provider.autoDispose<LoginRemoteDataSource>((ref) {
       final supabaseClient = ref.read(supabaseProvider);
-      return LoginRemoteDataSource(supabaseClient);
+      return LoginRemoteDataSourceImpl(supabaseClient);
     });
 
-class LoginRemoteDataSource {
+abstract class LoginRemoteDataSource {
+  Future<String> signInWithEmailAndPassword(LoginRequestParams params);
+}
+
+class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   final SupabaseClient _supabaseClient;
 
-  LoginRemoteDataSource(this._supabaseClient);
+  LoginRemoteDataSourceImpl(this._supabaseClient);
 
+  @override
   Future<String> signInWithEmailAndPassword(LoginRequestParams params) async {
     final authResponse = await _supabaseClient.auth.signInWithPassword(
       email: params.email,
