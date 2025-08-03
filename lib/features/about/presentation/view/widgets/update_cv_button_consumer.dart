@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:deplfolio/core/helpers/extensions.dart';
 
 import '../../../../../core/models/update_remote_repo_file_params.dart';
+import '../../../../code_editor/presentation/providers/check_for_github_file_existence_provider.dart';
 import '../../../../code_editor/presentation/providers/update_remote_repo_file_provider.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/const_strings.dart';
@@ -15,25 +16,49 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncUploadCvToRepo = ref.watch(updateRemoteRepoFileProvider);
-    _listener(ref, context);
+    final asyncCheckForGithubFileExistence = ref.watch(
+      checkForGithubFileExistenceProvider,
+    );
+    _updateRemoteRepoFileProviderListener(ref, context);
+    _checkForGithubFileExistenceProviderListener(ref, context);
     return PrimaryButton(
       onPressed:
           () => ref
-              .read(updateRemoteRepoFileProvider.notifier)
-              .updateRemoteRepoFile(
-                const UpdateRemoteRepoFileParams(
-                  remoteFilePath: ConstStrings.remoteCVPath,
-                ),
-              ),
+              .read(checkForGithubFileExistenceProvider.notifier)
+              .execute(ConstStrings.remoteCVPath),
       text: AppStrings.updateCv,
-      child: asyncUploadCvToRepo?.whenOrNull(
+      child: asyncCheckForGithubFileExistence?.whenOrNull(
         loading: () => const AdaptiveCircularProgressIndicator(),
       ),
     );
   }
 
-  void _listener(WidgetRef ref, BuildContext context) {
+  void _checkForGithubFileExistenceProviderListener(
+    WidgetRef ref,
+    BuildContext context,
+  ) {
+    ref.listen(
+      checkForGithubFileExistenceProvider,
+      (_, current) => current?.whenOrNull(
+        data:
+            (sha) => ref
+                .read(updateRemoteRepoFileProvider.notifier)
+                .updateRemoteRepoFile(
+                  UpdateRemoteRepoFileParams(
+                    remoteFilePath: ConstStrings.remoteCVPath,
+                    commitMessage: 'Updated CV via Deplfolio: Deploy 🚀',
+                    sha: sha,
+                  ),
+                ),
+        error: (error, _) => context.showToast(error.toString()),
+      ),
+    );
+  }
+
+  void _updateRemoteRepoFileProviderListener(
+    WidgetRef ref,
+    BuildContext context,
+  ) {
     ref.listen(updateRemoteRepoFileProvider, (_, current) {
       current?.whenOrNull(
         error: (error, _) => context.showToast(error.toString()),
