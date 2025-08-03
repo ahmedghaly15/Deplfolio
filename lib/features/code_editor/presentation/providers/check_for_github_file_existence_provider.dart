@@ -3,7 +3,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/api/api_request_result.dart';
-import '../../../../core/repositories/github_repo.dart';
+import '../../domain/use_cases/check_for_github_file_existence.dart'
+    show checkForGithubFileExistenceUseCaseProvider;
 
 part 'check_for_github_file_existence_provider.g.dart';
 
@@ -15,9 +16,9 @@ class CheckForGithubFileExistence extends _$CheckForGithubFileExistence {
   void execute(String remoteFilePath) async {
     final saferFilePathUrl = Uri.encodeFull(remoteFilePath);
     state = const AsyncLoading();
-    final result = await ref
-        .read(githubRepoProvider)
-        .checkForGithubFileExistence(saferFilePathUrl);
+    final result = await ref.read(checkForGithubFileExistenceUseCaseProvider)(
+      saferFilePathUrl,
+    );
     switch (result) {
       case ApiRequestSuccess(data: final data):
         state = AsyncData(data.sha);

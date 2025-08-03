@@ -21,7 +21,7 @@ class DioFactory {
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut
         ..options.headers = {
-          'Authorization': 'token ${dotenv.env[ConstStrings.githubToken]}!',
+          'Authorization': 'token ${dotenv.env[ConstStrings.githubToken]}',
           'Accept': 'application/vnd.github+json',
         };
       _addDioLoggerInterceptor();
