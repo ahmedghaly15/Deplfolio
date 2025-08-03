@@ -14,14 +14,28 @@ import '../utils/functions/api_execute_and_handle_errors.dart';
 
 final githubRepoProvider = Provider.autoDispose<GitHubRepo>((ref) {
   final apiService = ref.read(githubApiServiceProvider);
-  return GitHubRepo(apiService);
+  return GitHubRepoImpl(apiService);
 });
 
-class GitHubRepo {
+abstract class GitHubRepo {
+  Future<ApiRequestResult<CheckForGithubFileExistenceResponse>>
+  checkForGithubFileExistence(String saferFilePathUrl);
+
+  Future<ApiRequestResult<void>> updateRemoteRepoFile(
+    UpdateRemoteRepoFileParams params,
+  );
+
+  Future<ApiRequestResult<void>> updateRemoteRepoImg(
+    UpdateRemoteRepoImgParams params,
+  );
+}
+
+class GitHubRepoImpl implements GitHubRepo {
   final GitHubApiService _apiService;
 
-  GitHubRepo(this._apiService);
+  GitHubRepoImpl(this._apiService);
 
+  @override
   Future<ApiRequestResult<CheckForGithubFileExistenceResponse>>
   checkForGithubFileExistence(String saferFilePathUrl) {
     return apiExecuteAndHandleErrors<CheckForGithubFileExistenceResponse>(
@@ -30,6 +44,7 @@ class GitHubRepo {
     );
   }
 
+  @override
   Future<ApiRequestResult<void>> updateRemoteRepoFile(
     UpdateRemoteRepoFileParams params,
   ) async {
@@ -50,6 +65,7 @@ class GitHubRepo {
     );
   }
 
+  @override
   Future<ApiRequestResult<void>> updateRemoteRepoImg(
     UpdateRemoteRepoImgParams params,
   ) async {
