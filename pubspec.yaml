@@ -1,7 +1,7 @@
 name: deplfolio
 description: "Deplfolio manages my personal portfolio website. Instead of manually editing code, Deplfolio allows me to update portfolio content in real time through a simple and intuitive interface. Ensuring that my online portfolio is always up-to-date—no redeployments or code edits required."
 publish_to: 'none'
-version: 0.3.0
+version: 0.4.0
 
 environment:
   sdk: ^3.7.2
