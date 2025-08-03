@@ -13,15 +13,31 @@ final skillsRemoteDataSourceProvider =
     Provider.autoDispose<SkillsRemoteDataSource>((ref) {
       final remoteDataSource = ref.read(sharedRemoteDataSourceProvider);
       final supabaseClient = ref.read(supabaseProvider);
-      return SkillsRemoteDataSource(remoteDataSource, supabaseClient);
+      return SkillsRemoteDataSourceImpl(remoteDataSource, supabaseClient);
     });
 
-class SkillsRemoteDataSource {
+abstract class SkillsRemoteDataSource {
+  Future<FetchSkills> fetchSkills();
+
+  Future<void> updateSkillHeader(SkillsTexts params);
+
+  Future<void> updateSkill(SkillModel skill);
+
+  Future<void> addSkill(SkillModel skill);
+
+  Future<void> deleteSkill(String skillId);
+}
+
+class SkillsRemoteDataSourceImpl implements SkillsRemoteDataSource {
   final SharedRemoteDataSource _sharedRemoteDataSource;
   final SupabaseClient _supabaseClient;
 
-  SkillsRemoteDataSource(this._sharedRemoteDataSource, this._supabaseClient);
+  SkillsRemoteDataSourceImpl(
+    this._sharedRemoteDataSource,
+    this._supabaseClient,
+  );
 
+  @override
   Future<FetchSkills> fetchSkills() async {
     final portfolioJson =
         await _sharedRemoteDataSource.fetchRemotePortfolioJson();
@@ -29,6 +45,7 @@ class SkillsRemoteDataSource {
     return FetchSkills.fromJson(skillsJson);
   }
 
+  @override
   Future<void> updateSkillHeader(SkillsTexts params) async {
     final portfolioJson =
         await _sharedRemoteDataSource.fetchRemotePortfolioJson();
@@ -41,6 +58,7 @@ class SkillsRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
+  @override
   Future<void> updateSkill(SkillModel skill) async {
     final portfolioJson =
         await _sharedRemoteDataSource.fetchRemotePortfolioJson();
@@ -60,6 +78,7 @@ class SkillsRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
+  @override
   Future<void> addSkill(SkillModel skill) async {
     final portfolioJson =
         await _sharedRemoteDataSource.fetchRemotePortfolioJson();
@@ -76,6 +95,7 @@ class SkillsRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
+  @override
   Future<void> deleteSkill(String skillId) async {
     final portfolioJson =
         await _sharedRemoteDataSource.fetchRemotePortfolioJson();

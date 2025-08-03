@@ -12,14 +12,26 @@ import '../models/skills_texts.dart';
 
 final skillsRepoProvider = Provider.autoDispose<SkillsRepo>((ref) {
   final remoteDataSource = ref.read(skillsRemoteDataSourceProvider);
-  return SkillsRepo(remoteDataSource);
+  return SkillsRepoImpl(remoteDataSource);
 });
 
-class SkillsRepo {
+abstract class SkillsRepo {
+  Future<SupabaseRequestResult<FetchSkills>> fetchSkills(Ref ref);
+  Future<SupabaseRequestResult<void>> updateSkillHeader(
+    Ref ref,
+    SkillsTexts params,
+  );
+  Future<SupabaseRequestResult<void>> updateSkill(Ref ref, SkillModel skill);
+  Future<SupabaseRequestResult<void>> addSkill(Ref ref, SkillModel skill);
+  Future<SupabaseRequestResult<void>> deleteSkill(Ref ref, String skillId);
+}
+
+class SkillsRepoImpl implements SkillsRepo {
   final SkillsRemoteDataSource _remoteDataSource;
 
-  SkillsRepo(this._remoteDataSource);
+  SkillsRepoImpl(this._remoteDataSource);
 
+  @override
   Future<SupabaseRequestResult<FetchSkills>> fetchSkills(Ref ref) async {
     final skillsDao = await ref.read(skillsDaoProvider.future);
     final cachedSkills = await skillsDao.fetchSkills();
@@ -36,6 +48,7 @@ class SkillsRepo {
     }
   }
 
+  @override
   Future<SupabaseRequestResult<void>> updateSkillHeader(
     Ref ref,
     SkillsTexts params,
@@ -46,6 +59,7 @@ class SkillsRepo {
     );
   }
 
+  @override
   Future<SupabaseRequestResult<void>> updateSkill(Ref ref, SkillModel skill) {
     return supabaseExecuteAndHandleErrors<void>(
       ref,
@@ -53,6 +67,7 @@ class SkillsRepo {
     );
   }
 
+  @override
   Future<SupabaseRequestResult<void>> addSkill(Ref ref, SkillModel skill) {
     return supabaseExecuteAndHandleErrors<void>(
       ref,
@@ -60,6 +75,7 @@ class SkillsRepo {
     );
   }
 
+  @override
   Future<SupabaseRequestResult<void>> deleteSkill(Ref ref, String skillId) {
     return supabaseExecuteAndHandleErrors<void>(
       ref,
