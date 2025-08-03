@@ -1,3 +1,4 @@
 New release notes:
 
-- Updated native splash for Android & IOS
+- Added some enhancements to features
+- Fixed bug in update CV 

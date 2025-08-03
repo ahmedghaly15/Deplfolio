@@ -71,7 +71,8 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
         .updateRemoteRepoFile(
           UpdateRemoteRepoFileParams(
             remoteFilePath: ConstStrings.appAssetsRemoteRepoFilePath,
-            commitMessage: 'Updated AppAssets via Deplfolio: Deploy 🚀',
+            commitMessage:
+                'Updated AppAssets via Deplfolio Mobile App: Deploy 🚀',
             sha: sha,
           ),
         );

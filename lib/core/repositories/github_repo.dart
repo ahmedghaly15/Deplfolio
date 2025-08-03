@@ -79,7 +79,7 @@ class GitHubRepoImpl implements GitHubRepo {
         saferUrl,
         UpdateRemoteRepoFileRequestBody(
           message:
-              'Updated ${params.projectTitle} icon via Deplfolio: Deploy 🚀',
+              'Updated ${params.projectTitle} icon via Deplfolio Mobile App: Deploy 🚀',
           fileEncodedContent: encodedContent,
           sha: params.sha,
         ),

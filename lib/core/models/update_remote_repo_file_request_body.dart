@@ -13,7 +13,7 @@ class UpdateRemoteRepoFileRequestBody {
 
   UpdateRemoteRepoFileRequestBody({
     required this.fileEncodedContent,
-    this.message = 'Updated CV via Deplfolio: Deploy 🚀',
+    this.message = 'Updated CV via Deplfolio Mobile App: Deploy 🚀',
     this.branchName = 'master',
     this.sha,
   });

@@ -46,7 +46,8 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
                 .updateRemoteRepoFile(
                   UpdateRemoteRepoFileParams(
                     remoteFilePath: ConstStrings.remoteCVPath,
-                    commitMessage: 'Updated CV via Deplfolio: Deploy 🚀',
+                    commitMessage:
+                        'Updated CV via Deplfolio Mobile App: Deploy 🚀',
                     sha: sha,
                   ),
                 ),
