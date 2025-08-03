@@ -5,7 +5,7 @@ import '../../../../core/providers/autovalidate_mode_notifier.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/about.dart';
 import '../../data/models/introduction_section.dart';
-import '../../data/repository/about_repo.dart';
+import '../../data/repository/about_repo_impl.dart';
 import 'introduction_section_form_providers.dart';
 
 part 'update_introduction_section_provider.g.dart';

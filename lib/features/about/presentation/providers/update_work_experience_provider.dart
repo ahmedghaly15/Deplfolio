@@ -9,7 +9,7 @@ import '../../../../core/providers/autovalidate_mode_notifier.dart'
     show autovalidateModeProvider;
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/about.dart' show WorkExperienceModel;
-import '../../data/repository/about_repo.dart';
+import '../../data/repository/about_repo_impl.dart';
 
 part 'update_work_experience_provider.g.dart';
 

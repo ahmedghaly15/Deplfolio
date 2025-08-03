@@ -7,7 +7,7 @@ import 'package:shadcn_ui/shadcn_ui.dart' show ShadFormState;
 import '../../../../core/providers/autovalidate_mode_notifier.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/about.dart' show ApproachModel;
-import '../../data/repository/about_repo.dart' show aboutRepoProvider;
+import '../../data/repository/about_repo_impl.dart' show aboutRepoProvider;
 
 part 'update_approach_provider.g.dart';
 

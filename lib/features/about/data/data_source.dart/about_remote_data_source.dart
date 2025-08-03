@@ -12,15 +12,24 @@ final aboutRemoteDataSourceProvider =
     Provider.autoDispose<AboutRemoteDataSource>((ref) {
       final remoteDataSource = ref.read(sharedRemoteDataSourceProvider);
       final supabaseClient = ref.read(supabaseProvider);
-      return AboutRemoteDataSource(remoteDataSource, supabaseClient);
+      return AboutRemoteDataSourceImpl(remoteDataSource, supabaseClient);
     });
 
-class AboutRemoteDataSource {
+abstract class AboutRemoteDataSource {
+  Future<About> fetchAbout();
+  Future<void> updateIntroductionSection(IntroductionSection params);
+  Future<void> updateWorkExperience(WorkExperienceModel workExperience);
+  Future<void> updateApproach(ApproachModel approach);
+  Future<void> deleteApproach(String approachId);
+}
+
+class AboutRemoteDataSourceImpl implements AboutRemoteDataSource {
   final SharedRemoteDataSource _sharedRemoteDataSource;
   final SupabaseClient _supabaseClient;
 
-  AboutRemoteDataSource(this._sharedRemoteDataSource, this._supabaseClient);
+  AboutRemoteDataSourceImpl(this._sharedRemoteDataSource, this._supabaseClient);
 
+  @override
   Future<About> fetchAbout() async {
     final portfolioJson =
         await _sharedRemoteDataSource.fetchRemotePortfolioJson();
@@ -28,6 +37,7 @@ class AboutRemoteDataSource {
     return About.fromJson(aboutJson);
   }
 
+  @override
   Future<void> updateIntroductionSection(IntroductionSection params) async {
     final portfolioJson =
         await _sharedRemoteDataSource.fetchRemotePortfolioJson();
@@ -39,6 +49,7 @@ class AboutRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
+  @override
   Future<void> updateWorkExperience(WorkExperienceModel workExperience) async {
     final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     Map<String, dynamic> aboutJson = remoteJson['about'];
@@ -57,6 +68,7 @@ class AboutRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
+  @override
   Future<void> updateApproach(ApproachModel approach) async {
     final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     Map<String, dynamic> aboutJson = remoteJson['about'];
@@ -75,6 +87,7 @@ class AboutRemoteDataSource {
         .eq(ConstStrings.tableEqualityKey, AppUtils.userId!);
   }
 
+  @override
   Future<void> deleteApproach(String approachId) async {
     final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     Map<String, dynamic> aboutJson = remoteJson['about'];

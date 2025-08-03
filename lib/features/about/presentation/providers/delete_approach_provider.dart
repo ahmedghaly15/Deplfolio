@@ -2,7 +2,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
-import '../../data/repository/about_repo.dart' show aboutRepoProvider;
+import '../../data/repository/about_repo_impl.dart' show aboutRepoProvider;
 
 part 'delete_approach_provider.g.dart';
 

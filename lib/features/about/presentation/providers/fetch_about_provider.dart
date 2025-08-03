@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/about.dart';
-import '../../data/repository/about_repo.dart';
+import '../../data/repository/about_repo_impl.dart';
 
 final fetchAboutProvider = FutureProvider.autoDispose<About?>((ref) async {
   final result = await ref.read(aboutRepoProvider).fetchAbout(ref);
