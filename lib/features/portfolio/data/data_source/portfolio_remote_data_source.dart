@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart' show XFile;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../core/data_source/remote_data_source.dart';
+import '../../../../core/data_source/shared_remote_data_source.dart';
 import '../../../../core/models/project.dart';
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../../../core/utils/app_utils.dart';
@@ -12,19 +12,19 @@ import '../models/update_project_img_params.dart';
 
 final portfolioRemoteDataSourceProvider =
     Provider.autoDispose<PortfolioRemoteDataSource>((ref) {
-      final remoteDataSource = ref.read(remoteDataSourceProvider);
+      final remoteDataSource = ref.read(sharedRemoteDataSourceProvider);
       final supabaseClient = ref.read(supabaseProvider);
       return PortfolioRemoteDataSource(remoteDataSource, supabaseClient);
     });
 
 class PortfolioRemoteDataSource {
-  final RemoteDataSource _remoteDataSource;
+  final SharedRemoteDataSource _sharedRemoteDataSource;
   final SupabaseClient _supabaseClient;
 
-  PortfolioRemoteDataSource(this._remoteDataSource, this._supabaseClient);
+  PortfolioRemoteDataSource(this._sharedRemoteDataSource, this._supabaseClient);
 
   Future<List<Project>> fetchPortfolio() async {
-    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     final projectsJson = remoteJson['portfolio'] as List<dynamic>;
     return projectsJson
         .map((projectJson) => Project.fromJson(projectJson))
@@ -32,7 +32,7 @@ class PortfolioRemoteDataSource {
   }
 
   Future<void> updateProject(Project project) async {
-    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     final projectsJson = remoteJson['portfolio'] as List<dynamic>;
     final projectIndex = projectsJson.indexWhere((p) => p['id'] == project.id);
     projectsJson[projectIndex] = project.toJson();
@@ -63,7 +63,7 @@ class PortfolioRemoteDataSource {
   }
 
   Future<void> showOrHideProjectFromAbout(String projectId) async {
-    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     final projectsJson = remoteJson['portfolio'] as List<dynamic>;
     final projectIndex = projectsJson.indexWhere((p) => p['id'] == projectId);
     final isShown = projectsJson[projectIndex]['shownInAbout'] as bool;
@@ -121,14 +121,14 @@ class PortfolioRemoteDataSource {
   }
 
   Future<void> addProject(Project project) async {
-    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     final projectsJson = remoteJson['portfolio'] as List<dynamic>;
     projectsJson.add(project.toJson());
     await _updateProjectInPortfolio(projectsJson);
   }
 
   Future<void> deleteProject(String projectId) async {
-    final remoteJson = await _remoteDataSource.fetchRemotePortfolioJson();
+    final remoteJson = await _sharedRemoteDataSource.fetchRemotePortfolioJson();
     final projects = remoteJson['portfolio'] as List<dynamic>;
     projects.removeWhere((p) => p['id'] == projectId);
     Map<String, dynamic> aboutJson = remoteJson['about'];
