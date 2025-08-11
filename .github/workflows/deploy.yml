@@ -70,7 +70,7 @@ jobs:
         run: |
           new_version=$(cat version.txt | cut -d ' ' -f3)
           git add pubspec.yaml
-          git commit -m "Bumped version to $new_version ✅ [skip ci]"
+          git commit -m "Bumped version to $new_version ✅"
           git push
 
       - name: Setup Java 17
