@@ -26,8 +26,12 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
           () => ref
               .read(checkForGithubFileExistenceProvider.notifier)
               .execute(ConstStrings.remoteCVPath),
-      text: AppStrings.updateCv,
-      child: asyncCheckForGithubFileExistence?.whenOrNull(
+      child: asyncCheckForGithubFileExistence.maybeWhen(
+        orElse:
+            () => Text(
+              AppStrings.updateCv,
+              style: context.shadTextTheme.p.copyWith(color: Colors.white),
+            ),
         loading: () => const AdaptiveCircularProgressIndicator(),
       ),
     );
@@ -39,9 +43,10 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
   ) {
     ref.listen(
       checkForGithubFileExistenceProvider,
-      (_, current) => current?.whenOrNull(
-        data:
-            (sha) => ref
+      (_, current) => current.whenOrNull(
+        data: (sha) {
+          if (!sha.isNullOrEmpty) {
+            ref
                 .read(updateRemoteRepoFileProvider.notifier)
                 .updateRemoteRepoFile(
                   UpdateRemoteRepoFileParams(
@@ -50,7 +55,9 @@ class UpdateCvButtonConsumer extends ConsumerWidget {
                         'Updated CV via Deplfolio Mobile App: Deploy 🚀',
                     sha: sha,
                   ),
-                ),
+                );
+          }
+        },
         error: (error, _) => context.showToast(error.toString()),
       ),
     );
