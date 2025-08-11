@@ -38,24 +38,31 @@ jobs:
         run: |
           strategy=${{ github.event.inputs.version_bump_strategy || 'patch' }}
           current_version=$(grep '^version:' pubspec.yaml | cut -d ' ' -f2)
+          
+          # Remove any +build suffix before splitting
           base=$(echo $current_version | cut -d+ -f1)
-          build_number=$(echo $current_version | cut -d+ -f2)
+          build_number=$(echo $current_version | grep -oP '(?<=\+)\d+' || echo 0)
 
           major=$(echo $base | cut -d. -f1)
           minor=$(echo $base | cut -d. -f2)
           patch=$(echo $base | cut -d. -f3)
 
           if [ "$strategy" == "major" ]; then
-            major=$((major + 1)); minor=0; patch=0
+            major=$((major + 1)); minor=0; patch=0; build_number=0
           elif [ "$strategy" == "minor" ]; then
-            minor=$((minor + 1)); patch=0
+            minor=$((minor + 1)); patch=0; build_number=0
           elif [ "$strategy" == "patch" ]; then
-            patch=$((patch + 1))
+            patch=$((patch + 1)); build_number=0
           elif [ "$strategy" == "build" ]; then
             build_number=$((build_number + 1))
           fi
 
-          new_version="$major.$minor.$patch+$build_number"
+          if [ "$build_number" -gt 0 ]; then
+            new_version="$major.$minor.$patch+$build_number"
+          else
+            new_version="$major.$minor.$patch"
+          fi
+          
           sed -i "s/^version: .*/version: $new_version/" pubspec.yaml
           echo "New version: $new_version" > version.txt
 
