@@ -4,15 +4,64 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
+    inputs:
+      version_bump_strategy:
+        description: 'Version bump strategy'
+        required: false
+        default: 'patch'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+          - build
 
 jobs:
   distribute:
-    if: contains(github.event.head_commit.message, 'deploy')
+    if: contains(github.event.head_commit.message, 'deploy') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # Updated to latest version for better reliability
+        uses: actions/checkout@v4
+
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump Flutter app version
+        run: |
+          strategy=${{ github.event.inputs.version_bump_strategy || 'patch' }}
+          current_version=$(grep '^version:' pubspec.yaml | cut -d ' ' -f2)
+          base=$(echo $current_version | cut -d+ -f1)
+          build_number=$(echo $current_version | cut -d+ -f2)
+
+          major=$(echo $base | cut -d. -f1)
+          minor=$(echo $base | cut -d. -f2)
+          patch=$(echo $base | cut -d. -f3)
+
+          if [ "$strategy" == "major" ]; then
+            major=$((major + 1)); minor=0; patch=0
+          elif [ "$strategy" == "minor" ]; then
+            minor=$((minor + 1)); patch=0
+          elif [ "$strategy" == "patch" ]; then
+            patch=$((patch + 1))
+          elif [ "$strategy" == "build" ]; then
+            build_number=$((build_number + 1))
+          fi
+
+          new_version="$major.$minor.$patch+$build_number"
+          sed -i "s/^version: .*/version: $new_version/" pubspec.yaml
+          echo "New version: $new_version" > version.txt
+
+      - name: Commit version bump
+        run: |
+          new_version=$(cat version.txt | cut -d ' ' -f3)
+          git add pubspec.yaml
+          git commit -m "Bumped version to $new_version [skip ci]"
+          git push
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
@@ -24,7 +73,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.x' # Specify a version or range for consistency
+          flutter-version: '3.x'
 
       - name: Accept Android SDK licenses
         run: yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses
