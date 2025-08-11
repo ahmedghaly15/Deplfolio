@@ -54,3 +54,5 @@ web
 keystore.jks.base64
 upload-keystore.jks
 key.properties
+
+android/app/google-services.json
