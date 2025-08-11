@@ -9,7 +9,7 @@ on:
       version_bump_strategy:
         description: 'Version bump strategy'
         required: false
-        default: 'patch'
+        default: 'minor'
         type: choice
         options:
           - major
