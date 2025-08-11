@@ -1,4 +1,3 @@
-import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,7 +16,7 @@ class AboutViewConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncAbout = ref.watch(fetchAboutProvider);
-    _fetchAboutProviderListener(ref, context);
+    // _fetchAboutProviderListener(ref, context);
     return asyncAbout.when(
       skipError: true,
       skipLoadingOnRefresh: true,
@@ -42,11 +41,11 @@ class AboutViewConsumer extends ConsumerWidget {
     );
   }
 
-  void _fetchAboutProviderListener(WidgetRef ref, BuildContext context) {
-    ref.listen(fetchAboutProvider, (_, current) {
-      current.whenOrNull(
-        error: (error, _) => context.showToast(error.toString()),
-      );
-    });
-  }
+  // void _fetchAboutProviderListener(WidgetRef ref, BuildContext context) {
+  //   ref.listen(fetchAboutProvider, (_, current) {
+  //     current.whenOrNull(
+  //       error: (error, _) => context.showToast(error.toString()),
+  //     );
+  //   });
+  // }
 }

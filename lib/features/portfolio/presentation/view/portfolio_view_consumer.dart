@@ -1,4 +1,3 @@
-import 'package:deplfolio/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -48,7 +47,6 @@ class PortfolioViewConsumer extends ConsumerWidget {
         data:
             (projects) =>
                 ref.read(portfolioProjectsProvider.notifier).state = projects,
-        error: (error, _) => context.showToast(error.toString()),
       );
     });
   }

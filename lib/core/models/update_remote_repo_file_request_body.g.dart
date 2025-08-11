@@ -10,8 +10,8 @@ UpdateRemoteRepoFileRequestBody _$UpdateRemoteRepoFileRequestBodyFromJson(
         Map<String, dynamic> json) =>
     UpdateRemoteRepoFileRequestBody(
       fileEncodedContent: json['content'] as String,
-      message:
-          json['message'] as String? ?? 'Updated CV via Deplfolio: Deploy 🚀',
+      message: json['message'] as String? ??
+          'Updated CV via Deplfolio Mobile App: Deploy 🚀',
       branchName: json['branch'] as String? ?? 'master',
       sha: json['sha'] as String?,
     );
