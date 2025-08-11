@@ -17,6 +17,9 @@ on:
           - patch
           - build
 
+permissions:
+  contents: write
+
 jobs:
   distribute:
     if: contains(github.event.head_commit.message, 'deploy') || github.event_name == 'workflow_dispatch'
@@ -60,7 +63,7 @@ jobs:
         run: |
           new_version=$(cat version.txt | cut -d ' ' -f3)
           git add pubspec.yaml
-          git commit -m "Bumped version to $new_version [skip ci]"
+          git commit -m "Bumped version to $new_version ✅ [skip ci]"
           git push
 
       - name: Setup Java 17
