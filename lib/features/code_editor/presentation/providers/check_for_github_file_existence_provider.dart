@@ -11,19 +11,19 @@ part 'check_for_github_file_existence_provider.g.dart';
 @riverpod
 class CheckForGithubFileExistence extends _$CheckForGithubFileExistence {
   @override
-  AsyncValue<String?>? build() => null;
+  AsyncValue<String?> build() => const AsyncValue.data('');
 
   void execute(String remoteFilePath) async {
     final saferFilePathUrl = Uri.encodeFull(remoteFilePath);
-    state = const AsyncLoading();
+    state = const AsyncValue.loading();
     final result = await ref.read(checkForGithubFileExistenceUseCaseProvider)(
       saferFilePathUrl,
     );
     switch (result) {
       case ApiRequestSuccess(data: final data):
-        state = AsyncData(data.sha);
+        state = AsyncValue.data(data.sha);
       case ApiRequestFailure(errorModel: final errorModel):
-        state = AsyncError(errorModel.message, StackTrace.current);
+        state = AsyncValue.error(errorModel.message, StackTrace.current);
     }
   }
 }

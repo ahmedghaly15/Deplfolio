@@ -32,13 +32,17 @@ class UploadCodeFileToGitHubButtonConsumer extends ConsumerWidget {
     BuildContext context,
   ) {
     ref.listen(checkForGithubFileExistenceProvider, (_, current) {
-      current?.whenOrNull(
+      current.whenOrNull(
         loading:
             () => context.showAlertDialog(
               isLoading: true,
               constraints: BoxConstraints(maxWidth: 80.w, maxHeight: 200.h),
             ),
-        data: (sha) => _updateCodeFile(ref, sha),
+        data: (sha) {
+          if (!sha.isNullOrEmpty) {
+            _updateCodeFile(ref, sha);
+          }
+        },
         error: (error, _) {
           context.popTop();
           context.showToast(error.toString());

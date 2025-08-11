@@ -7,7 +7,7 @@ part of 'update_remote_repo_file_provider.dart';
 // **************************************************************************
 
 String _$updateRemoteRepoFileHash() =>
-    r'476c1042055b7c84596d882a238ee0ffb6663d4c';
+    r'fbec2d8667a4d30cf1ef3121fd269ec8dc18e5c1';
 
 /// See also [UpdateRemoteRepoFile].
 @ProviderFor(UpdateRemoteRepoFile)
