@@ -1,4 +1,4 @@
 New release notes:
 
-- Added some enhancements to features
-- Fixed bug in update CV 
+- Fixed a Bug in Update CV feature
+- Added new enhancements in Update CV feature
